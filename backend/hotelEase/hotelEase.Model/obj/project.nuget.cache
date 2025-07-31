@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "untVY5BAewo=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\hotelEase.Model.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Hazim\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\9.0.7\\microsoft.entityframeworkcore.tools.9.0.7.nupkg.sha512"
+  ],
+  "logs": []
+}

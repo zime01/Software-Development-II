@@ -1,0 +1,10 @@
+C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\hotelEase.Model\bin\Debug\netstandard2.1\hotelEase.Model.deps.json
+C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\hotelEase.Model\bin\Debug\netstandard2.1\hotelEase.Model.dll
+C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\hotelEase.Model\bin\Debug\netstandard2.1\hotelEase.Model.pdb
+C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\hotelEase.Model\obj\Debug\netstandard2.1\hotelEase.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\hotelEase.Model\obj\Debug\netstandard2.1\hotelEase.Model.AssemblyInfoInputs.cache
+C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\hotelEase.Model\obj\Debug\netstandard2.1\hotelEase.Model.AssemblyInfo.cs
+C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\hotelEase.Model\obj\Debug\netstandard2.1\hotelEase.Model.csproj.CoreCompileInputs.cache
+C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\hotelEase.Model\obj\Debug\netstandard2.1\hotelEase.Model.sourcelink.json
+C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\hotelEase.Model\obj\Debug\netstandard2.1\hotelEase.Model.dll
+C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\hotelEase.Model\obj\Debug\netstandard2.1\hotelEase.Model.pdb
