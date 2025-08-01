@@ -1,4 +1,6 @@
 ﻿using hotelEase.Model;
+using hotelEase.Services.Database;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +11,20 @@ namespace hotelEase.Services
 {
     public class HotelsService : IHotelsService
     {
-        public List<Hotels> List = new List<Hotels>()
+        public HotelEaseContext Context { get; set; }
+        public HotelsService(HotelEaseContext context)
         {
-            new Hotels()
+            Context = context;
+        }
+        public List<Model.Hotel> List = new List<Model.Hotel>()
+        {
+            new Model.Hotel()
             {
                 HotelId = 1,
                 Name = "Hilton",
                 Price = 149,
             },
-            new Hotels()
+            new Model.Hotel()
             {
                 HotelId = 2,
                 Name = "Swisotel",
@@ -25,9 +32,20 @@ namespace hotelEase.Services
             }
 
         };
-        public List<Hotels> GetList()
+        public List<Model.Hotel> GetList()
         {
-            return List;
+            var list = Context.Hotels.ToList();
+            var result  = new List<Model.Hotel>();
+            foreach (var item in list)
+            {
+                result.Add(new Model.Hotel() {
+                    HotelId = item.Id,
+                    Name = item.Name,
+                    
+                });
+            }
+
+            return result;
         }
     }
 }

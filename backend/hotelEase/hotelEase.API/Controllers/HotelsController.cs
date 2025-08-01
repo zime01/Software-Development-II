@@ -15,7 +15,7 @@ namespace hotelEase.API.Controllers
             _service = service;
         }
         [HttpGet]
-        public List<Hotels> GetList()
+        public List<Hotel> GetList()
         {
             return _service.GetList();
         }

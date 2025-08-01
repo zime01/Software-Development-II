@@ -9,6 +9,6 @@ namespace hotelEase.Services
 {
     public interface IHotelsService
     {
-        List<Hotels> GetList();
+        List<Hotel> GetList();
     }
 }
