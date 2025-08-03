@@ -1,5 +1,6 @@
 ﻿using hotelEase.Model;
 using hotelEase.Model.Requests;
+using hotelEase.Model.SearchObjects;
 using hotelEase.Services.Database;
 using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
@@ -22,11 +23,40 @@ namespace hotelEase.Services
             Mapper = mapper;
         }
         
-        public List<Model.User> GetList()
+        public List<Model.User> GetList(UsersSearchObject searchObject)
         {
 
             List<Model.User> result = new List<Model.User>();
-            var list = Context.Users.ToList();
+            
+
+            var query = Context.Users.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(searchObject?.FirstNameGTE))
+            {
+                query = query.Where(x=> x.FirstName.StartsWith(searchObject.FirstNameGTE));
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchObject?.LastNameGTE))
+            {
+                query = query.Where(x => x.LastName.StartsWith(searchObject.LastNameGTE));
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchObject?.Email))
+            {
+                query = query.Where(x => x.Email == searchObject.Email);
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchObject.Username))
+            {
+                query = query.Where(x=> x.Username == searchObject.Username);
+            }
+
+            if(searchObject?.Page.HasValue == true && searchObject?.PageSize.HasValue == true)
+            {
+                query = query.Skip(searchObject.Page.Value * searchObject.PageSize.Value).Take(searchObject.PageSize.Value);
+            }
+
+            var list = query.ToList();
 
             //list.ForEach(x => result.Add( new Model.User()
             //{

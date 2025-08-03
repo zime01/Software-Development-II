@@ -1,5 +1,6 @@
 ﻿using hotelEase.Model;
 using hotelEase.Model.Requests;
+using hotelEase.Model.SearchObjects;
 using hotelEase.Services.Database;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace hotelEase.Services
 {
     public interface IUsersService
     {
-        List<Model.User> GetList();
+        List<Model.User> GetList(UsersSearchObject searchObject);
         Model.User Insert(UsersInsertRequest request);
         Model.User Update(int id,UsersUpdateRequest request);
     }

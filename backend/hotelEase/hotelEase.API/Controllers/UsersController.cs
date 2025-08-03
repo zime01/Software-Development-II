@@ -1,4 +1,5 @@
 ﻿using hotelEase.Model.Requests;
+using hotelEase.Model.SearchObjects;
 using hotelEase.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,9 +18,9 @@ namespace hotelEase.API.Controllers
         }
 
         [HttpGet]
-        public List<Model.User> GetList()
+        public List<Model.User> GetList([FromQuery] UsersSearchObject searchObject)
         {
-            return _usersService.GetList();
+            return _usersService.GetList( searchObject );
         }
 
         [HttpPost]

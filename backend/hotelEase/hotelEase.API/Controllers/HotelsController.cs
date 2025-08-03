@@ -1,4 +1,5 @@
 ﻿using hotelEase.Model;
+using hotelEase.Model.SearchObjects;
 using hotelEase.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,17 +8,8 @@ namespace hotelEase.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class HotelsController : ControllerBase
+    public class HotelsController : BaseController<Model.Hotel, HotelsSearchObject>
     {
-        protected IHotelsService _service;
-        public HotelsController(IHotelsService service)
-        {
-            _service = service;
-        }
-        [HttpGet]
-        public List<Hotel> GetList()
-        {
-            return _service.GetList();
-        }
+        public HotelsController(IHotelsService service) : base(service) { }
     }
 }

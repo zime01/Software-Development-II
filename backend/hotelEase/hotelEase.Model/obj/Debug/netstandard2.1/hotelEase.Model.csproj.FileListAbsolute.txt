@@ -8,3 +8,4 @@ C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\h
 C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\hotelEase.Model\obj\Debug\netstandard2.1\hotelEase.Model.sourcelink.json
 C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\hotelEase.Model\obj\Debug\netstandard2.1\hotelEase.Model.dll
 C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\hotelEase.Model\obj\Debug\netstandard2.1\hotelEase.Model.pdb
+C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\hotelEase.Model\obj\Debug\netstandard2.1\hotelEase.Model.csproj.AssemblyReference.cache

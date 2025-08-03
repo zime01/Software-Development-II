@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Text;
 
 namespace hotelEase.Model
 {
     public class Hotel
     {
-        public int HotelId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
+
+        public virtual ICollection<Room> Rooms { get; set; } = new List<Room>();
     }
 }
