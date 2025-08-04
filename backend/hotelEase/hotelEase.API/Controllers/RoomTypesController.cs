@@ -8,7 +8,7 @@ namespace hotelEase.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class RoomTypesController : BaseController<RoomType, RoomTypesSearchObject>
+    public class RoomTypesController : BaseCRUDController<RoomType, RoomTypesSearchObject, RoomTypesUpsertRequest, RoomTypesUpsertRequest>
     {
         
 

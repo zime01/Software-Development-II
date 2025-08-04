@@ -13,27 +13,19 @@ using System.Threading.Tasks;
 
 namespace hotelEase.Services
 {
-    public class UsersService : IUsersService
+    public class UsersService : BaseCRUDService<Model.User, UsersSearchObject, Database.User, UsersInsertRequest, UsersUpdateRequest>, IUsersService
     {
-        public HotelEaseContext Context { get; set; }
-        public IMapper Mapper { get; set; }
-        public UsersService(HotelEaseContext context, IMapper mapper)
+        public UsersService(HotelEaseContext context, IMapper mapper) : base(context, mapper)
         {
-            Context = context;
-            Mapper = mapper;
         }
-        
-        public List<Model.User> GetList(UsersSearchObject searchObject)
+
+        public override IQueryable<Database.User> AddFilter(UsersSearchObject searchObject, IQueryable<Database.User> query)
         {
-
-            List<Model.User> result = new List<Model.User>();
-            
-
-            var query = Context.Users.AsQueryable();
+           query =  base.AddFilter(searchObject, query);
 
             if (!string.IsNullOrWhiteSpace(searchObject?.FirstNameGTE))
             {
-                query = query.Where(x=> x.FirstName.StartsWith(searchObject.FirstNameGTE));
+                query = query.Where(x => x.FirstName.StartsWith(searchObject.FirstNameGTE));
             }
 
             if (!string.IsNullOrWhiteSpace(searchObject?.LastNameGTE))
@@ -48,57 +40,87 @@ namespace hotelEase.Services
 
             if (!string.IsNullOrWhiteSpace(searchObject.Username))
             {
-                query = query.Where(x=> x.Username == searchObject.Username);
+                query = query.Where(x => x.Username == searchObject.Username);
             }
 
-            if(searchObject?.Page.HasValue == true && searchObject?.PageSize.HasValue == true)
+            if (searchObject?.Page.HasValue == true && searchObject?.PageSize.HasValue == true)
             {
                 query = query.Skip(searchObject.Page.Value * searchObject.PageSize.Value).Take(searchObject.PageSize.Value);
             }
 
-            var list = query.ToList();
 
-            //list.ForEach(x => result.Add( new Model.User()
-            //{
-            //    Email = x.Email,
-            //    FirstName = x.FirstName,
-            //    LastName = x.LastName,
-            //    Username = x.Username,
-            //    PhoneNumber = x.PhoneNumber,
-            //    IsActive = x.IsActive,
-            //} ));
+            return query;
 
-            result = Mapper.Map(list, result);
-            
-
-            return result;
         }
 
-        public Model.User Insert(UsersInsertRequest request)
+        //public List<Model.User> GetList(UsersSearchObject searchObject)
+        //{
+
+        //    List<Model.User> result = new List<Model.User>();
+
+
+        //    var query = Context.Users.AsQueryable();
+
+        //    if (!string.IsNullOrWhiteSpace(searchObject?.FirstNameGTE))
+        //    {
+        //        query = query.Where(x=> x.FirstName.StartsWith(searchObject.FirstNameGTE));
+        //    }
+
+        //    if (!string.IsNullOrWhiteSpace(searchObject?.LastNameGTE))
+        //    {
+        //        query = query.Where(x => x.LastName.StartsWith(searchObject.LastNameGTE));
+        //    }
+
+        //    if (!string.IsNullOrWhiteSpace(searchObject?.Email))
+        //    {
+        //        query = query.Where(x => x.Email == searchObject.Email);
+        //    }
+
+        //    if (!string.IsNullOrWhiteSpace(searchObject.Username))
+        //    {
+        //        query = query.Where(x=> x.Username == searchObject.Username);
+        //    }
+
+        //    if(searchObject?.Page.HasValue == true && searchObject?.PageSize.HasValue == true)
+        //    {
+        //        query = query.Skip(searchObject.Page.Value * searchObject.PageSize.Value).Take(searchObject.PageSize.Value);
+        //    }
+
+        //    var list = query.ToList();
+
+        //    //list.ForEach(x => result.Add( new Model.User()
+        //    //{
+        //    //    Email = x.Email,
+        //    //    FirstName = x.FirstName,
+        //    //    LastName = x.LastName,
+        //    //    Username = x.Username,
+        //    //    PhoneNumber = x.PhoneNumber,
+        //    //    IsActive = x.IsActive,
+        //    //} ));
+
+        //    result = Mapper.Map(list, result);
+
+
+        //    return result;
+        //}
+
+        public override void BeforeInsert(UsersInsertRequest request, Database.User entity)
         {
-            if(request.Password != request.ConfirmPassword)
+            if (request.Password != request.ConfirmPassword)
             {
                 throw new Exception("Password and CofirmPassword must be same");
             }
 
-            Database.User entity = new Database.User();
-            Mapper.Map(request, entity);
-
             entity.PasswordSalt = GenerateSalt();
             entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
 
-            Context.Add(entity);
-            Context.SaveChanges();
-
-            return Mapper.Map<Model.User>(entity);
+            base.BeforeInsert(request, entity);
         }
-        public Model.User Update(int id, UsersUpdateRequest request)
+
+        public override void BeforeUpdate(UsersUpdateRequest request, Database.User entity)
         {
-            var entity = Context.Users.Find(id);
-
-            Mapper.Map(request, entity);
-
-            if(request.Password != null)
+            base.BeforeUpdate(request, entity);
+            if (request.Password != null)
             {
                 if (request.Password != request.ConfirmPassword)
                 {
@@ -107,11 +129,46 @@ namespace hotelEase.Services
                 entity.PasswordSalt = GenerateSalt();
                 entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
             }
-
-            Context.SaveChanges();
-
-            return Mapper.Map<Model.User>(entity);
         }
+
+        //public Model.User Insert(UsersInsertRequest request)
+        //{
+        //    if(request.Password != request.ConfirmPassword)
+        //    {
+        //        throw new Exception("Password and CofirmPassword must be same");
+        //    }
+
+        //    Database.User entity = new Database.User();
+        //    Mapper.Map(request, entity);
+
+        //    entity.PasswordSalt = GenerateSalt();
+        //    entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
+
+        //    Context.Add(entity);
+        //    Context.SaveChanges();
+
+        //    return Mapper.Map<Model.User>(entity);
+        //}
+        //public Model.User Update(int id, UsersUpdateRequest request)
+        //{
+        //    var entity = Context.Users.Find(id);
+
+        //    Mapper.Map(request, entity);
+
+        //    if(request.Password != null)
+        //    {
+        //        if (request.Password != request.ConfirmPassword)
+        //        {
+        //            throw new Exception("Password and CofirmPassword must be same");
+        //        }
+        //        entity.PasswordSalt = GenerateSalt();
+        //        entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
+        //    }
+
+        //    Context.SaveChanges();
+
+        //    return Mapper.Map<Model.User>(entity);
+        //}
 
 
         public static string GenerateSalt()

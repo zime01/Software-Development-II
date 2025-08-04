@@ -25,6 +25,7 @@ public partial class Hotel
     public bool? IsActive { get; set; }
 
     public DateTime? CreatedAt { get; set; }
+    public string? StateMachine { get; set; }
 
     public virtual ICollection<Asset> Assets { get; set; } = new List<Asset>();
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace hotelEase.Services
 {
-    public interface IRoomTypesService : IService<Model.RoomType, RoomTypesSearchObject>
+    public interface IRoomTypesService : ICRUDService<Model.RoomType, RoomTypesSearchObject, RoomTypesUpsertRequest, RoomTypesUpsertRequest>
     {
         //List<RoomType> GetList(RoomTypesSearchObject searchObject);
     }

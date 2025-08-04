@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace hotelEase.Services
 {
-    public interface IUsersService
+    public interface IUsersService : ICRUDService<Model.User, UsersSearchObject, UsersInsertRequest, UsersUpdateRequest>
     {
-        List<Model.User> GetList(UsersSearchObject searchObject);
-        Model.User Insert(UsersInsertRequest request);
-        Model.User Update(int id,UsersUpdateRequest request);
+        //List<Model.User> GetList(UsersSearchObject searchObject);
+        //Model.User Insert(UsersInsertRequest request);
+        //Model.User Update(int id,UsersUpdateRequest request);
     }
 }

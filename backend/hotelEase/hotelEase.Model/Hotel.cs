@@ -10,6 +10,8 @@ namespace hotelEase.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
+        public string? StateMachine { get; set; }
+
 
         public virtual ICollection<Room> Rooms { get; set; } = new List<Room>();
     }

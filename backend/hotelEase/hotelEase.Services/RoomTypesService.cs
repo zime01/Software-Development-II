@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace hotelEase.Services
 {
-    public class RoomTypesService : BaseService<Model.RoomType, RoomTypesSearchObject, Database.RoomType> ,IRoomTypesService
+    public class RoomTypesService : BaseCRUDService<Model.RoomType, RoomTypesSearchObject, Database.RoomType, RoomTypesUpsertRequest, RoomTypesUpsertRequest> ,IRoomTypesService
     {
 
         public RoomTypesService(HotelEaseContext context, IMapper mapper): base(context, mapper) { }
