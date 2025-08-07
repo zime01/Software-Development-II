@@ -53,5 +53,32 @@ namespace hotelEase.Services
         {
 
         }
+
+        public virtual TModel Delete (int id)
+        {
+            var set = Context.Set<TDbEntity>();
+
+            var entity = set.Find(id);
+
+            if(entity == null)
+            {
+                throw new Exception("Item not found");
+            }
+
+            var IsDeletedProp = typeof(TDbEntity).GetProperty("IsDeleted");
+            var DeletedTimeProp = typeof(TDbEntity).GetProperty("DeletedTime");
+
+            if(IsDeletedProp == null  || DeletedTimeProp == null)
+            {
+                throw new Exception("Entity does not contain soft delete properties");
+            }
+
+            IsDeletedProp.SetValue(entity, true);
+            DeletedTimeProp.SetValue(entity, DateTime.Now);
+
+            Context.SaveChanges();
+
+            return Mapper.Map<TModel>(entity);
+        }
     }
 }

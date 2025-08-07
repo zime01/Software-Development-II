@@ -18,6 +18,8 @@ public partial class Notification
     public bool? IsRead { get; set; }
 
     public DateTime? SentAt { get; set; }
+    public bool? IsDeleted { get; set; }
+    public DateTime? DeletedTime { get; set; }
 
     public virtual User User { get; set; } = null!;
 }

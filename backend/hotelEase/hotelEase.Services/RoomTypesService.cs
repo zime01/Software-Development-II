@@ -1,4 +1,5 @@
 ﻿using hotelEase.Model;
+using hotelEase.Model.Requests;
 using hotelEase.Model.SearchObjects;
 using hotelEase.Services.Database;
 using MapsterMapper;

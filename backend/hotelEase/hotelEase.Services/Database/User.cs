@@ -26,6 +26,8 @@ public partial class User
     public DateTime? CreatedAt { get; set; }
 
     public DateTime? LastLoginAt { get; set; }
+    public bool? IsDeleted { get; set; }
+    public DateTime? DeletedTime { get; set; }
 
     public virtual ICollection<Hotel> Hotels { get; set; } = new List<Hotel>();
 

@@ -2,6 +2,7 @@
 using hotelEase.Model.Requests;
 using hotelEase.Model.SearchObjects;
 using hotelEase.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.Entity;
@@ -18,6 +19,12 @@ namespace hotelEase.API.Controllers
         public UsersController(IUsersService usersService):base(usersService)
         {
 
+        }
+        [AllowAnonymous]
+        [HttpPost("login")]
+        public Model.User Login(string username, string password)
+        {
+            return (_service as IUsersService).Login(username, password); 
         }
         
 

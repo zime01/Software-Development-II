@@ -17,9 +17,11 @@ public partial class Reservation
 
     public decimal TotalPrice { get; set; }
 
-    public string? Statsu { get; set; }
+    public string? Status { get; set; }
 
     public DateTime? CreatedAt { get; set; }
+    public bool? IsDeleted { get; set; }
+    public DateTime? DeletedTime { get; set; }
 
     public virtual ICollection<ReservationService> ReservationServices { get; set; } = new List<ReservationService>();
 

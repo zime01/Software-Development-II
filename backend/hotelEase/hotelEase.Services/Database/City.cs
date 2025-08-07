@@ -10,6 +10,8 @@ public partial class City
     public string Name { get; set; } = null!;
 
     public int CountryId { get; set; }
+    public bool? IsDeleted { get; set; }
+    public DateTime? DeletedTime { get; set; }
 
     public virtual Country Country { get; set; } = null!;
 

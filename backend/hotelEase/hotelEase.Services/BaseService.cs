@@ -2,6 +2,7 @@
 using hotelEase.Model.SearchObjects;
 using hotelEase.Services.Database;
 using MapsterMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,10 +27,21 @@ namespace hotelEase.Services
 
             var query = Context.Set<TDbEntity>().AsQueryable();
 
+            query = AddInclude(searchObject ,query);
+
             query = AddFilter(searchObject, query);
+
+            var PropIsDeleted = typeof(TDbEntity).GetProperty("IsDeleted");
+
+            if (PropIsDeleted != null)
+            {
+                query = query.Where(e => !EF.Property<bool?>(e, "IsDeleted").HasValue || EF.Property<bool?>(e, "IsDeleted") == false);
+            }
+
 
             int count = query.Count();
 
+            
             if(searchObject?.Page.HasValue == true && searchObject?.PageSize.HasValue == true)
             {
                 query = query.Skip(searchObject.Page.Value * searchObject.PageSize.Value).Take(searchObject.PageSize.Value);
@@ -56,7 +68,9 @@ namespace hotelEase.Services
         {
             var entity = Context.Set<TDbEntity>().Find(id);
 
-            if(entity != null)
+            var PropIsDeleted = typeof(TDbEntity).GetProperty("IsDeleted");
+
+            if (entity != null && (PropIsDeleted != null || (bool)PropIsDeleted.GetValue(entity) == false)) 
             {
                 return Mapper.Map<TModel>(entity);
             }
@@ -65,6 +79,11 @@ namespace hotelEase.Services
                 return null;
             }
 
+        }
+
+        public virtual IQueryable<TDbEntity> AddInclude(TSearch search, IQueryable<TDbEntity> query)
+        {
+            return query;
         }
     }
 }

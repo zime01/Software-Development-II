@@ -24,33 +24,33 @@ namespace hotelEase.Services.HotelsStateMachine
         }
         public virtual Model.Hotel Insert(HotelsInsertRequest request)
         {
-            throw new Exception("Method not allowed");
+            throw new UserException("Method not allowed");
         }
 
         public virtual Model.Hotel Update(int id, HotelsUpdateRequest request)
         {
-            throw new Exception("Method not allowed");
+            throw new UserException("Method not allowed");
         }
 
         public virtual Model.Hotel Activate(int id)
         {
-            throw new Exception("Method not allowed");
+            throw new UserException("Method not allowed");
 
         }
 
         public virtual Model.Hotel Hide(int id)
         {
-            throw new Exception("Method not allowed");
+            throw new UserException("Method not allowed");
         }
 
         public virtual Model.Hotel Edit(int id)
         {
-            throw new Exception("Method not allowed");
+            throw new UserException("Method not allowed");
         }
         
         public virtual List<string> AllowedActions(Hotel entity)
         {
-            throw new Exception("Method not allowed");
+            throw new UserException("Method not allowed");
         }
 
         public BaseHotelsState CreateState(string stateName)

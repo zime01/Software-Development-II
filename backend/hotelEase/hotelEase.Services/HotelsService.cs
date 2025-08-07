@@ -84,6 +84,17 @@ namespace hotelEase.Services
                 return state.AllowedActions(entity);
             }
         }
+
+        public override IQueryable<Database.Hotel> AddInclude(HotelsSearchObject search, IQueryable<Database.Hotel> query)
+        {
+            if (search.IsRoomsIcluded == true)
+            {
+                query = query.Include(x => x.Rooms);
+            }
+
+            return query;
+        }
+
         //public List<Model.Hotel> List = new List<Model.Hotel>()
         //{
         //    new Model.Hotel()

@@ -1,5 +1,425 @@
 [
   {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Asset, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.AssetsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.AssetsUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.AssetsUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Insert",
+    "RelativePath": "api/Assets",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.Requests.AssetsUpsertRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Asset",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseController\u00602[[hotelEase.Model.Asset, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.AssetsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetPaged",
+    "RelativePath": "api/Assets",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.PagedResult\u00601[[hotelEase.Model.Asset, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Asset, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.AssetsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.AssetsUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.AssetsUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Update",
+    "RelativePath": "api/Assets/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.Requests.AssetsUpsertRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Asset",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Asset, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.AssetsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.AssetsUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.AssetsUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Delete",
+    "RelativePath": "api/Assets/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Asset",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseController\u00602[[hotelEase.Model.Asset, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.AssetsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetById",
+    "RelativePath": "api/Assets/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Asset",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.City, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.CititesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.CitiesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.CitiesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Insert",
+    "RelativePath": "api/Cities",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.Requests.CitiesUpsertRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.City",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseController\u00602[[hotelEase.Model.City, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.CititesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetPaged",
+    "RelativePath": "api/Cities",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.PagedResult\u00601[[hotelEase.Model.City, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.City, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.CititesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.CitiesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.CitiesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Update",
+    "RelativePath": "api/Cities/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.Requests.CitiesUpsertRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.City",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.City, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.CititesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.CitiesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.CitiesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Delete",
+    "RelativePath": "api/Cities/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.City",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseController\u00602[[hotelEase.Model.City, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.CititesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetById",
+    "RelativePath": "api/Cities/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.City",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Country, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.CountriesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.CountriesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.CountriesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Insert",
+    "RelativePath": "api/Countries",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.Requests.CountriesUpsertRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Country",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseController\u00602[[hotelEase.Model.Country, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.CountriesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetPaged",
+    "RelativePath": "api/Countries",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.PagedResult\u00601[[hotelEase.Model.Country, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Country, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.CountriesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.CountriesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.CountriesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Update",
+    "RelativePath": "api/Countries/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.Requests.CountriesUpsertRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Country",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Country, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.CountriesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.CountriesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.CountriesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Delete",
+    "RelativePath": "api/Countries/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Country",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseController\u00602[[hotelEase.Model.Country, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.CountriesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetById",
+    "RelativePath": "api/Countries/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Country",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Hotel, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.HotelsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.HotelsInsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.HotelsUpdateRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "Insert",
     "RelativePath": "api/Hotels",
@@ -87,6 +507,32 @@
       {
         "Name": "request",
         "Type": "hotelEase.Model.Requests.HotelsUpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Hotel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Hotel, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.HotelsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.HotelsInsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.HotelsUpdateRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Delete",
+    "RelativePath": "api/Hotels/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -233,7 +679,650 @@
     ]
   },
   {
-    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.RoomType, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomTypesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomTypesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomTypesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Reservation, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.ReservationsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.ReservationsUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.ReservationsUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Insert",
+    "RelativePath": "api/Reservations",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.Requests.ReservationsUpsertRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Reservation",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseController\u00602[[hotelEase.Model.Reservation, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.ReservationsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetPaged",
+    "RelativePath": "api/Reservations",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.PagedResult\u00601[[hotelEase.Model.Reservation, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Reservation, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.ReservationsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.ReservationsUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.ReservationsUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Update",
+    "RelativePath": "api/Reservations/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.Requests.ReservationsUpsertRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Reservation",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Reservation, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.ReservationsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.ReservationsUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.ReservationsUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Delete",
+    "RelativePath": "api/Reservations/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Reservation",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseController\u00602[[hotelEase.Model.Reservation, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.ReservationsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetById",
+    "RelativePath": "api/Reservations/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Reservation",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.ReservationsController",
+    "Method": "GetByUserId",
+    "RelativePath": "api/Reservations/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[hotelEase.Model.Reservation, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Role, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RolesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RolesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RolesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Insert",
+    "RelativePath": "api/Roles",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.Requests.RolesUpsertRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Role",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseController\u00602[[hotelEase.Model.Role, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RolesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetPaged",
+    "RelativePath": "api/Roles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.PagedResult\u00601[[hotelEase.Model.Role, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Role, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RolesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RolesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RolesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Update",
+    "RelativePath": "api/Roles/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.Requests.RolesUpsertRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Role",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Role, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RolesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RolesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RolesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Delete",
+    "RelativePath": "api/Roles/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Role",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseController\u00602[[hotelEase.Model.Role, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RolesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetById",
+    "RelativePath": "api/Roles/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Role",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Room, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RoomsInsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RoomsUpdateRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Insert",
+    "RelativePath": "api/Rooms",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.Requests.RoomsInsertRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Room",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseController\u00602[[hotelEase.Model.Room, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetPaged",
+    "RelativePath": "api/Rooms",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IsAssetsIncluded",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.PagedResult\u00601[[hotelEase.Model.Room, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Room, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RoomsInsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RoomsUpdateRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Update",
+    "RelativePath": "api/Rooms/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.Requests.RoomsUpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Room",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Room, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RoomsInsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RoomsUpdateRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Delete",
+    "RelativePath": "api/Rooms/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Room",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseController\u00602[[hotelEase.Model.Room, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetById",
+    "RelativePath": "api/Rooms/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Room",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.RoomsController",
+    "Method": "GetByHotelId",
+    "RelativePath": "api/Rooms/by-hotel/{hotelId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hotelId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.RoomAvailability, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomsAvailabilitySearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RoomsAvailabilityUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RoomsAvailabilityUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Insert",
+    "RelativePath": "api/RoomsAvailability",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.Requests.RoomsAvailabilityUpsertRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.RoomAvailability",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseController\u00602[[hotelEase.Model.RoomAvailability, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomsAvailabilitySearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetPaged",
+    "RelativePath": "api/RoomsAvailability",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.PagedResult\u00601[[hotelEase.Model.RoomAvailability, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.RoomAvailability, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomsAvailabilitySearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RoomsAvailabilityUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RoomsAvailabilityUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Update",
+    "RelativePath": "api/RoomsAvailability/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.Requests.RoomsAvailabilityUpsertRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.RoomAvailability",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.RoomAvailability, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomsAvailabilitySearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RoomsAvailabilityUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RoomsAvailabilityUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Delete",
+    "RelativePath": "api/RoomsAvailability/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.RoomAvailability",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseController\u00602[[hotelEase.Model.RoomAvailability, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomsAvailabilitySearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetById",
+    "RelativePath": "api/RoomsAvailability/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.RoomAvailability",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.RoomsAvailabilityController",
+    "Method": "GetAvailabilityRooms",
+    "RelativePath": "api/RoomsAvailability/color-coded",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roomId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "month",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "year",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[hotelEase.Model.RoomAvailability, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.RoomTypesController",
     "Method": "Insert",
     "RelativePath": "api/RoomTypes",
     "HttpMethod": "POST",
@@ -242,7 +1331,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "hotelEase.Model.SearchObjects.RoomTypesUpsertRequest",
+        "Type": "hotelEase.Model.Requests.RoomTypesUpsertRequest",
         "IsRequired": true
       }
     ],
@@ -259,7 +1348,7 @@
     ]
   },
   {
-    "ContainingType": "hotelEase.API.Controllers.BaseController\u00602[[hotelEase.Model.RoomType, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomTypesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "ContainingType": "hotelEase.API.Controllers.RoomTypesController",
     "Method": "GetPaged",
     "RelativePath": "api/RoomTypes",
     "HttpMethod": "GET",
@@ -295,7 +1384,7 @@
     ]
   },
   {
-    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.RoomType, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomTypesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomTypesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomTypesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.RoomType, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomTypesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RoomTypesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RoomTypesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "Update",
     "RelativePath": "api/RoomTypes/{id}",
     "HttpMethod": "PUT",
@@ -309,7 +1398,33 @@
       },
       {
         "Name": "request",
-        "Type": "hotelEase.Model.SearchObjects.RoomTypesUpsertRequest",
+        "Type": "hotelEase.Model.Requests.RoomTypesUpsertRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.RoomType",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.RoomType, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomTypesSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RoomTypesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RoomTypesUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Delete",
+    "RelativePath": "api/RoomTypes/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -460,6 +1575,32 @@
     ]
   },
   {
+    "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.User, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.UsersSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.UsersInsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.UsersUpdateRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Delete",
+    "RelativePath": "api/Users/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.User",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "hotelEase.API.Controllers.BaseController\u00602[[hotelEase.Model.User, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.UsersSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "GetById",
     "RelativePath": "api/Users/{id}",
@@ -471,6 +1612,37 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.User",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.UsersController",
+    "Method": "Login",
+    "RelativePath": "api/Users/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "username",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "password",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [

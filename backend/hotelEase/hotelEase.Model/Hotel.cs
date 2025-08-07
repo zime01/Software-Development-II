@@ -11,7 +11,8 @@ namespace hotelEase.Model
         public string Name { get; set; }
         public decimal Price { get; set; }
         public string? StateMachine { get; set; }
-
+        public bool? IsDeleted { get; set; }
+        public DateTime? DeletedTime { get; set; }
 
         public virtual ICollection<Room> Rooms { get; set; } = new List<Room>();
     }

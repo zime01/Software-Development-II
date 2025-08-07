@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace hotelEase.Model.SearchObjects
+namespace hotelEase.Model.Requests
 {
-    public class RoomTypesUpsertRequest
+    public class CountriesUpsertRequest
     {
         public string Name { get; set; } = null!;
-
-        public string? Description { get; set; }
     }
 }

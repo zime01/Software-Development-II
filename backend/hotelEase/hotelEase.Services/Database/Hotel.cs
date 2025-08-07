@@ -26,6 +26,8 @@ public partial class Hotel
 
     public DateTime? CreatedAt { get; set; }
     public string? StateMachine { get; set; }
+    public bool? IsDeleted { get; set; }
+    public DateTime? DeletedTime { get; set; }
 
     public virtual ICollection<Asset> Assets { get; set; } = new List<Asset>();
 

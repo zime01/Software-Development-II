@@ -12,6 +12,8 @@ public partial class RoomAvailability
     public DateTime Date { get; set; }
 
     public int Status { get; set; }
+    public bool? IsDeleted { get; set; }
+    public DateTime? DeletedTime { get; set; }
 
     public virtual Room Room { get; set; } = null!;
 }

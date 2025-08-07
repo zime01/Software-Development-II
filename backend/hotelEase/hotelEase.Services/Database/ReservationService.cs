@@ -12,6 +12,8 @@ public partial class ReservationService
     public int ServiceId { get; set; }
 
     public decimal Price { get; set; }
+    public bool? IsDeleted { get; set; }
+    public DateTime? DeletedTime { get; set; }
 
     public virtual Reservation Reservation { get; set; } = null!;
 

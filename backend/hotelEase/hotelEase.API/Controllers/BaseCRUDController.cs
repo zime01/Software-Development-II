@@ -16,15 +16,21 @@ namespace hotelEase.API.Controllers
         }
 
         [HttpPost]
-        public TModel Insert(TInsert request)
+        public virtual TModel Insert(TInsert request)
         {
             return _service.Insert(request);
         }
 
         [HttpPut("{id}")]
-        public TModel Update(int id, TUpdate request)
+        public virtual TModel Update(int id, TUpdate request)
         {
             return (_service as ICRUDService<TModel, TSearch, TInsert, TUpdate>).Update(id,request);
+        }
+
+        [HttpDelete("{id}")]
+        public virtual TModel Delete(int id)
+        {
+            return _service.Delete(id);
         }
     }
 }

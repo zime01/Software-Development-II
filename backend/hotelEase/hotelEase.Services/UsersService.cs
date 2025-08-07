@@ -4,6 +4,7 @@ using hotelEase.Model.SearchObjects;
 using hotelEase.Services.Database;
 using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,10 @@ namespace hotelEase.Services
 {
     public class UsersService : BaseCRUDService<Model.User, UsersSearchObject, Database.User, UsersInsertRequest, UsersUpdateRequest>, IUsersService
     {
-        public UsersService(HotelEaseContext context, IMapper mapper) : base(context, mapper)
+        ILogger<UsersService> _logger;
+        public UsersService(HotelEaseContext context, IMapper mapper, ILogger<UsersService> logger) : base(context, mapper)
         {
+            _logger = logger;
         }
 
         public override IQueryable<Database.User> AddFilter(UsersSearchObject searchObject, IQueryable<Database.User> query)
@@ -106,6 +109,7 @@ namespace hotelEase.Services
 
         public override void BeforeInsert(UsersInsertRequest request, Database.User entity)
         {
+            _logger.LogInformation($"Adding user: {entity.Username}");
             if (request.Password != request.ConfirmPassword)
             {
                 throw new Exception("Password and CofirmPassword must be same");
@@ -192,5 +196,23 @@ namespace hotelEase.Services
             return Convert.ToBase64String(inArray);
         }
 
+        public Model.User Login(string username, string password)
+        {
+            var entity = Context.Users.Include(x=>x.Roles).FirstOrDefault(x => x.Username == username);
+
+            if(entity == null)
+            {
+                return null;
+            }
+
+            var hash = GenerateHash(entity.PasswordSalt, password);
+
+            if(hash != entity.PasswordHash)
+            {
+                return null; 
+            }
+
+            return Mapper.Map<Model.User>(entity);
+        }
     }
 }

@@ -20,6 +20,8 @@ public partial class Room
     public bool? IsAvailable { get; set; }
 
     public string? Description { get; set; }
+    public bool? IsDeleted { get; set; }
+    public DateTime? DeletedTime { get; set; }
 
     public virtual ICollection<Asset> Assets { get; set; } = new List<Asset>();
 

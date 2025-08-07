@@ -26,6 +26,8 @@ namespace hotelEase.Model
         public DateTime? CreatedAt { get; set; }
 
         public DateTime? LastLoginAt { get; set; }
+        public bool? IsDeleted { get; set; }
+        public DateTime? DeletedTime { get; set; }
 
         //public virtual ICollection<Hotel> Hotels { get; set; } = new List<Hotel>();
 
@@ -35,6 +37,6 @@ namespace hotelEase.Model
 
         //public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
 
-        //public virtual ICollection<Role> Roles { get; set; } = new List<Role>();
+        public virtual ICollection<Role> Roles { get; set; } = new List<Role>();
     }
 }
