@@ -22,6 +22,9 @@ builder.Services.AddTransient<IRoomsService, RoomService>();
 builder.Services.AddTransient<IAssetsService, AssetsService>();
 builder.Services.AddTransient<IRoomsAvailabilityService, RoomsAvailabilityService>();
 builder.Services.AddTransient<IReservationsService, ReservationsService>();
+builder.Services.AddTransient<IServicesService, ServicesService>();
+builder.Services.AddTransient<IReviewsService, ReviewsService>();
+builder.Services.AddTransient<INotificationsService, NotificationsService>();
 
 
 builder.Services.AddTransient<BaseHotelsState>();
