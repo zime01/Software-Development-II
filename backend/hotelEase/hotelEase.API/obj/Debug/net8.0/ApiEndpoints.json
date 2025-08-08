@@ -819,6 +819,44 @@
     ]
   },
   {
+    "ContainingType": "hotelEase.API.Controllers.NotificationsController",
+    "Method": "SendAndStoreNotificationAsync",
+    "RelativePath": "api/Notifications/rabbit-mq",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.NotificationRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.NotificationsController",
+    "Method": "SendNotification",
+    "RelativePath": "api/Notifications/rabbitmq",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "message",
+        "Type": "hotelEase.Model.NotificationMessage",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Reservation, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.ReservationsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.ReservationsUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.ReservationsUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "Insert",
     "RelativePath": "api/Reservations",
@@ -943,6 +981,32 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Reservation",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.ReservationsController",
+    "Method": "UpdateStatusAsync",
+    "RelativePath": "api/Reservations/update-status",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.ReservationsStatusUpdateRequest",
         "IsRequired": true
       }
     ],

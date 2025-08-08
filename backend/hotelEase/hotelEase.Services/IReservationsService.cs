@@ -11,5 +11,7 @@ namespace hotelEase.Services
     public interface IReservationsService : ICRUDService<Model.Reservation, ReservationsSearchObject, ReservationsUpsertRequest, ReservationsUpsertRequest>
     {
         List<Model.Reservation> GetByUserId(int id);
+        Task<Model.Reservation> UpdateStatusAsync(int reservationId, string newStatus, int actingUserId);
+
     }
 }

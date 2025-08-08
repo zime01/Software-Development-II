@@ -1,4 +1,5 @@
-﻿using hotelEase.Model.Requests;
+﻿using hotelEase.Model;
+using hotelEase.Model.Requests;
 using hotelEase.Model.SearchObjects;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,6 @@ namespace hotelEase.Services
 {
     public interface INotificationsService : ICRUDService<Model.Notification, NotificationsSearchObject, NotificationsUpsertRequest, NotificationsUpsertRequest>
     {
+        Task SendAndStoreNotificationAsync(NotificationMessage message, int userId);
     }
 }

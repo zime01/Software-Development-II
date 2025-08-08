@@ -7,6 +7,7 @@ using hotelEase.API.Filters;
 using Microsoft.AspNetCore.Authentication;
 using hotelEase.API;
 using Microsoft.OpenApi.Models;
+using EasyNetQ;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,11 @@ builder.Services.AddTransient<IReservationsService, ReservationsService>();
 builder.Services.AddTransient<IServicesService, ServicesService>();
 builder.Services.AddTransient<IReviewsService, ReviewsService>();
 builder.Services.AddTransient<INotificationsService, NotificationsService>();
+
+
+builder.Services.AddSingleton(RabbitHutch.CreateBus("host=localhost"));
+builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddHostedService<NotificationWorker>();
 
 
 builder.Services.AddTransient<BaseHotelsState>();

@@ -1,7 +1,9 @@
-﻿using hotelEase.Model.Requests;
+﻿using hotelEase.Model;
+using hotelEase.Model.Requests;
 using hotelEase.Model.SearchObjects;
 using hotelEase.Services;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace hotelEase.API.Controllers
@@ -16,6 +18,12 @@ namespace hotelEase.API.Controllers
         public List<Model.Reservation> GetByUserId(int userId)
         {
             return (_service as IReservationsService).GetByUserId(userId);
+        }
+
+        [HttpPut("update-status")]
+        public Task<Model.Reservation> UpdateStatusAsync([FromBody] ReservationsStatusUpdateRequest request)
+        {
+            return (_service as IReservationsService).UpdateStatusAsync(request.ReservationId, request.NewStatus, request.ActingUserId);
         }
     }
 }
