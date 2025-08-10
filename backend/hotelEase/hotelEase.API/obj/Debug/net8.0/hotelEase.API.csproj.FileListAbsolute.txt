@@ -191,4 +191,3 @@ C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\h
 C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\hotelEase.API\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
 C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\hotelEase.API\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\hotelEase.API\bin\Debug\net8.0\RabbitMQ.Client.dll
-C:\Users\Hazim\Desktop\HotelEase-RS2\Software-Development-II\backend\hotelEase\hotelEase.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
