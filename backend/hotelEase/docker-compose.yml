@@ -1,0 +1,52 @@
+version: '3.8'
+services:
+#mssql docker
+  hotelease-sql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=QWEasd123!
+      - MSSQL_PID=Developer
+    ports:
+      - 1401:1433
+    expose:
+      - 1433
+    networks:
+      - hotelease
+
+  hotelease-api:
+    restart: unless-stopped
+    build:
+      context: .
+    environment:
+      - ConnectionStrings:HotelEaseConnection=Server=hotelease-sql,1433;Database=HotelEaseTest;User=sa;Password=QWEasd123!;ConnectRetryCount=0; TrustServerCertificate=True
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RABBITMQ_HOST=rabbitmq           
+      - RABBITMQ_USER=guest             
+      - RABBITMQ_PASS=guest 
+    ports:
+      - 5296:5296
+    networks:
+      - hotelease
+    depends_on:
+      - hotelease-sql
+      - rabbitmq
+
+  rabbitmq:
+    image: rabbitmq:4-management
+    restart: unless-stopped
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - hotelease
+      
+networks:
+  hotelease:
+    driver: bridge 
+
+

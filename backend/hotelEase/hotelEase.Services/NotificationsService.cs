@@ -20,7 +20,7 @@ namespace hotelEase.Services
             _bus = bus;
         }
 
-        public async Task SendAndStoreNotificationAsync(NotificationMessage message, int userId)
+        public async Task SendAndStoreNotificationAsync(NotificationMessage message, int userId)    
         {
             var dbNotification = new Database.Notification
             {

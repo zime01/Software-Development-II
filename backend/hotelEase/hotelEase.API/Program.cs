@@ -27,8 +27,13 @@ builder.Services.AddTransient<IServicesService, ServicesService>();
 builder.Services.AddTransient<IReviewsService, ReviewsService>();
 builder.Services.AddTransient<INotificationsService, NotificationsService>();
 
+var host = Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "rabbitmq";
+var user = Environment.GetEnvironmentVariable("RABBITMQ_USER") ?? "guest";
+var pass = Environment.GetEnvironmentVariable("RABBITMQ_PASS") ?? "guest";
 
-builder.Services.AddSingleton(RabbitHutch.CreateBus("host=localhost"));
+var connectionString1 = $"host={host};username={user};password={pass}";
+
+builder.Services.AddSingleton(RabbitHutch.CreateBus(connectionString1));
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddHostedService<NotificationWorker>();
 
@@ -66,7 +71,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var connectionString = builder.Configuration.GetConnectionString("HotelEaseConnection");
-
+Console.WriteLine($"con string {connectionString}");
 builder.Services.AddDbContext<HotelEaseContext>(options => 
     options.UseSqlServer(connectionString));
 
@@ -92,5 +97,13 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dataContext = scope.ServiceProvider.GetRequiredService<HotelEaseContext>();
+    //dataContext.Database.EnsureCreated();
+
+    dataContext.Database.Migrate();
+}
 
 app.Run();

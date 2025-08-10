@@ -23,8 +23,8 @@ namespace hotelEase.API.Controllers
             return base.Insert(request);
         }
 
-        //[AllowAnonymous]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
+        [AllowAnonymous]
         public override PagedResult<RoomType> GetPaged([FromQuery] RoomTypesSearchObject searchObject)
         {
             return base.GetPaged(searchObject);
