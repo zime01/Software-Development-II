@@ -6,8 +6,13 @@ import 'package:table_calendar/table_calendar.dart';
 
 class CalendarWidget extends StatefulWidget {
   final int roomId;
+  final Function(DateTime start, DateTime end) onDateRangeSelected;
 
-  const CalendarWidget({super.key, required this.roomId});
+  const CalendarWidget({
+    super.key,
+    required this.roomId,
+    required this.onDateRangeSelected,
+  });
 
   @override
   State<CalendarWidget> createState() => _CalendarWidgetState();
@@ -45,10 +50,8 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     });
   }
 
-  /// Boja dana u zavisnosti od status koda
   Color _getDayColor(DateTime day) {
     final status = _availabilityMap[DateTime(day.year, day.month, day.day)];
-
     switch (status) {
       case 0: // available
         return Colors.green.withOpacity(0.7);
@@ -66,6 +69,32 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     return status == 0 || status == 2 || status == null;
   }
 
+  bool _isInRange(DateTime day) {
+    if (_rangeStart == null || _rangeEnd == null) return false;
+    return day.isAfter(_rangeStart!) && day.isBefore(_rangeEnd!);
+  }
+
+  void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
+    if (!_isDateSelectable(selectedDay)) return;
+
+    setState(() {
+      if (_rangeStart != null &&
+          _rangeEnd == null &&
+          selectedDay.isAfter(_rangeStart!)) {
+        _rangeEnd = selectedDay;
+        _rangeSelectionMode = RangeSelectionMode.toggledOn;
+
+        // Pozovi callback kad je range kompletan
+        widget.onDateRangeSelected(_rangeStart!, _rangeEnd!);
+      } else {
+        _rangeStart = selectedDay;
+        _rangeEnd = null;
+        _rangeSelectionMode = RangeSelectionMode.toggledOn;
+      }
+      _focusedDay = focusedDay;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return TableCalendar(
@@ -73,28 +102,11 @@ class _CalendarWidgetState extends State<CalendarWidget> {
       lastDay: DateTime.utc(2030, 12, 31),
       focusedDay: _focusedDay,
 
-      // Range selection
       rangeStartDay: _rangeStart,
       rangeEndDay: _rangeEnd,
       rangeSelectionMode: _rangeSelectionMode,
 
-      onDaySelected: (selectedDay, focusedDay) {
-        if (!_isDateSelectable(selectedDay)) return;
-
-        setState(() {
-          if (_rangeStart != null &&
-              _rangeEnd == null &&
-              selectedDay.isAfter(_rangeStart!)) {
-            _rangeEnd = selectedDay;
-            _rangeSelectionMode = RangeSelectionMode.toggledOn;
-          } else {
-            _rangeStart = selectedDay;
-            _rangeEnd = null;
-            _rangeSelectionMode = RangeSelectionMode.toggledOn;
-          }
-          _focusedDay = focusedDay;
-        });
-      },
+      onDaySelected: _onDaySelected,
 
       onRangeSelected: (start, end, focusedDay) {
         if (start != null && !_isDateSelectable(start)) return;
@@ -105,6 +117,10 @@ class _CalendarWidgetState extends State<CalendarWidget> {
           _rangeEnd = end;
           _focusedDay = focusedDay;
           _rangeSelectionMode = RangeSelectionMode.toggledOn;
+
+          if (_rangeStart != null && _rangeEnd != null) {
+            widget.onDateRangeSelected(_rangeStart!, _rangeEnd!);
+          }
         });
       },
 
@@ -115,76 +131,31 @@ class _CalendarWidgetState extends State<CalendarWidget> {
 
       calendarBuilders: CalendarBuilders(
         defaultBuilder: (context, day, _) {
-          return Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: _getDayColor(day),
-            ),
-            margin: const EdgeInsets.all(6.0),
-            alignment: Alignment.center,
-            child: Text(
-              '${day.day}',
-              style: const TextStyle(color: Colors.white),
-            ),
-          );
+          return _buildDayContainer(day, _getDayColor(day));
         },
         selectedBuilder: (context, day, focusedDay) {
-          return Container(
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.blue,
-            ),
-            margin: const EdgeInsets.all(6.0),
-            alignment: Alignment.center,
-            child: Text(
-              '${day.day}',
-              style: const TextStyle(color: Colors.white),
-            ),
-          );
+          return _buildDayContainer(day, Colors.blue);
         },
         rangeStartBuilder: (context, day, focusedDay) {
-          return Container(
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.blue,
-            ),
-            margin: const EdgeInsets.all(6.0),
-            alignment: Alignment.center,
-            child: Text(
-              '${day.day}',
-              style: const TextStyle(color: Colors.white),
-            ),
-          );
+          return _buildDayContainer(day, Colors.blue);
         },
         rangeEndBuilder: (context, day, focusedDay) {
-          return Container(
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.blue,
-            ),
-            margin: const EdgeInsets.all(6.0),
-            alignment: Alignment.center,
-            child: Text(
-              '${day.day}',
-              style: const TextStyle(color: Colors.white),
-            ),
-          );
+          return _buildDayContainer(day, Colors.blue);
         },
         withinRangeBuilder: (context, day, focusedDay) {
-          return Container(
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.lightBlueAccent,
-            ),
-            margin: const EdgeInsets.all(6.0),
-            alignment: Alignment.center,
-            child: Text(
-              '${day.day}',
-              style: const TextStyle(color: Colors.white),
-            ),
-          );
+          Color baseColor = _getDayColor(day);
+          return _buildDayContainer(day, baseColor.withOpacity(0.5));
         },
       ),
+    );
+  }
+
+  Widget _buildDayContainer(DateTime day, Color color) {
+    return Container(
+      decoration: BoxDecoration(shape: BoxShape.circle, color: color),
+      margin: const EdgeInsets.all(6.0),
+      alignment: Alignment.center,
+      child: Text('${day.day}', style: const TextStyle(color: Colors.white)),
     );
   }
 }

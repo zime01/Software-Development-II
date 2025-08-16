@@ -5,6 +5,7 @@ import 'package:hotelease_mobile/models/room.dart';
 import 'package:hotelease_mobile/providers/assets_provider.dart';
 import 'package:hotelease_mobile/providers/rooms.provider.dart';
 import 'package:hotelease_mobile/screens/master_screen.dart';
+import 'package:hotelease_mobile/screens/reservations_screen.dart';
 import 'package:hotelease_mobile/widgets/calendar_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -257,7 +258,27 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
                           builder: (_) {
                             return SizedBox(
                               height: MediaQuery.of(context).size.height * 0.6,
-                              child: CalendarWidget(roomId: room.id!),
+                              child: CalendarWidget(
+                                roomId: room.id!,
+                                onDateRangeSelected: (checkIn, checkOut) {
+                                  print(
+                                    "hotelId: $widget.id; checkInDate: $checkIn; checkOutDate: $checkOut",
+                                  );
+                                  Navigator.pop(context);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => ReservationScreen(
+                                        hotelName: widget.name,
+                                        hotelId: widget.id!,
+                                        room: room,
+                                        checkInDate: checkIn,
+                                        checkOutDate: checkOut,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
                             );
                           },
                         );

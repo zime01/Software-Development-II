@@ -3,6 +3,7 @@ import 'package:hotelease_mobile/providers/assets_provider.dart';
 import 'package:hotelease_mobile/providers/hotels_provider.dart';
 import 'package:hotelease_mobile/providers/room_availability.dart';
 import 'package:hotelease_mobile/providers/rooms.provider.dart';
+import 'package:hotelease_mobile/providers/services_provider.dart';
 import 'package:hotelease_mobile/screens/hotels_list_screen.dart';
 import 'package:hotelease_mobile/utils/util.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => AssetsProvider()),
         ChangeNotifierProvider(create: (_) => RoomsProvider()),
         ChangeNotifierProvider(create: (_) => RoomsAvailabilityProvider()),
+        ChangeNotifierProvider(create: (_) => ServicesProvider()),
       ],
       child: const MyApp(),
     ),

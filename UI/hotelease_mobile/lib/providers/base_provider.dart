@@ -1,10 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:hotelease_mobile/models/hotel.dart';
 import 'package:hotelease_mobile/models/search_result.dart';
 import 'package:hotelease_mobile/utils/util.dart';
-
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
@@ -12,12 +9,13 @@ class BaseProvider<T> with ChangeNotifier {
   final String baseUrl = const String.fromEnvironment(
     "baseUrl",
     defaultValue: "http://10.0.2.2:5296/api/",
-    //defaultValue: "http://192.168.0.13:5000/api/",
   );
+
   String endpoint = "";
 
-  BaseProvider(this.endpoint) {}
+  BaseProvider(this.endpoint);
 
+  /// API koji vraća SearchResult<T>
   Future<SearchResult<T>> get({dynamic filter}) async {
     var url = "$baseUrl$endpoint";
 
@@ -33,25 +31,28 @@ class BaseProvider<T> with ChangeNotifier {
     if (isValidResponse(response)) {
       var data = jsonDecode(response.body);
 
-      print("response: ${response.statusCode} ${response.body}");
-
-      print(data);
-
-      SearchResult<T> result = new SearchResult();
+      SearchResult<T> result = SearchResult();
       result.count = data["count"];
-
-      // var items = data["resultList"]
-      //     .map((e) => Hotel.fromJson(e))
-      //     .toList()
-      //     .cast<Hotel>();
-
       for (var item in data['resultList']) {
         result.result.add(fromJson(item));
       }
-
       return result;
     } else {
-      throw new Exception("Unknown error");
+      throw Exception("Unknown error");
+    }
+  }
+
+  /// API koji vraća čistu listu
+  Future<List<T>> getList(String endpointPath) async {
+    var uri = Uri.parse("$baseUrl$endpointPath");
+    var headers = createHeaders();
+    var response = await http.get(uri, headers: headers);
+
+    if (isValidResponse(response)) {
+      var data = jsonDecode(response.body) as List;
+      return data.map((e) => fromJson(e)).toList();
+    } else {
+      throw Exception("Unknown error");
     }
   }
 
@@ -59,45 +60,13 @@ class BaseProvider<T> with ChangeNotifier {
     throw Exception("Method not implemented");
   }
 
-  Future<SearchResult<T>> getHotelsByCity({String? cityName}) async {
-    var url = "$baseUrl$endpoint";
-
-    if (cityName != null && cityName.isNotEmpty) {
-      url += "?CityName=$cityName";
-    }
-    var uri = Uri.parse(url);
-    var headers = createHeaders();
-    var response = await http.get(uri, headers: headers);
-
-    if (isValidResponse(response)) {
-      var data = jsonDecode(response.body);
-
-      print("response: ${response.statusCode} ${response.body}");
-
-      print(data);
-
-      var items = data["resultList"]
-          .map((e) => Hotel.fromJson(e))
-          .toList()
-          .cast<Hotel>();
-
-      SearchResult<T> result = new SearchResult();
-      result.result = items as List<T>;
-      result.count = data["count"];
-
-      return result;
-    } else {
-      throw new Exception("Unknown error");
-    }
-  }
-
   bool isValidResponse(Response response) {
     if (response.statusCode < 299) {
       return true;
     } else if (response.statusCode == 401) {
-      throw new Exception("Unauthorized");
+      throw Exception("Unauthorized");
     } else {
-      throw new Exception("Something bad happened please try again");
+      throw Exception("Something bad happened please try again");
     }
   }
 
@@ -108,12 +77,7 @@ class BaseProvider<T> with ChangeNotifier {
     String basicAuth =
         "Basic ${base64Encode(utf8.encode('$username:$password'))}";
 
-    var headers = {
-      "Content-Type": "application/json",
-      "Authorization": basicAuth,
-    };
-
-    return headers;
+    return {"Content-Type": "application/json", "Authorization": basicAuth};
   }
 
   String getQueryString(
@@ -126,20 +90,15 @@ class BaseProvider<T> with ChangeNotifier {
       if (inRecursion) {
         if (key is int) {
           key = '[$key]';
-        } else if (value is List || value is Map) {
-          key = '.$key';
         } else {
           key = '.$key';
         }
       }
       if (value is String || value is int || value is double || value is bool) {
-        var encoded = value;
-        if (value is String) {
-          encoded = Uri.encodeComponent(value);
-        }
+        var encoded = value is String ? Uri.encodeComponent(value) : value;
         query += '$prefix$key=$encoded';
       } else if (value is DateTime) {
-        query += '$prefix$key=${(value as DateTime).toIso8601String()}';
+        query += '$prefix$key=${value.toIso8601String()}';
       } else if (value is List || value is Map) {
         if (value is List) value = value.asMap();
         value.forEach((k, v) {
