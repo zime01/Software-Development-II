@@ -5,6 +5,29 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/Assets/ByHotel/{hotelId}": {
+      "get": {
+        "tags": [
+          "Assets"
+        ],
+        "parameters": [
+          {
+            "name": "hotelId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Assets": {
       "post": {
         "tags": [
@@ -57,6 +80,22 @@
           "Assets"
         ],
         "parameters": [
+          {
+            "name": "HotelId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "RoomId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -926,6 +965,125 @@
           },
           {
             "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CityName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Adults",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "CheckInDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "CheckOutDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "RoomsCount",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "MinPrice",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "MaxPrice",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "MinStarRating",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "WiFi",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "Parking",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "Pool",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "Bar",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "Fitness",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "SPA",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "SortBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "FilterBy",
             "in": "query",
             "schema": {
               "type": "string"
@@ -3887,6 +4045,30 @@
             "type": "boolean",
             "nullable": true
           },
+          "spa": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "parking": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "wiFi": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "pool": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "bar": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "fitness": {
+            "type": "boolean",
+            "nullable": true
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time",
@@ -3911,6 +4093,9 @@
               "$ref": "#/components/schemas/Room"
             },
             "nullable": true
+          },
+          "city": {
+            "$ref": "#/components/schemas/City"
           }
         },
         "additionalProperties": false
@@ -4470,6 +4655,22 @@
           },
           "description": {
             "type": "string",
+            "nullable": true
+          },
+          "queenBed": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "wiFi": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "cityView": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "ac": {
+            "type": "boolean",
             "nullable": true
           },
           "isDeleted": {

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hotelease_mobile/providers/assets_provider.dart';
 import 'package:hotelease_mobile/providers/hotels_provider.dart';
+import 'package:hotelease_mobile/providers/room_availability.dart';
+import 'package:hotelease_mobile/providers/rooms.provider.dart';
 import 'package:hotelease_mobile/screens/hotels_list_screen.dart';
 import 'package:hotelease_mobile/utils/util.dart';
 import 'package:provider/provider.dart';
@@ -7,7 +10,12 @@ import 'package:provider/provider.dart';
 void main() {
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => HotelsProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => HotelsProvider()),
+        ChangeNotifierProvider(create: (_) => AssetsProvider()),
+        ChangeNotifierProvider(create: (_) => RoomsProvider()),
+        ChangeNotifierProvider(create: (_) => RoomsAvailabilityProvider()),
+      ],
       child: const MyApp(),
     ),
   );
@@ -38,9 +46,9 @@ class MyApp extends StatelessWidget {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xF112D4E),
-          primary: Color(0xF112D4E),
-          secondary: Color(0xF112D4E),
+          seedColor: const Color.fromRGBO(17, 45, 78, 1),
+          primary: const Color.fromRGBO(17, 45, 78, 1),
+          secondary: const Color.fromRGBO(17, 45, 78, 1),
         ),
       ),
       home: LoginPage(),
@@ -141,6 +149,9 @@ class LoginPage extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     TextField(
+                      style: TextStyle(
+                        color: const Color.fromRGBO(255, 255, 255, 1),
+                      ),
                       controller: _passwordController,
                       decoration: InputDecoration(
                         labelText: "Password",

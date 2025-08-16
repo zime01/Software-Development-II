@@ -26,6 +26,12 @@ public partial class Hotel
 
     public DateTime? CreatedAt { get; set; }
     public string? StateMachine { get; set; }
+    public bool? SPA { get; set; }
+    public bool? Parking { get; set; }
+    public bool? WiFi { get; set; }
+    public bool? Pool { get; set; }
+    public bool? Bar { get; set; }
+    public bool? Fitness { get; set; }
     public bool? IsDeleted { get; set; }
     public DateTime? DeletedTime { get; set; }
 

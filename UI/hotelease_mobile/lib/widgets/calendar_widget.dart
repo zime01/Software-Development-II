@@ -1,0 +1,190 @@
+import 'package:flutter/material.dart';
+import 'package:hotelease_mobile/models/room_availability.dart';
+import 'package:hotelease_mobile/providers/room_availability.dart';
+import 'package:provider/provider.dart';
+import 'package:table_calendar/table_calendar.dart';
+
+class CalendarWidget extends StatefulWidget {
+  final int roomId;
+
+  const CalendarWidget({super.key, required this.roomId});
+
+  @override
+  State<CalendarWidget> createState() => _CalendarWidgetState();
+}
+
+class _CalendarWidgetState extends State<CalendarWidget> {
+  late RoomsAvailabilityProvider _availabilityProvider;
+  Map<DateTime, int> _availabilityMap = {};
+  DateTime _focusedDay = DateTime.now();
+
+  // Range selection
+  DateTime? _rangeStart;
+  DateTime? _rangeEnd;
+  RangeSelectionMode _rangeSelectionMode = RangeSelectionMode.toggledOff;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _availabilityProvider = context.read<RoomsAvailabilityProvider>();
+    _loadAvailability();
+  }
+
+  Future<void> _loadAvailability() async {
+    var availability = await _availabilityProvider.getAvailabilityRooms(
+      widget.roomId,
+      _focusedDay.month,
+      _focusedDay.year,
+    );
+
+    setState(() {
+      _availabilityMap = {
+        for (var a in availability)
+          DateTime(a.date!.year, a.date!.month, a.date!.day): a.status ?? 0,
+      };
+    });
+  }
+
+  /// Boja dana u zavisnosti od status koda
+  Color _getDayColor(DateTime day) {
+    final status = _availabilityMap[DateTime(day.year, day.month, day.day)];
+
+    switch (status) {
+      case 0: // available
+        return Colors.green.withOpacity(0.7);
+      case 1: // booked
+        return Colors.red.withOpacity(0.7);
+      case 2: // limited
+        return Colors.yellow.withOpacity(0.7);
+      default:
+        return Colors.grey.withOpacity(0.3);
+    }
+  }
+
+  bool _isDateSelectable(DateTime day) {
+    final status = _availabilityMap[DateTime(day.year, day.month, day.day)];
+    return status == 0 || status == 2 || status == null;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TableCalendar(
+      firstDay: DateTime.utc(2020, 1, 1),
+      lastDay: DateTime.utc(2030, 12, 31),
+      focusedDay: _focusedDay,
+
+      // Range selection
+      rangeStartDay: _rangeStart,
+      rangeEndDay: _rangeEnd,
+      rangeSelectionMode: _rangeSelectionMode,
+
+      onDaySelected: (selectedDay, focusedDay) {
+        if (!_isDateSelectable(selectedDay)) return;
+
+        setState(() {
+          if (_rangeStart != null &&
+              _rangeEnd == null &&
+              selectedDay.isAfter(_rangeStart!)) {
+            _rangeEnd = selectedDay;
+            _rangeSelectionMode = RangeSelectionMode.toggledOn;
+          } else {
+            _rangeStart = selectedDay;
+            _rangeEnd = null;
+            _rangeSelectionMode = RangeSelectionMode.toggledOn;
+          }
+          _focusedDay = focusedDay;
+        });
+      },
+
+      onRangeSelected: (start, end, focusedDay) {
+        if (start != null && !_isDateSelectable(start)) return;
+        if (end != null && !_isDateSelectable(end)) return;
+
+        setState(() {
+          _rangeStart = start;
+          _rangeEnd = end;
+          _focusedDay = focusedDay;
+          _rangeSelectionMode = RangeSelectionMode.toggledOn;
+        });
+      },
+
+      onPageChanged: (focusedDay) {
+        _focusedDay = focusedDay;
+        _loadAvailability();
+      },
+
+      calendarBuilders: CalendarBuilders(
+        defaultBuilder: (context, day, _) {
+          return Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: _getDayColor(day),
+            ),
+            margin: const EdgeInsets.all(6.0),
+            alignment: Alignment.center,
+            child: Text(
+              '${day.day}',
+              style: const TextStyle(color: Colors.white),
+            ),
+          );
+        },
+        selectedBuilder: (context, day, focusedDay) {
+          return Container(
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.blue,
+            ),
+            margin: const EdgeInsets.all(6.0),
+            alignment: Alignment.center,
+            child: Text(
+              '${day.day}',
+              style: const TextStyle(color: Colors.white),
+            ),
+          );
+        },
+        rangeStartBuilder: (context, day, focusedDay) {
+          return Container(
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.blue,
+            ),
+            margin: const EdgeInsets.all(6.0),
+            alignment: Alignment.center,
+            child: Text(
+              '${day.day}',
+              style: const TextStyle(color: Colors.white),
+            ),
+          );
+        },
+        rangeEndBuilder: (context, day, focusedDay) {
+          return Container(
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.blue,
+            ),
+            margin: const EdgeInsets.all(6.0),
+            alignment: Alignment.center,
+            child: Text(
+              '${day.day}',
+              style: const TextStyle(color: Colors.white),
+            ),
+          );
+        },
+        withinRangeBuilder: (context, day, focusedDay) {
+          return Container(
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.lightBlueAccent,
+            ),
+            margin: const EdgeInsets.all(6.0),
+            alignment: Alignment.center,
+            child: Text(
+              '${day.day}',
+              style: const TextStyle(color: Colors.white),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}

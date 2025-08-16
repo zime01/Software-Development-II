@@ -32,6 +32,100 @@ namespace hotelEase.Services
                 filteredQuery = filteredQuery.Where(x=>x.Name.Contains(search.FTS) || x.Description.Contains(search.FTS));
             }
 
+            if (!string.IsNullOrWhiteSpace(search?.CityName))
+            {
+                filteredQuery = filteredQuery.Include(x=>x.City).Where(x=>x.City.Name.Contains(search.CityName));
+            }
+
+            if (!string.IsNullOrWhiteSpace(search?.CityName))
+            {
+                filteredQuery = filteredQuery.Include(x => x.City)
+                                             .Where(x => x.City.Name.Contains(search.CityName));
+            }
+
+            if (search.Adults.HasValue || search.RoomsCount.HasValue || (search.CheckInDate.HasValue && search.CheckOutDate.HasValue))
+            {
+                filteredQuery = filteredQuery
+                    .Include(h => h.Rooms)
+                        .ThenInclude(r => r.Reservations)
+                    .Where(h =>
+                        h.Rooms.Any(r =>
+                            (search.Adults == null || r.Capacity >= search.Adults) &&
+                            (search.RoomsCount == null || h.Rooms.Count() >= search.RoomsCount) &&
+                            (search.CheckInDate == null || search.CheckOutDate == null ||
+                             !r.Reservations.Any(res =>
+                                 (search.CheckInDate < res.CheckOutDate) &&
+                                 (search.CheckOutDate > res.CheckInDate)
+                             ))
+                        )
+                    );
+            }
+
+            // Filter by price (najniža cijena sobe u hotelu)
+            if (search.MinPrice.HasValue)
+                filteredQuery = filteredQuery.Where(h => h.Rooms.Any(r => r.PricePerNight >= search.MinPrice.Value));
+
+            if (search.MaxPrice.HasValue)
+                filteredQuery = filteredQuery.Where(h => h.Rooms.Any(r => r.PricePerNight <= search.MaxPrice.Value));
+
+            // Filter by star rating
+            if (search.MinStarRating.HasValue)
+                filteredQuery = filteredQuery.Where(h => h.StarRating >= search.MinStarRating.Value);
+
+            // Amenities
+            if (search.WiFi == true) filteredQuery = filteredQuery.Where(h => h.WiFi == true);
+            if (search.Parking == true) filteredQuery = filteredQuery.Where(h => h.Parking == true);
+            if (search.Pool == true) filteredQuery = filteredQuery.Where(h => h.Pool == true);
+            if (search.Bar == true) filteredQuery = filteredQuery.Where(h => h.Bar == true);
+            if (search.Fitness == true) filteredQuery = filteredQuery.Where(h => h.Fitness == true);
+            if (search.SPA == true) filteredQuery = filteredQuery.Where(h => h.SPA == true);
+
+            // Filtriranje
+            if (!string.IsNullOrWhiteSpace(search.FilterBy))
+            {
+                switch (search.FilterBy.ToLower())
+                {
+                    case "wifi":
+                        filteredQuery = filteredQuery.Where(h => h.WiFi == true);
+                        break;
+                    case "parking":
+                        filteredQuery = filteredQuery.Where(h => h.Parking == true);
+                        break;
+                    case "pool":
+                        filteredQuery = filteredQuery.Where(h => h.Pool == true);
+                        break;
+                    case "bar":
+                        filteredQuery = filteredQuery.Where(h => h.Bar == true);
+                        break;
+                    case "fitness":
+                        filteredQuery = filteredQuery.Where(h => h.Fitness == true);
+                        break;
+                    case "spa":
+                        filteredQuery = filteredQuery.Where(h => h.SPA == true);
+                        break;
+                }
+            }
+
+            // Sortiranje
+            if (!string.IsNullOrWhiteSpace(search.SortBy))
+            {
+                switch (search.SortBy.ToLower())
+                {
+                    case "price_asc":
+                        filteredQuery = filteredQuery.OrderBy(h => h.Rooms.Min(r => r.PricePerNight));
+                        break;
+                    case "price_desc":
+                        filteredQuery = filteredQuery.OrderByDescending(h => h.Rooms.Min(r => r.PricePerNight));
+                        break;
+                    case "rating":
+                        filteredQuery = filteredQuery.OrderByDescending(h => h.StarRating);
+                        break;
+                }
+            }
+
+
+
+
             return filteredQuery;
         }
 
@@ -89,10 +183,56 @@ namespace hotelEase.Services
         {
             if (search.IsRoomsIcluded == true)
             {
-                query = query.Include(x => x.Rooms);
+                query = query.Include(x => x.Rooms).ThenInclude(x => x.Assets);
             }
 
             return query;
+        }
+
+        private void SetAveragePrice(Model.Hotel hotel, Database.Hotel dbHotel)
+        {
+            if (dbHotel.Rooms != null && dbHotel.Rooms.Any())
+            {
+                hotel.Price = dbHotel.Rooms
+                    .Where(r => r.IsDeleted != true) // soft delete check
+                    .DefaultIfEmpty()
+                    .Average(r => r == null ? 0 : r.PricePerNight);
+            }
+            else
+            {
+                hotel.Price = 0;
+            }
+        }
+
+        public new Model.Hotel GetById(int id)
+        {
+            var dbHotel = Context.Hotels
+                .Include(h => h.Rooms)
+                .FirstOrDefault(h => h.Id == id && (h.IsDeleted == false || h.IsDeleted == null));
+
+            if (dbHotel == null) return null;
+
+            var hotel = Mapper.Map<Model.Hotel>(dbHotel);
+            SetAveragePrice(hotel, dbHotel);
+
+            return hotel;
+        }
+        public override Model.PagedResult<Model.Hotel> GetPaged(HotelsSearchObject searchObject)
+        {
+            var pagedResult = base.GetPaged(searchObject);
+
+            for (int i = 0; i < pagedResult.ResultList.Count; i++)
+            {
+                // Moramo učitati sobe da izračunamo prosjek
+                var dbHotel = Context.Hotels
+                    .Include(h => h.Rooms)
+                    .FirstOrDefault(h => h.Id == pagedResult.ResultList[i].Id);
+
+                if (dbHotel != null)
+                    SetAveragePrice(pagedResult.ResultList[i], dbHotel);
+            }
+
+            return pagedResult;
         }
 
         //public List<Model.Hotel> List = new List<Model.Hotel>()

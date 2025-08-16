@@ -22,6 +22,10 @@ namespace hotelEase.Model
         public bool? IsAvailable { get; set; }
 
         public string? Description { get; set; }
+        public bool? QueenBed { get; set; }
+        public bool? WiFi { get; set; }
+        public bool? CityView { get; set; }
+        public bool? AC { get; set; }
         public bool? IsDeleted { get; set; }
         public DateTime? DeletedTime { get; set; }
         public virtual ICollection<Asset> Assets { get; set; } = new List<Asset>();

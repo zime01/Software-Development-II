@@ -21,7 +21,7 @@ namespace hotelEase.Services
             Mapper = mapper;
         }
 
-        public PagedResult<TModel> GetPaged(TSearch searchObject)
+        public virtual PagedResult<TModel> GetPaged(TSearch searchObject)
         {
             List<TModel> result = new List<TModel>();
 
