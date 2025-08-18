@@ -27,9 +27,9 @@ builder.Services.AddTransient<IServicesService, ServicesService>();
 builder.Services.AddTransient<IReviewsService, ReviewsService>();
 builder.Services.AddTransient<INotificationsService, NotificationsService>();
 
-var host = Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "rabbitmq";
-var user = Environment.GetEnvironmentVariable("RABBITMQ_USER") ?? "guest";
-var pass = Environment.GetEnvironmentVariable("RABBITMQ_PASS") ?? "guest";
+var host = "localhost"; //Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "rabbitmq";
+var user = "guest"; //Environment.GetEnvironmentVariable("RABBITMQ_USER") ?? "guest";
+var pass = "guest"; // Environment.GetEnvironmentVariable("RABBITMQ_PASS") ?? "guest";
 
 var connectionString1 = $"host={host};username={user};password={pass}";
 

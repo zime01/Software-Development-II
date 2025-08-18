@@ -15,7 +15,6 @@ class BaseProvider<T> with ChangeNotifier {
 
   BaseProvider(this.endpoint);
 
-  /// API koji vraća SearchResult<T>
   Future<SearchResult<T>> get({dynamic filter}) async {
     var url = "$baseUrl$endpoint";
 
@@ -42,7 +41,6 @@ class BaseProvider<T> with ChangeNotifier {
     }
   }
 
-  /// API koji vraća čistu listu
   Future<List<T>> getList(String endpointPath) async {
     var uri = Uri.parse("$baseUrl$endpointPath");
     var headers = createHeaders();
@@ -53,6 +51,24 @@ class BaseProvider<T> with ChangeNotifier {
       return data.map((e) => fromJson(e)).toList();
     } else {
       throw Exception("Unknown error");
+    }
+  }
+
+  Future<dynamic> post(String endpoint, dynamic payload) async {
+    var url = Uri.parse("$baseUrl$endpoint");
+    var response = await http.post(
+      url,
+      headers: createHeaders(),
+      body: jsonEncode(payload),
+    );
+
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      if (response.body.isEmpty) {
+        return null; // ✅ spriječava FormatException
+      }
+      return jsonDecode(response.body);
+    } else {
+      throw Exception("Error: ${response.statusCode} ${response.reasonPhrase}");
     }
   }
 

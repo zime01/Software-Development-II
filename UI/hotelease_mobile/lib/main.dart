@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hotelease_mobile/providers/assets_provider.dart';
 import 'package:hotelease_mobile/providers/hotels_provider.dart';
+import 'package:hotelease_mobile/providers/notifications.provider.dart';
+import 'package:hotelease_mobile/providers/reservations_provider.dart';
 import 'package:hotelease_mobile/providers/room_availability.dart';
 import 'package:hotelease_mobile/providers/rooms.provider.dart';
 import 'package:hotelease_mobile/providers/services_provider.dart';
+import 'package:hotelease_mobile/providers/users_provider.dart';
 import 'package:hotelease_mobile/screens/hotels_list_screen.dart';
 import 'package:hotelease_mobile/utils/util.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +20,9 @@ void main() {
         ChangeNotifierProvider(create: (_) => RoomsProvider()),
         ChangeNotifierProvider(create: (_) => RoomsAvailabilityProvider()),
         ChangeNotifierProvider(create: (_) => ServicesProvider()),
+        ChangeNotifierProvider(create: (_) => NotificationsProvider()),
+        ChangeNotifierProvider(create: (_) => ReservationsProvider()),
+        ChangeNotifierProvider(create: (_) => UsersProvider()),
       ],
       child: const MyApp(),
     ),
@@ -206,6 +212,12 @@ class LoginPage extends StatelessWidget {
 
                             try {
                               await _hotelsProvider.get();
+
+                              var userProvider = context.read<UsersProvider>();
+                              var currentUser = await userProvider
+                                  .getCurrentUser();
+
+                              Authorization.userId = currentUser.id;
 
                               Navigator.of(context).push(
                                 MaterialPageRoute(

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hotelease_mobile/models/room.dart';
 import 'package:hotelease_mobile/models/service.dart';
+import 'package:hotelease_mobile/providers/notifications.provider.dart';
+import 'package:hotelease_mobile/providers/reservations_provider.dart';
 import 'package:hotelease_mobile/providers/services_provider.dart';
+import 'package:hotelease_mobile/providers/users_provider.dart';
 import 'package:hotelease_mobile/screens/master_screen.dart';
+import 'package:hotelease_mobile/utils/util.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -199,6 +203,53 @@ class _ReservationScreenState extends State<ReservationScreen> {
               ),
             ),
             const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                final currentUser = await UsersProvider().getCurrentUser();
+
+                final reservationPayload = {
+                  "userId": currentUser.id,
+                  "roomId": widget.room.id,
+                  "checkInDate": widget.checkInDate.toIso8601String(),
+                  "checkOutDate": widget.checkOutDate.toIso8601String(),
+                  "totalPrice": totalCost,
+                  "status": "Pending",
+                };
+
+                try {
+                  // Kreiraj rezervaciju
+                  var createdReservation = await context
+                      .read<ReservationsProvider>()
+                      .createReservation(reservationPayload);
+
+                  // Pošalji RabbitMQ event
+                  await context
+                      .read<NotificationsProvider>()
+                      .sendReservationCreated(
+                        userId: currentUser.id!,
+                        email: currentUser.email!,
+                        hotelName: widget.hotelName ?? "Hotel",
+                        roomName: widget.room.name,
+                        checkIn: widget.checkInDate,
+                        checkOut: widget.checkOutDate,
+                      );
+
+                  // Navigator.push(... PaymentScreen ...)
+                } catch (e, stackTrace) {
+                  print("Error: $e");
+                  print(stackTrace);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Greška pri rezervaciji: $e")),
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                textStyle: const TextStyle(fontSize: 18),
+              ),
+              child: const Text("Nastavi na plaćanje"),
+            ),
             // ElevatedButton(
             //   onPressed: () async {
             //     var reservationPayload = {

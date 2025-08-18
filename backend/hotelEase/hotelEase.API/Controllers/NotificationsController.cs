@@ -29,11 +29,13 @@ namespace hotelEase.API.Controllers
         }
 
         [HttpPost("rabbit-mq")]
-        public Task SendAndStoreNotificationAsync([FromBody] Model.NotificationRequest request)
+        public async Task<IActionResult> SendAndStoreNotificationAsync([FromBody] Model.NotificationRequest request)
         {
-            return (_service as INotificationsService).SendAndStoreNotificationAsync( request.Message, request.UserId);
-            
+            await (_service as INotificationsService).SendAndStoreNotificationAsync(request.Message, request.UserId);
+            return Ok(new { success = true });
         }
+
+        
 
 
     }

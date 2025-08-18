@@ -42,10 +42,11 @@ public partial class HotelEaseContext : DbContext
     public virtual DbSet<Service> Services { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<Payment> Payments { get; set; }
 
-//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-//        => optionsBuilder.UseSqlServer("Data Source=localhost, 1433;Initial Catalog=HotelEase; user=sa; Password=QWEasd123!; TrustServerCertificate=True");
+    //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+    //        => optionsBuilder.UseSqlServer("Data Source=localhost, 1433;Initial Catalog=HotelEase; user=sa; Password=QWEasd123!; TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -276,6 +277,21 @@ public partial class HotelEaseContext : DbContext
                         j.HasKey("UserId", "RoleId").HasName("PK__UserRole__AF2760AD81661037");
                         j.ToTable("UserRoles");
                     });
+        });
+
+        modelBuilder.Entity<Payment>(e =>
+        {
+            e.ToTable("Payments");
+            e.HasKey(x => x.Id);
+            e.Property(x => x.Provider).HasMaxLength(40).IsRequired();
+            e.Property(x => x.ProviderPaymentId).HasMaxLength(200).IsRequired();
+            e.Property(x => x.Currency).HasMaxLength(10).HasDefaultValue("USD");
+            e.Property(x => x.Status).HasMaxLength(60).HasDefaultValue("processing");
+
+            e.HasOne(x => x.Reservation)
+             .WithMany() // ili .WithOne() ako je 1:1
+             .HasForeignKey(x => x.ReservationId)
+             .OnDelete(DeleteBehavior.Cascade);
         });
 
         base.OnModelCreating(modelBuilder);

@@ -214,5 +214,17 @@ namespace hotelEase.Services
 
             return Mapper.Map<Model.User>(entity);
         }
+
+        public Model.User GetCurrentUser(string username)
+        {
+            var entity = Context.Users
+                .Include(x => x.Roles)
+                .FirstOrDefault(x => x.Username == username);
+
+            if (entity == null)
+                return null;
+
+            return Mapper.Map<Model.User>(entity);
+        }
     }
 }

@@ -24,6 +24,15 @@ namespace hotelEase.API.Controllers
         public Task<Model.Reservation> UpdateStatusAsync([FromBody] ReservationsStatusUpdateRequest request)
         {
             return (_service as IReservationsService).UpdateStatusAsync(request.ReservationId, request.NewStatus, request.ActingUserId);
+            
         }
+
+        [HttpPost("insert-reservation")]
+        public async Task<Model.Reservation> Insert(ReservationsUpsertRequest request)
+        {
+            return await (_service as IReservationsService).InsertAsync(request);
+        }
+
+
     }
 }

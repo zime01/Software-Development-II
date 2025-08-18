@@ -57,5 +57,31 @@ namespace hotelEase.Services
 
             return Mapper.Map<Model.Reservation>(entity);
         }
+
+        public async Task<Model.Reservation> InsertAsync(ReservationsUpsertRequest request)
+        {
+            try
+            {
+                var entity = base.Insert(request);
+
+                var message = new NotificationMessage
+                {
+                    Type = "email",
+                    To = entity.User?.Email ?? "",
+                    Subject = "Reservation Created",
+                    Body = $"Your reservation #{entity.Id} for {entity.CheckInDate:dd.MM.yyyy} - {entity.CheckOutDate:dd.MM.yyyy} is created. Total: {entity.TotalPrice:C}."
+                };
+
+                // fire-and-forget da ne blokira Insert
+                _ = _notificationsService.SendAndStoreNotificationAsync(message, entity.UserId);
+
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"InsertAsync error: {ex}");
+                throw;
+            }
+        }
     }
 }

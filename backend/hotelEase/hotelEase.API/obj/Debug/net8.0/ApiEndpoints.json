@@ -938,13 +938,7 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "hotelEase.API.Controllers.NotificationsController",
@@ -1087,6 +1081,32 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.Reservation",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.ReservationsController",
+    "Method": "Insert",
+    "RelativePath": "api/Reservations/insert-reservation",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.Requests.ReservationsUpsertRequest",
         "IsRequired": true
       }
     ],
@@ -2287,6 +2307,26 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.User",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.UsersController",
+    "Method": "Me",
+    "RelativePath": "api/Users/me",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": [
       {
         "Type": "hotelEase.Model.User",

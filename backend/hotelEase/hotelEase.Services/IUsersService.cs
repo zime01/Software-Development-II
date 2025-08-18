@@ -16,5 +16,6 @@ namespace hotelEase.Services
         //Model.User Insert(UsersInsertRequest request);
         //Model.User Update(int id,UsersUpdateRequest request);
         Model.User Login(string username, string password);
+        Model.User GetCurrentUser(string username);
     }
 }

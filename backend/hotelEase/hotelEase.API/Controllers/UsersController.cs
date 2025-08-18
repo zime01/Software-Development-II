@@ -3,10 +3,9 @@ using hotelEase.Model.Requests;
 using hotelEase.Model.SearchObjects;
 using hotelEase.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.Entity;
-using System.Linq.Dynamic.Core;
+using System;
+using System.Text;
 
 namespace hotelEase.API.Controllers
 {
@@ -16,34 +15,48 @@ namespace hotelEase.API.Controllers
     {
         protected IUsersService _usersService;
 
-        public UsersController(IUsersService usersService):base(usersService)
+        public UsersController(IUsersService usersService) : base(usersService)
         {
-
+            _usersService = usersService;
         }
+
         [AllowAnonymous]
         [HttpPost("login")]
         public Model.User Login(string username, string password)
         {
-            return (_service as IUsersService).Login(username, password); 
+            return (_service as IUsersService).Login(username, password);
         }
-        
 
-        //[HttpGet]
-        //public Model.PagedResult<Model.User> GetList([FromQuery] UsersSearchObject searchObject)
-        //{
-        //    return _usersService.GetPaged( searchObject );
-        //}
+        [HttpGet("me")]
+        public ActionResult<Model.User> Me()
+        {
+            // Izvući Authorization header
+            var authHeader = Request.Headers["Authorization"].ToString();
+            if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Basic "))
+                return Unauthorized();
 
-        //[HttpPost]
-        //public Model.User Insert(UsersInsertRequest request)
-        //{
-        //    return _usersService.Insert(request);
-        //}
+            try
+            {
+                var encoded = authHeader.Substring("Basic ".Length).Trim();
+                var decodedBytes = Convert.FromBase64String(encoded);
+                var decoded = Encoding.UTF8.GetString(decodedBytes);
 
-        //[HttpPut("{id}")]
-        //public Model.User Update(int id, UsersUpdateRequest request)
-        //{
-        //    return _usersService.Update(id, request);
-        //}
+                var parts = decoded.Split(':');
+                if (parts.Length != 2)
+                    return Unauthorized();
+
+                var username = parts[0];
+                var user = (_service as IUsersService).GetCurrentUser(username);
+
+                if (user == null)
+                    return NotFound();
+
+                return Ok(user);
+            }
+            catch
+            {
+                return Unauthorized();
+            }
+        }
     }
 }
