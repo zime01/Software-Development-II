@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:hotelease_mobile_new/providers/assets_provider.dart';
@@ -16,12 +17,9 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load();
 
-  // Postavi svoj Stripe publishable key
-  final stripePublishablekey = dotenv.env['STRIPE_PUBLISHABLE_KEY'];
-
-  Stripe.publishableKey = stripePublishablekey ?? '';
+  Stripe.publishableKey =
+      "pk_test_51QZ8FxKH5av5GhJI2G02GXIaCml8epgY98WnYBZ8lH0s4HR4MwPLnO5wIEpe0z3lR12OPgOvzCtETkO3wH5xsrxo006dxV0Xvt";
 
   await Stripe.instance.applySettings();
 
