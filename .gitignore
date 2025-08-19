@@ -1,4 +1,8 @@
 /backend/hotelEase/hotelEase.API/appsettings.Development.json
+bin/
+obj/
+.env
+appsettings.Development.json
 
 appsettings.Development.json
 

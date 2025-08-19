@@ -81,6 +81,10 @@
               "target": "Package",
               "version": "[1.22.1, )"
             },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[48.4.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
@@ -164,6 +168,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[9.0.7, )"
+            },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[48.4.0, )"
             }
           },
           "imports": [
@@ -275,6 +283,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[48.4.0, )"
             },
             "System.Linq.Dynamic.Core": {
               "target": "Package",

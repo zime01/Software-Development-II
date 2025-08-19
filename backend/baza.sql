@@ -160,3 +160,20 @@ CREATE TABLE UserRoles
 	FOREIGN KEY (UserId) REFERENCES Users(Id),
 	FOREIGN KEY (RoleId) REFERENCES Roles(Id)
 )
+
+CREATE TABLE Payment
+(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	ReservationId INT NOT NULL,
+	Provider NVARCHAR(50) NOT NULL DEFAULT N'stripe',
+	ProviderPaymentId NVARCHAR(200) NOT NULL,
+	Amount DECIMAL(18,2) NOT NULL, 
+	Currency NVARCHAR(10) NOT NULL DEFAULT N'USD',
+	Status NVARCHAR(50) NOT NULL DEFAULT N'processing',
+	CreatedAt DATETIME NOT NULL,
+	UpdatedAt DATETIME NULL,
+	IsDeleted BIT NULL,
+	DeletedTime DATETIME NULL,
+	FOREIGN KEY (ReservationId) REFERENCES Reservations(Id)
+
+)

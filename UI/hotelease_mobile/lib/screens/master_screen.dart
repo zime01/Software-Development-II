@@ -54,6 +54,12 @@ class _MasterScreenState extends State<MasterScreen> {
             ),
         backgroundColor: const Color.fromRGBO(17, 45, 78, 1),
         iconTheme: IconThemeData(color: const Color.fromRGBO(255, 255, 255, 1)),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
       ),
 
       body: widget.child,

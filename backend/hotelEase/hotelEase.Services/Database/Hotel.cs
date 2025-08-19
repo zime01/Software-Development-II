@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace hotelEase.Services.Database;
@@ -25,15 +24,24 @@ public partial class Hotel
     public bool? IsActive { get; set; }
 
     public DateTime? CreatedAt { get; set; }
+
     public string? StateMachine { get; set; }
-    public bool? SPA { get; set; }
-    public bool? Parking { get; set; }
-    public bool? WiFi { get; set; }
-    public bool? Pool { get; set; }
-    public bool? Bar { get; set; }
-    public bool? Fitness { get; set; }
+
     public bool? IsDeleted { get; set; }
+
     public DateTime? DeletedTime { get; set; }
+
+    public bool? Spa { get; set; }
+
+    public bool? Parking { get; set; }
+
+    public bool? WiFi { get; set; }
+
+    public bool? Pool { get; set; }
+
+    public bool? Bar { get; set; }
+
+    public bool? Fitness { get; set; }
 
     public virtual ICollection<Asset> Assets { get; set; } = new List<Asset>();
 

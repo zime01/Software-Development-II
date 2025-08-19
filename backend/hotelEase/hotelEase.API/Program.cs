@@ -1,13 +1,14 @@
+using EasyNetQ;
+using hotelEase.API;
+using hotelEase.API.Filters;
 using hotelEase.Services;
 using hotelEase.Services.Database;
-using Microsoft.EntityFrameworkCore;
-using Mapster;
 using hotelEase.Services.HotelsStateMachine;
-using hotelEase.API.Filters;
+using Mapster;
 using Microsoft.AspNetCore.Authentication;
-using hotelEase.API;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using EasyNetQ;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,7 @@ builder.Services.AddTransient<IReservationsService, ReservationsService>();
 builder.Services.AddTransient<IServicesService, ServicesService>();
 builder.Services.AddTransient<IReviewsService, ReviewsService>();
 builder.Services.AddTransient<INotificationsService, NotificationsService>();
+builder.Services.AddTransient<IPaymentsService, PaymentsService>();
 
 var host = "localhost"; //Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "rabbitmq";
 var user = "guest"; //Environment.GetEnvironmentVariable("RABBITMQ_USER") ?? "guest";
@@ -36,6 +38,8 @@ var connectionString1 = $"host={host};username={user};password={pass}";
 builder.Services.AddSingleton(RabbitHutch.CreateBus(connectionString1));
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddHostedService<NotificationWorker>();
+
+StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
 
 
 builder.Services.AddTransient<BaseHotelsState>();

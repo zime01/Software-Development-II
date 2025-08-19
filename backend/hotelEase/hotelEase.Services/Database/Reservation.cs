@@ -20,8 +20,12 @@ public partial class Reservation
     public string? Status { get; set; }
 
     public DateTime? CreatedAt { get; set; }
+
     public bool? IsDeleted { get; set; }
+
     public DateTime? DeletedTime { get; set; }
+
+    public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
 
     public virtual ICollection<ReservationService> ReservationServices { get; set; } = new List<ReservationService>();
 

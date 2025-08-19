@@ -8,7 +8,9 @@ public partial class Country
     public int Id { get; set; }
 
     public string Name { get; set; } = null!;
+
     public bool? IsDeleted { get; set; }
+
     public DateTime? DeletedTime { get; set; }
 
     public virtual ICollection<City> Cities { get; set; } = new List<City>();

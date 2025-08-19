@@ -1,36 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace hotelEase.Services.Database
+namespace hotelEase.Services.Database;
+
+public partial class Payment
 {
-    public class Payment
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        public int ReservationId { get; set; }
+    public int ReservationId { get; set; }
 
-        // "stripe" | "paypal" | ...
-        public string Provider { get; set; } = "stripe";
+    public string Provider { get; set; } = null!;
 
-        // npr. Stripe PaymentIntent id: "pi_..."
-        public string ProviderPaymentId { get; set; } = string.Empty;
+    public string ProviderPaymentId { get; set; } = null!;
 
-        public decimal Amount { get; set; }
-        public string Currency { get; set; } = "USD";
+    public decimal Amount { get; set; }
 
-        // "requires_payment_method" | "requires_confirmation" | "processing" | "succeeded" | "canceled" | "failed"...
-        public string Status { get; set; } = "processing";
+    public string Currency { get; set; } = null!;
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdatedAt { get; set; }
+    public string Status { get; set; } = null!;
 
-        public bool? IsDeleted { get; set; }
-        public DateTime? DeletedTime { get; set; }
+    public DateTime CreatedAt { get; set; }
 
-        public virtual Reservation Reservation { get; set; } = null!;
-    }
+    public DateTime? UpdatedAt { get; set; }
+
+    public bool? IsDeleted { get; set; }
+
+    public DateTime? DeletedTime { get; set; }
+
+    public virtual Reservation Reservation { get; set; } = null!;
 }
-

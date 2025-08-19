@@ -18,7 +18,9 @@ public partial class Review
     public string? Comment { get; set; }
 
     public DateTime? ReviewDate { get; set; }
+
     public bool? IsDeleted { get; set; }
+
     public DateTime? DeletedTime { get; set; }
 
     public virtual Hotel Hotel { get; set; } = null!;

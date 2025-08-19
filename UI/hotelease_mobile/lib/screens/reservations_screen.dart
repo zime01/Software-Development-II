@@ -6,7 +6,7 @@ import 'package:hotelease_mobile/providers/reservations_provider.dart';
 import 'package:hotelease_mobile/providers/services_provider.dart';
 import 'package:hotelease_mobile/providers/users_provider.dart';
 import 'package:hotelease_mobile/screens/master_screen.dart';
-import 'package:hotelease_mobile/utils/util.dart';
+import 'package:hotelease_mobile/screens/payment_screen.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +31,7 @@ class ReservationScreen extends StatefulWidget {
 }
 
 class _ReservationScreenState extends State<ReservationScreen> {
-  int guests = 0;
+  int guests = 1;
   List<Service> availableServices = [];
   List<Service> selectedServices = [];
 
@@ -73,73 +73,47 @@ class _ReservationScreenState extends State<ReservationScreen> {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "${widget.hotelName}",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+            Text(
+              "${widget.hotelName}",
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "${widget.room.name}",
-                style: const TextStyle(fontSize: 20, color: Colors.white),
-              ),
+            const SizedBox(height: 8),
+            Text(
+              "${widget.room.name}",
+              style: const TextStyle(fontSize: 20, color: Colors.white),
             ),
-            Padding(
-              padding: const EdgeInsets.all(5),
-              child: Text(
-                "Capacity: ${widget.room.capacity}",
-                style: TextStyle(color: Colors.white),
-              ),
+            Text(
+              "Capacity: ${widget.room.capacity}",
+              style: const TextStyle(color: Colors.white),
             ),
-            Padding(
-              padding: const EdgeInsets.all(4),
-              child: Text(
-                "Price per night: \$${widget.room.pricePerNight}",
-                style: TextStyle(color: Colors.white),
-              ),
+            Text(
+              "Price per night: \$${widget.room.pricePerNight}",
+              style: const TextStyle(color: Colors.white),
             ),
             const Divider(),
-            Padding(
-              padding: const EdgeInsets.all(4),
-              child: Text(
-                "Dates: ${formattedCheckIn} → ${formattedCheckOut}",
-                style: TextStyle(color: Colors.white),
-              ),
+            Text(
+              "Dates: $formattedCheckIn → $formattedCheckOut",
+              style: const TextStyle(color: Colors.white),
             ),
-            Padding(
-              padding: const EdgeInsets.all(4),
-              child: Text(
-                "Nights: $nights",
-                style: TextStyle(color: Colors.white),
-              ),
+            Text(
+              "Nights: $nights",
+              style: const TextStyle(color: Colors.white),
             ),
             const Divider(),
             Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(4),
-                  child: const Text(
-                    "Guests: ",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+                const Text("Guests: ", style: TextStyle(color: Colors.white)),
                 IconButton(
                   onPressed: () {
                     if (guests > 1) setState(() => guests--);
                   },
                   icon: const Icon(Icons.remove),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(4),
-                  child: Text("$guests", style: TextStyle(color: Colors.white)),
-                ),
+                Text("$guests", style: const TextStyle(color: Colors.white)),
                 IconButton(
                   onPressed: () => setState(() => guests++),
                   icon: const Icon(Icons.add),
@@ -147,22 +121,16 @@ class _ReservationScreenState extends State<ReservationScreen> {
               ],
             ),
             const Divider(),
-            Padding(
-              padding: const EdgeInsets.all(4),
-              child: const Text(
-                "Additional Services",
-                style: TextStyle(color: Colors.white),
-              ),
+            const Text(
+              "Additional Services",
+              style: TextStyle(color: Colors.white),
             ),
             ...availableServices.map((s) {
               bool selected = selectedServices.contains(s);
               return CheckboxListTile(
-                title: Padding(
-                  padding: const EdgeInsets.all(4),
-                  child: Text(
-                    "${s.name} (\$${s.price})",
-                    style: TextStyle(color: Colors.white),
-                  ),
+                title: Text(
+                  "${s.name} (\$${s.price})",
+                  style: const TextStyle(color: Colors.white),
                 ),
                 value: selected,
                 onChanged: (val) {
@@ -177,114 +145,89 @@ class _ReservationScreenState extends State<ReservationScreen> {
               );
             }),
             const Divider(),
-            Padding(
-              padding: const EdgeInsets.all(4),
-              child: Text(
-                "Room cost: \$${roomCost.toStringAsFixed(2)}",
-                style: TextStyle(color: Colors.white),
+            Text(
+              "Room cost: \$${roomCost.toStringAsFixed(2)}",
+              style: const TextStyle(color: Colors.white),
+            ),
+            Text(
+              "Services: \$${servicesCost.toStringAsFixed(2)}",
+              style: const TextStyle(color: Colors.white),
+            ),
+            Text(
+              "Total: \$${totalCost.toStringAsFixed(2)}",
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(4),
-              child: Text(
-                "Services: \$${servicesCost.toStringAsFixed(2)}",
-                style: TextStyle(color: Colors.white),
+            const SizedBox(height: 40),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.white),
+                borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(4),
-              child: Text(
-                "Total: \$${totalCost.toStringAsFixed(2)}",
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+              child: ElevatedButton(
+                onPressed: () async {
+                  try {
+                    final currentUser = await UsersProvider().getCurrentUser();
+
+                    final reservationPayload = {
+                      "userId": currentUser.id,
+                      "roomId": widget.room.id,
+                      "checkInDate": widget.checkInDate.toIso8601String(),
+                      "checkOutDate": widget.checkOutDate.toIso8601String(),
+                      "totalPrice": totalCost,
+                      "status": "Pending",
+                    };
+
+                    // Kreiraj rezervaciju
+                    var createdReservation = await context
+                        .read<ReservationsProvider>()
+                        .createReservation(reservationPayload);
+
+                    // Pošalji RabbitMQ event
+                    await context
+                        .read<NotificationsProvider>()
+                        .sendReservationCreated(
+                          userId: currentUser.id!,
+                          email: currentUser.email!,
+                          hotelName: widget.hotelName ?? "Hotel",
+                          roomName: widget.room.name,
+                          checkIn: widget.checkInDate,
+                          checkOut: widget.checkOutDate,
+                        );
+
+                    // Navigacija na PaymentScreen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => PaymentScreen(
+                          reservationId: createdReservation.id ?? 0,
+                          amount: totalCost,
+                          currency: "USD",
+                        ),
+                      ),
+                    );
+                  } catch (e, stackTrace) {
+                    print("Error: $e");
+                    print(stackTrace);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Error while reservating $e")),
+                    );
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromRGBO(15, 30, 70, 1),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  textStyle: const TextStyle(fontSize: 18),
+                ),
+                child: const Text(
+                  "Continue to payment",
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () async {
-                final currentUser = await UsersProvider().getCurrentUser();
-
-                final reservationPayload = {
-                  "userId": currentUser.id,
-                  "roomId": widget.room.id,
-                  "checkInDate": widget.checkInDate.toIso8601String(),
-                  "checkOutDate": widget.checkOutDate.toIso8601String(),
-                  "totalPrice": totalCost,
-                  "status": "Pending",
-                };
-
-                try {
-                  // Kreiraj rezervaciju
-                  var createdReservation = await context
-                      .read<ReservationsProvider>()
-                      .createReservation(reservationPayload);
-
-                  // Pošalji RabbitMQ event
-                  await context
-                      .read<NotificationsProvider>()
-                      .sendReservationCreated(
-                        userId: currentUser.id!,
-                        email: currentUser.email!,
-                        hotelName: widget.hotelName ?? "Hotel",
-                        roomName: widget.room.name,
-                        checkIn: widget.checkInDate,
-                        checkOut: widget.checkOutDate,
-                      );
-
-                  // Navigator.push(... PaymentScreen ...)
-                } catch (e, stackTrace) {
-                  print("Error: $e");
-                  print(stackTrace);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Greška pri rezervaciji: $e")),
-                  );
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                textStyle: const TextStyle(fontSize: 18),
-              ),
-              child: const Text("Nastavi na plaćanje"),
-            ),
-            // ElevatedButton(
-            //   onPressed: () async {
-            //     var reservationPayload = {
-            //       "roomId": widget.room.id,
-            //       "checkInDate": widget.checkInDate.toIso8601String(),
-            //       "checkOutDate": widget.checkOutDate.toIso8601String(),
-            //       "guests": guests,
-            //       "services": selectedServices.map((s) => s.id).toList(),
-            //     };
-
-            //     try {
-            //       await context.read<ReservationsProvider>().createReservation(
-            //         reservationPayload,
-            //       );
-
-            //       // poziv RabbitMQ API-ja za slanje notifikacije
-            //       await context
-            //           .read<NotificationsProvider>()
-            //           .sendReservationCreated();
-
-            //       Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //           builder: (_) =>
-            //               PaymentScreen(reservationPayload: reservationPayload),
-            //         ),
-            //       );
-            //     } catch (e) {
-            //       ScaffoldMessenger.of(context).showSnackBar(
-            //         SnackBar(content: Text("Greška pri rezervaciji: $e")),
-            //       );
-            //     }
-            //   },
-            //   child: const Text("Proceed to Payment"),
-            // ),
           ],
         ),
       ),

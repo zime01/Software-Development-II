@@ -11,14 +11,16 @@ public partial class Notification
 
     public string Title { get; set; } = null!;
 
-    public string Message { get; set; } = null!;
+    public string? Message { get; set; }
 
     public string Type { get; set; } = null!;
 
     public bool? IsRead { get; set; }
 
     public DateTime? SentAt { get; set; }
+
     public bool? IsDeleted { get; set; }
+
     public DateTime? DeletedTime { get; set; }
 
     public virtual User User { get; set; } = null!;

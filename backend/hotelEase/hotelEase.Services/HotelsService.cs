@@ -78,7 +78,7 @@ namespace hotelEase.Services
             if (search.Pool == true) filteredQuery = filteredQuery.Where(h => h.Pool == true);
             if (search.Bar == true) filteredQuery = filteredQuery.Where(h => h.Bar == true);
             if (search.Fitness == true) filteredQuery = filteredQuery.Where(h => h.Fitness == true);
-            if (search.SPA == true) filteredQuery = filteredQuery.Where(h => h.SPA == true);
+            if (search.SPA == true) filteredQuery = filteredQuery.Where(h => h.Spa == true);
 
             // Filtriranje
             if (!string.IsNullOrWhiteSpace(search.FilterBy))
@@ -101,7 +101,7 @@ namespace hotelEase.Services
                         filteredQuery = filteredQuery.Where(h => h.Fitness == true);
                         break;
                     case "spa":
-                        filteredQuery = filteredQuery.Where(h => h.SPA == true);
+                        filteredQuery = filteredQuery.Where(h => h.Spa == true);
                         break;
                 }
             }

@@ -20,7 +20,9 @@ public partial class Asset
     public int HotelId { get; set; }
 
     public int RoomId { get; set; }
+
     public bool? IsDeleted { get; set; }
+
     public DateTime? DeletedTime { get; set; }
 
     public virtual Hotel Hotel { get; set; } = null!;
