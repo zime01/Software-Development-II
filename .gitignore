@@ -358,3 +358,4 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+backend/hotelEase/hotelEase.API/bin/Debug/net8.0/appsettings.json
