@@ -27,6 +27,21 @@ namespace hotelEase.API.Controllers
             return (_service as IUsersService).Login(username, password);
         }
 
+        [AllowAnonymous]
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] UsersInsertRequest request)
+        {
+            try
+            {
+                var user = _usersService.Register(request);
+                return Ok(new { success = true, message = "Registration successful! Please login." });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = ex.Message });
+            }
+        }
+
         [HttpGet("me")]
         public ActionResult<Model.User> Me()
         {

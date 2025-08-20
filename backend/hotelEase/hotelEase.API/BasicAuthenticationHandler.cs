@@ -18,7 +18,13 @@ namespace hotelEase.API
 
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
-            if(!Request.Headers.ContainsKey("Authorization"))
+            if (Context.Request.Path.StartsWithSegments("/api/users/register") ||
+        Context.Request.Path.StartsWithSegments("/api/users/login"))
+            {
+                return AuthenticateResult.NoResult();
+            }
+
+            if (!Request.Headers.ContainsKey("Authorization"))
             {
                 return AuthenticateResult.Fail("Missing header");
             }

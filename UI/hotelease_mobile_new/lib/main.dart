@@ -12,6 +12,7 @@ import 'package:hotelease_mobile_new/providers/rooms.provider.dart';
 import 'package:hotelease_mobile_new/providers/services_provider.dart';
 import 'package:hotelease_mobile_new/providers/users_provider.dart';
 import 'package:hotelease_mobile_new/screens/hotels_list_screen.dart';
+import 'package:hotelease_mobile_new/screens/register_screen.dart';
 import 'package:hotelease_mobile_new/utils/util.dart';
 import 'package:provider/provider.dart';
 
@@ -130,7 +131,7 @@ class _LoginPageState extends State<LoginPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login"),
+        title: const Text("Login", style: TextStyle(color: Colors.white)),
         backgroundColor: const Color.fromRGBO(17, 45, 78, 1),
       ),
       backgroundColor: const Color.fromRGBO(17, 45, 78, 1),
@@ -186,6 +187,20 @@ class _LoginPageState extends State<LoginPage> {
                         child: const Text(
                           "Login",
                           style: TextStyle(fontSize: 24),
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => RegisterScreen(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          "Register now",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                       ),
                     ],

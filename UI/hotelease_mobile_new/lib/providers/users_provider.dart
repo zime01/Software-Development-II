@@ -29,4 +29,19 @@ class UsersProvider extends BaseProvider<User> {
       );
     }
   }
+
+  Future<Map<String, dynamic>> registerUser(
+    Map<String, dynamic> payload,
+  ) async {
+    var url = "$baseUrl$endpoint/register";
+    var uri = Uri.parse(url);
+
+    var response = await http.post(
+      uri,
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode(payload),
+    );
+
+    return jsonDecode(response.body);
+  }
 }

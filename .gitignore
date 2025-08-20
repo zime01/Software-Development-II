@@ -360,3 +360,5 @@ MigrationBackup/
 .ionide/
 backend/hotelEase/hotelEase.API/bin/Debug/net8.0/appsettings.json
 backend/hotelEase/hotelEase.API/bin/Debug/net8.0/appsettings.Development.json
+backend/hotelEase/hotelEase.API/bin/Debug/net8.0/appsettings.Development.json
+backend/hotelEase/hotelEase.API/bin/Debug/net8.0/appsettings.Development.json

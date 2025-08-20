@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,9 +18,11 @@ namespace hotelEase.Services
     public class UsersService : BaseCRUDService<Model.User, UsersSearchObject, Database.User, UsersInsertRequest, UsersUpdateRequest>, IUsersService
     {
         ILogger<UsersService> _logger;
-        public UsersService(HotelEaseContext context, IMapper mapper, ILogger<UsersService> logger) : base(context, mapper)
+        public INotificationsService _notificationsService { get; set; }
+        public UsersService(HotelEaseContext context, IMapper mapper, ILogger<UsersService> logger, INotificationsService notificationsService ) : base(context, mapper)
         {
             _logger = logger;
+            _notificationsService = notificationsService;
         }
 
         public override IQueryable<Database.User> AddFilter(UsersSearchObject searchObject, IQueryable<Database.User> query)
@@ -214,6 +217,40 @@ namespace hotelEase.Services
 
             return Mapper.Map<Model.User>(entity);
         }
+
+        public Model.User Register(UsersInsertRequest request)
+        {
+            if (request.Password != request.ConfirmPassword)
+                throw new Exception("Passwords do not match!");
+
+            if (Context.Users.Any(u => u.Username == request.Username || u.Email == request.Email))
+                throw new Exception("User with this username or email already exists!");
+
+            // koristi Insert() iz BaseCRUDService (hash/salt ide u BeforeInsert)
+            var user = Insert(request);
+
+            try
+            {
+                // 📧 priprema email notifikacije
+                var message = new NotificationMessage
+                {
+                    Type = "email",
+                    To = user.Email,
+                    Subject = "Welcome to HotelEase 🎉",
+                    Body = $"Hello {user.FirstName},<br/><br/>Your registration was successful!<br/>Welcome to HotelEase 🏨."
+                };
+
+                // šaljemo i pohranjujemo u DB + RabbitMQ
+                _notificationsService.SendAndStoreNotificationAsync(message, user.Id).Wait();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to send welcome email for user {Username}", user.Username);
+            }
+
+            return user;
+        }
+    
 
         public Model.User GetCurrentUser(string username)
         {
