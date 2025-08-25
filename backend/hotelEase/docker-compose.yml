@@ -25,6 +25,8 @@ services:
       - RABBITMQ_HOST=rabbitmq           
       - RABBITMQ_USER=guest             
       - RABBITMQ_PASS=guest 
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - STRIPE_PUBLISHABLE_KEY=${STRIPE_PUBLISHABLE_KEY}
     ports:
       - 5296:5296
     networks:
