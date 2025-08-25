@@ -15,9 +15,11 @@ Room _$RoomFromJson(Map<String, dynamic> json) => Room(
   pricePerNight: (json['pricePerNight'] as num?)?.toDouble(),
   isAvailable: json['isAvailable'] as bool?,
   description: json['description'] as String?,
-  assets: (json['assets'] as List<dynamic>?)
-      ?.map((e) => Asset.fromJson(e as Map<String, dynamic>))
-      .toList(),
+  assets:
+      (json['assets'] as List<dynamic>?)
+          ?.map((e) => Asset.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
   ac: json['ac'] as bool?,
   cityView: json['cityView'] as bool?,
   queenBed: json['queenBed'] as bool?,

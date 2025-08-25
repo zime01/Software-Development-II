@@ -78,6 +78,36 @@ class BaseProvider<T> with ChangeNotifier {
     throw Exception("Method not implemented");
   }
 
+  Future<dynamic> getCustom(String endpoint) async {
+    var uri = Uri.parse("$baseUrl$endpoint");
+    var response = await http.get(uri, headers: createHeaders());
+
+    if (response.statusCode < 200 || response.statusCode > 299) {
+      throw Exception("Greška pri GET custom: ${response.body}");
+    }
+
+    return jsonDecode(response.body);
+  }
+
+  Future<dynamic> insert(dynamic request) async {
+    var uri = Uri.parse("$baseUrl$endpoint");
+    var response = await http.post(
+      uri,
+      headers: createHeaders(),
+      body: jsonEncode(request),
+    );
+
+    if (response.statusCode < 200 || response.statusCode > 299) {
+      throw Exception("Greška pri POST: ${response.body}");
+    }
+
+    if (response.body.isEmpty) {
+      return null;
+    }
+
+    return jsonDecode(response.body);
+  }
+
   bool isValidResponse(Response response) {
     if (response.statusCode < 299) {
       return true;

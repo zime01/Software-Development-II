@@ -598,6 +598,27 @@
     ]
   },
   {
+    "ContainingType": "hotelEase.API.Controllers.HotelsController",
+    "Method": "GetContentBased",
+    "RelativePath": "api/Hotels/{hotelId}/content-based",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hotelId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "top",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Hotel, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.HotelsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.HotelsInsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.HotelsUpdateRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "Update",
     "RelativePath": "api/Hotels/{id}",
@@ -783,6 +804,43 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.HotelsController",
+    "Method": "GetPopular",
+    "RelativePath": "api/Hotels/popular",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "top",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.HotelsController",
+    "Method": "GetCollaborative",
+    "RelativePath": "api/Hotels/user/{userId}/collaborative",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "top",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.Notification, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.NotificationsSearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.NotificationsUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.NotificationsUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",

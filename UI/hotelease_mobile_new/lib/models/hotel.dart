@@ -1,3 +1,5 @@
+import 'package:hotelease_mobile_new/models/asset.dart';
+import 'package:hotelease_mobile_new/models/room.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'hotel.g.dart';
@@ -11,8 +13,8 @@ class Hotel {
   String? address;
 
   int? starRating;
-  List<dynamic>? assets;
-  List<dynamic>? rooms;
+  List<Asset>? assets;
+  List<Room>? rooms;
 
   bool? wifi;
   bool? parking;
@@ -20,7 +22,9 @@ class Hotel {
   bool? bar;
   bool? fitness;
   bool? spa;
+  String? imageUrl;
   Hotel({
+    this.imageUrl,
     this.id,
     this.name,
     this.price,

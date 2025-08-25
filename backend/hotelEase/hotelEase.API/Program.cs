@@ -1,3 +1,4 @@
+using DotNetEnv;
 using EasyNetQ;
 using hotelEase.API;
 using hotelEase.API.Filters;
@@ -9,6 +10,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Stripe;
+
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,17 +32,46 @@ builder.Services.AddTransient<IReviewsService, ReviewsService>();
 builder.Services.AddTransient<INotificationsService, NotificationsService>();
 builder.Services.AddTransient<IPaymentsService, PaymentsService>();
 
-var host = "localhost"; //Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "rabbitmq";
-var user = "guest"; //Environment.GetEnvironmentVariable("RABBITMQ_USER") ?? "guest";
-var pass = "guest"; // Environment.GetEnvironmentVariable("RABBITMQ_PASS") ?? "guest";
+builder.Services.AddTransient<HotelRecommenderService>();
 
-var connectionString1 = $"host={host};username={user};password={pass}";
+//var host = "localhost"; //Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "rabbitmq";
+//var user = "guest"; //Environment.GetEnvironmentVariable("RABBITMQ_USER") ?? "guest";
+//var pass = "guest"; // Environment.GetEnvironmentVariable("RABBITMQ_PASS") ?? "guest";
 
-builder.Services.AddSingleton(RabbitHutch.CreateBus(connectionString1));
+//var connectionString1 = $"host={host};username={user};password={pass}";
+
+//builder.Services.AddSingleton(RabbitHutch.CreateBus(connectionString1));
+
+var rabbitHost = Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "localhost";
+var rabbitUser = Environment.GetEnvironmentVariable("RABBITMQ_USER") ?? "guest";
+var rabbitPass = Environment.GetEnvironmentVariable("RABBITMQ_PASS") ?? "guest";
+
+// Pokušaj napraviti bus, ali safe ako RabbitMQ nije dostupan
+try
+{
+    var connectionString1 = $"host={rabbitHost};username={rabbitUser};password={rabbitPass}";
+    builder.Services.AddSingleton(RabbitHutch.CreateBus(connectionString1));
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"RabbitMQ not available: {ex.Message}. Notifications will be disabled.");
+    //builder.Services.AddSingleton<IBus>(new NullBus());
+}
+
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddHostedService<NotificationWorker>();
 
-StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
+//StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
+
+
+
+var secretKey = Env.GetString("STRIPE_SECRET_KEY");
+var publishableKey = Env.GetString("STRIPE_PUBLISHABLE_KEY");
+
+Console.WriteLine($"Stripe SecretKey: {secretKey}");
+Console.WriteLine($"Stripe PublishableKey: {publishableKey}");
+
+StripeConfiguration.ApiKey = secretKey;
 
 
 builder.Services.AddTransient<BaseHotelsState>();

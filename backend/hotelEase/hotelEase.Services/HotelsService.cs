@@ -235,6 +235,46 @@ namespace hotelEase.Services
             return pagedResult;
         }
 
+
+        public List<Model.Hotel> GetPopularHotels(int top = 5)
+        {
+            return Context.Hotels
+                .Include(h => h.Rooms)
+                    .ThenInclude(r => r.Reservations)
+                .OrderByDescending(h => h.Rooms.Sum(r => r.Reservations.Count)) // broj rezervacija svih soba
+                .Take(top)
+                .Select(h => Mapper.Map<Model.Hotel>(h))
+                .ToList();
+        }
+
+        public List<Model.Hotel> GetRecommendedHotels(int hotelId, int top = 5)
+        {
+            var selectedHotel = Context.Hotels
+                .Include(h => h.Rooms)
+                .FirstOrDefault(h => h.Id == hotelId);
+
+            if (selectedHotel == null) return new List<Model.Hotel>();
+
+            var selectedAvgPrice = selectedHotel.Rooms.Any()
+                ? selectedHotel.Rooms.Average(r => r.PricePerNight)
+                : 0;
+
+            return Context.Hotels
+                .Include(h => h.Rooms)
+                .Where(h => h.CityId == selectedHotel.CityId && h.Id != hotelId)
+                .Select(h => new
+                {
+                    Hotel = h,
+                    AvgPrice = h.Rooms.Any() ? h.Rooms.Average(r => r.PricePerNight) : 0
+                })
+                .OrderBy(h => Math.Abs(h.AvgPrice - selectedAvgPrice)) // najbliža prosječna cijena
+                .ThenByDescending(h => h.Hotel.StarRating)
+                .Take(top)
+                .Select(h => Mapper.Map<Model.Hotel>(h.Hotel))
+                .ToList();
+        }
+    }
+
         //public List<Model.Hotel> List = new List<Model.Hotel>()
         //{
         //    new Model.Hotel()
@@ -297,5 +337,5 @@ namespace hotelEase.Services
 
         //    return response ;
         //}
-    }
+    
 }

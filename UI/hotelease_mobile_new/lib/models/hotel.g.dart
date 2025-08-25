@@ -7,14 +7,19 @@ part of 'hotel.dart';
 // **************************************************************************
 
 Hotel _$HotelFromJson(Map<String, dynamic> json) => Hotel(
+  imageUrl: json['imageUrl'] as String?,
   id: (json['id'] as num?)?.toInt(),
   name: json['name'] as String?,
   price: (json['price'] as num?)?.toInt(),
   description: json['description'] as String?,
   address: json['address'] as String?,
   starRating: (json['starRating'] as num?)?.toInt(),
-  assets: json['assets'] as List<dynamic>?,
-  rooms: json['rooms'] as List<dynamic>?,
+  assets: (json['assets'] as List<dynamic>?)
+      ?.map((e) => Asset.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  rooms: (json['rooms'] as List<dynamic>?)
+      ?.map((e) => Room.fromJson(e as Map<String, dynamic>))
+      .toList(),
   bar: json['bar'] as bool?,
   fitness: json['fitness'] as bool?,
   parking: json['parking'] as bool?,
@@ -38,4 +43,5 @@ Map<String, dynamic> _$HotelToJson(Hotel instance) => <String, dynamic>{
   'bar': instance.bar,
   'fitness': instance.fitness,
   'spa': instance.spa,
+  'imageUrl': instance.imageUrl,
 };

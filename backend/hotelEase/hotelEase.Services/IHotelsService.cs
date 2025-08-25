@@ -15,6 +15,8 @@ namespace hotelEase.Services
         public Hotel Edit(int id);
         public Hotel Hide(int id);
         public List<string> AllowedActions(int id);
+        List<Hotel> GetPopularHotels(int top = 5);
+        List<Hotel> GetRecommendedHotels(int hotelId, int top = 5);
 
     }
 }

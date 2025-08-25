@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:hotelease_mobile_new/models/asset.dart';
 import 'package:hotelease_mobile_new/models/hotel.dart';
 import 'package:hotelease_mobile_new/models/search_result.dart';
 import 'package:hotelease_mobile_new/providers/hotels_provider.dart';
+import 'package:hotelease_mobile_new/screens/hotel_details_screen.dart';
 import 'package:hotelease_mobile_new/screens/hotels.dart';
 import 'package:hotelease_mobile_new/screens/master_screen.dart';
 
@@ -19,6 +23,10 @@ class HotelsListScreen extends StatefulWidget {
 
 class _HotelsListScreenState extends State<HotelsListScreen> {
   late HotelsProvider _hotelsProvider;
+
+  late Future<List<Hotel>> _recommendedHotelsFuture;
+  late Future<List<Hotel>> _popularHotelsFuture;
+
   SearchResult<Hotel>? result = null;
   String searchQuery = "";
 
@@ -48,6 +56,13 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
     {'label': 'Highest Price', 'value': 'PriceDesc'},
     {'label': 'Highest Stars', 'value': 'StarRatingDesc'},
   ];
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    _hotelsProvider = context.read<HotelsProvider>();
+  }
 
   void _selectDateFrom() async {
     print("pozvana funkcija za datume");
@@ -150,11 +165,35 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
     }
   }
 
-  @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-    _hotelsProvider = context.read<HotelsProvider>();
+  Widget _buildHotelImage(String? base64Image) {
+    if (base64Image == null || base64Image.isEmpty) {
+      return Image.asset(
+        'assets/images/cant_load_image.png',
+        height: 100,
+        fit: BoxFit.cover,
+      );
+    }
+
+    try {
+      // Backend ti šalje BASE64 ENCODED URL
+      final decodedUrl = utf8.decode(base64.decode(base64Image));
+      return Image.network(
+        decodedUrl,
+        height: 100,
+        fit: BoxFit.cover,
+        errorBuilder: (_, __, ___) => Image.asset(
+          'assets/images/cant_load_image.png',
+          height: 100,
+          fit: BoxFit.cover,
+        ),
+      );
+    } catch (e) {
+      return Image.asset(
+        'assets/images/cant_load_image.png',
+        height: 100,
+        fit: BoxFit.cover,
+      );
+    }
   }
 
   @override
@@ -493,7 +532,7 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
                       child: Row(
                         children: [
                           Text(
-                            'Adults',
+                            'Children',
                             style: TextStyle(fontSize: 22, color: Colors.white),
                           ),
                           SizedBox(width: 20),
@@ -530,7 +569,7 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
                 ),
                 SizedBox(height: 20),
                 Text(
-                  'Adults',
+                  'Rooms',
                   style: TextStyle(fontSize: 22, color: Colors.white),
                 ),
                 SizedBox(width: 20),
@@ -561,45 +600,187 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
                   ),
                 ),
                 SizedBox(height: 20),
+                SizedBox(height: 20),
                 Text(
-                  "POPULAR DESTINATIONS",
+                  "Popular Hotels",
                   style: TextStyle(color: Colors.white, fontSize: 22),
                 ),
-                SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      constraints: BoxConstraints(maxWidth: 150),
+                SizedBox(height: 15),
+                FutureBuilder<List<Hotel>>(
+                  future: _hotelsProvider.getPopularHotels(top: 5),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator(color: Colors.white);
+                    }
+                    if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return Text(
+                        "No popular hotels",
+                        style: TextStyle(color: Colors.white),
+                      );
+                    }
 
-                      child: Column(
-                        children: [
-                          Image.network(
-                            "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcQ7GXv4aUNbTQ7uZCFs9xHCJEwYFxcDLse2oFWs6hem4lzlpogcVlP-2CQ8Lu0hYPGJSi5mbm36rb5E79A1VQtGbwFj3nKPAbEz29_1JD8",
-                          ),
-                          Text(
-                            "Jajce",
-                            style: TextStyle(color: Colors.white, fontSize: 18),
-                          ),
-                        ],
+                    final hotels = snapshot.data!;
+                    return SizedBox(
+                      height: 220,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: hotels.length,
+                        itemBuilder: (context, index) {
+                          final hotel = hotels[index];
+                          final List<Asset> assets = [];
+                          if (hotel.rooms != null) {
+                            for (var r in hotel.rooms!) {
+                              if (r.assets != null) {
+                                assets.addAll(r.assets!);
+                              }
+                            }
+                          }
+
+                          return Container(
+                            width: 160,
+                            margin: EdgeInsets.all(8),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => HotelDetailsScreen(
+                                      id: hotel.id,
+                                      name: hotel.name,
+                                      starRating: hotel.starRating,
+                                      price: hotel.price,
+                                      description: hotel.description,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: assets != null && assets.isNotEmpty
+                                        ? PageView.builder(
+                                            itemCount: assets.length,
+                                            itemBuilder: (context, i) {
+                                              return _buildHotelImage(
+                                                assets[i].image,
+                                              );
+                                            },
+                                          )
+                                        : Image.asset(
+                                            'assets/images/cant_load_image.png',
+                                            fit: BoxFit.cover,
+                                          ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    hotel.name ?? "",
+                                    style: TextStyle(color: Colors.white),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  Text(
+                                    "${hotel.starRating} ★",
+                                    style: TextStyle(color: Colors.yellow),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                    ),
-                    Container(
-                      constraints: BoxConstraints(maxWidth: 150),
-                      child: Column(
-                        children: [
-                          Image.network(
-                            "https://lh3.googleusercontent.com/gps-cs-s/AC9h4noCxkjonP6IT0XE5Q8EHu5UBdjmUzEdhdiJDvBz8wc0zD7SJGifwJ9wtkwya3uSdAn8-N6HNCsbwkJCufqpTGUubCYr8GkQf1SdrnvdQM1bMqRfMflrRJ5ihIBzpLrQ8R41NkiKxw=w675-h390-n-k-no",
-                          ),
-                          Text(
-                            "Travnik",
-                            style: TextStyle(color: Colors.white, fontSize: 18),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                    );
+                  },
                 ),
+                Text(
+                  "Hotels Recommended For You",
+                  style: TextStyle(color: Colors.white, fontSize: 22),
+                ),
+                SizedBox(height: 15),
+                FutureBuilder<List<Hotel>>(
+                  future: _hotelsProvider.getCollaborativeHotels(1, top: 5),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator(color: Colors.white);
+                    }
+                    if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return Text(
+                        "No popular hotels",
+                        style: TextStyle(color: Colors.white),
+                      );
+                    }
+
+                    final hotels = snapshot.data!;
+                    return SizedBox(
+                      height: 220,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: hotels.length,
+                        itemBuilder: (context, index) {
+                          final hotel = hotels[index];
+                          final List<Asset> assets = [];
+                          if (hotel.rooms != null) {
+                            for (var r in hotel.rooms!) {
+                              if (r.assets != null) {
+                                assets.addAll(r.assets!);
+                              }
+                            }
+                          }
+
+                          return Container(
+                            width: 160,
+                            margin: EdgeInsets.all(8),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => HotelDetailsScreen(
+                                      id: hotel.id,
+                                      name: hotel.name,
+                                      starRating: hotel.starRating,
+                                      price: hotel.price,
+                                      description: hotel.description,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: assets != null && assets.isNotEmpty
+                                        ? PageView.builder(
+                                            itemCount: assets.length,
+                                            itemBuilder: (context, i) {
+                                              return _buildHotelImage(
+                                                assets[i].image,
+                                              );
+                                            },
+                                          )
+                                        : Image.asset(
+                                            'assets/images/cant_load_image.png',
+                                            fit: BoxFit.cover,
+                                          ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    hotel.name ?? "",
+                                    style: TextStyle(color: Colors.white),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  Text(
+                                    "${hotel.starRating} ★",
+                                    style: TextStyle(color: Colors.yellow),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
+
+                SizedBox(height: 30),
               ],
             ),
           ),
