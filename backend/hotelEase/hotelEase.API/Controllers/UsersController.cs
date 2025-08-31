@@ -45,7 +45,7 @@ namespace hotelEase.API.Controllers
         [HttpGet("me")]
         public ActionResult<Model.User> Me()
         {
-            // Izvući Authorization header
+            
             var authHeader = Request.Headers["Authorization"].ToString();
             if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Basic "))
                 return Unauthorized();
@@ -71,6 +71,24 @@ namespace hotelEase.API.Controllers
             catch
             {
                 return Unauthorized();
+            }
+        }
+
+        [HttpPut("change_password/{id}")]
+        public IActionResult Update(int id, [FromBody] UsersUpdateRequest request)
+        {
+            try
+            {
+                var user = _usersService.Update(id, request);
+                return Ok(user); 
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(new { message = ex.Message }); 
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message }); 
             }
         }
     }

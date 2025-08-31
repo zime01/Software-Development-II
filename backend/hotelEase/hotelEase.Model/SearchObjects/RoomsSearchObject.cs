@@ -7,5 +7,6 @@ namespace hotelEase.Model.SearchObjects
     public class RoomsSearchObject : BaseSearchObject
     {
         public bool? IsAssetsIncluded { get; set; }
+        public bool? IsHotelIncluded { get; set; }
     }
 }

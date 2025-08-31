@@ -1843,6 +1843,11 @@
         "IsRequired": false
       },
       {
+        "Name": "IsHotelIncluded",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
         "Name": "Page",
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
@@ -1963,6 +1968,32 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.RoomsController",
+    "Method": "GetRoom",
+    "RelativePath": "api/Rooms/details/{room_id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "room_id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "hotelEase.Model.RoomDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "hotelEase.API.Controllers.BaseCRUDController\u00604[[hotelEase.Model.RoomAvailability, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.SearchObjects.RoomsAvailabilitySearchObject, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RoomsAvailabilityUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[hotelEase.Model.Requests.RoomsAvailabilityUpsertRequest, hotelEase.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
@@ -2610,6 +2641,27 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.UsersController",
+    "Method": "Update",
+    "RelativePath": "api/Users/change_password/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.Requests.UsersUpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "hotelEase.API.Controllers.UsersController",

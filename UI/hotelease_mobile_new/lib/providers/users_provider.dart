@@ -44,4 +44,26 @@ class UsersProvider extends BaseProvider<User> {
 
     return jsonDecode(response.body);
   }
+
+  Future<User> update(int id, Map<String, dynamic> payload) async {
+    // 🔹 makni prazna i null polja da ne šalješ "" password
+    payload.removeWhere((key, value) => value == null || value == "");
+
+    var url = "$baseUrl$endpoint/change_password/$id";
+    var uri = Uri.parse(url);
+
+    var response = await http.put(
+      uri,
+      headers: createHeaders(),
+      body: jsonEncode(payload),
+    );
+
+    if (isValidResponse(response)) {
+      return fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception(
+        "Update failed: ${response.statusCode} - ${response.body}",
+      );
+    }
+  }
 }

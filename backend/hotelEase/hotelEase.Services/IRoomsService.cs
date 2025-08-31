@@ -1,4 +1,5 @@
-﻿using hotelEase.Model.Requests;
+﻿using hotelEase.Model;
+using hotelEase.Model.Requests;
 using hotelEase.Model.SearchObjects;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace hotelEase.Services
     {
 
         List<Model.Room> GetRoomByHotel(int hotelId);
+        RoomDTO GetRoomDtoById(int id);
     }
 
     

@@ -127,12 +127,23 @@ namespace hotelEase.Services
         public override void BeforeUpdate(UsersUpdateRequest request, Database.User entity)
         {
             base.BeforeUpdate(request, entity);
-            if (request.Password != null)
+
+            if (!string.IsNullOrEmpty(request.Password))
             {
                 if (request.Password != request.ConfirmPassword)
                 {
                     throw new Exception("Password and CofirmPassword must be same");
                 }
+
+                if (!string.IsNullOrEmpty(request.OldPassword))
+                {
+                    var currentHash = GenerateHash(entity.PasswordSalt, request.OldPassword);
+                    if (currentHash != entity.PasswordHash)
+                    {
+                        throw new UnauthorizedAccessException("Incorrect old password");
+                    }
+                }
+
                 entity.PasswordSalt = GenerateSalt();
                 entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
             }
@@ -240,7 +251,6 @@ namespace hotelEase.Services
                     Body = $"Hello {user.FirstName},<br/><br/>Your registration was successful!<br/>Welcome to HotelEase 🏨."
                 };
 
-                // šaljemo i pohranjujemo u DB + RabbitMQ
                 _notificationsService.SendAndStoreNotificationAsync(message, user.Id).Wait();
             }
             catch (Exception ex)

@@ -7,6 +7,9 @@ part of 'reservation.dart';
 // **************************************************************************
 
 Reservation _$ReservationFromJson(Map<String, dynamic> json) => Reservation(
+  room: json['room'] == null
+      ? null
+      : Room.fromJson(json['room'] as Map<String, dynamic>),
   id: (json['id'] as num?)?.toInt(),
   userId: (json['userId'] as num?)?.toInt(),
   roomId: (json['roomId'] as num?)?.toInt(),
@@ -39,4 +42,5 @@ Map<String, dynamic> _$ReservationToJson(Reservation instance) =>
       'createdAt': instance.createdAt?.toIso8601String(),
       'isDeleted': instance.isDeleted,
       'deletedTime': instance.deletedTime?.toIso8601String(),
+      'room': instance.room,
     };

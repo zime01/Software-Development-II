@@ -24,6 +24,7 @@ namespace hotelEase.Model
         public bool? IsDeleted { get; set; }
         public DateTime? DeletedTime { get; set; }
         public virtual User User { get; set; } = null!;
+        public virtual Room? Room { get; set; } = null!;
 
     }
 }

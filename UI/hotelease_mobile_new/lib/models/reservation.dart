@@ -1,3 +1,4 @@
+import 'package:hotelease_mobile_new/models/room.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'reservation.g.dart';
@@ -14,8 +15,10 @@ class Reservation {
   DateTime? createdAt;
   bool? isDeleted;
   DateTime? deletedTime;
+  Room? room;
 
   Reservation({
+    this.room,
     this.id,
     this.userId,
     this.roomId,

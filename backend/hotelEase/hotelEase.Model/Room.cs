@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Text;
+using Mapster;
+using System.Text.Json.Serialization;
 
 namespace hotelEase.Model
 {
@@ -28,6 +31,7 @@ namespace hotelEase.Model
         public bool? AC { get; set; }
         public bool? IsDeleted { get; set; }
         public DateTime? DeletedTime { get; set; }
+        
         public virtual ICollection<Asset> Assets { get; set; } = new List<Asset>();
     }
 }

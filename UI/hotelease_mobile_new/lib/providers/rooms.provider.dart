@@ -10,4 +10,8 @@ class RoomsProvider extends BaseProvider<Room> {
   Future<List<Room>> getRoomsByHotelId(int hotelId) async {
     return await getList("Rooms/by-hotel/$hotelId");
   }
+
+  Future<Room?> getRoomById(int id) async {
+    return await getById(id);
+  }
 }

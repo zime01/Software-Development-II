@@ -1,3 +1,4 @@
+import 'package:hotelease_mobile_new/models/hotel.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'asset.dart';
 
@@ -19,7 +20,10 @@ class Room {
   bool? wiFi;
   bool? cityView;
   bool? ac;
+
+  String? hotelName;
   Room({
+    this.hotelName,
     this.id,
     this.hotelId,
     this.roomTypeId,

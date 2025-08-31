@@ -89,6 +89,21 @@ class BaseProvider<T> with ChangeNotifier {
     return jsonDecode(response.body);
   }
 
+  Future<dynamic> getById(int id) async {
+    var uri = Uri.parse("$baseUrl$endpoint/details/$id");
+    var headers = createHeaders();
+    var response = await http.get(uri, headers: headers);
+
+    if (isValidResponse(response)) {
+      var data = jsonDecode(response.body);
+      return fromJson(data);
+    } else {
+      throw Exception(
+        "Unknown error: ${response.statusCode} - ${response.body}",
+      );
+    }
+  }
+
   Future<dynamic> insert(dynamic request) async {
     var uri = Uri.parse("$baseUrl$endpoint");
     var response = await http.post(
@@ -109,12 +124,12 @@ class BaseProvider<T> with ChangeNotifier {
   }
 
   bool isValidResponse(Response response) {
-    if (response.statusCode < 299) {
+    if (response.statusCode >= 200 && response.statusCode <= 299) {
       return true;
     } else if (response.statusCode == 401) {
-      throw Exception("Unauthorized");
+      throw Exception("Unauthorized: ${response.body}");
     } else {
-      throw Exception("Something bad happened please try again");
+      throw Exception("Error: ${response.statusCode} ${response.body}");
     }
   }
 

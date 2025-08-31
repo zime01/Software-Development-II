@@ -1,4 +1,5 @@
 import 'package:hotelease_mobile_new/models/reservation.dart';
+import 'package:hotelease_mobile_new/models/search_result.dart';
 import 'package:hotelease_mobile_new/providers/base_provider.dart';
 
 class ReservationsProvider extends BaseProvider<Reservation> {
@@ -12,5 +13,10 @@ class ReservationsProvider extends BaseProvider<Reservation> {
   @override
   Reservation fromJson(data) {
     return Reservation.fromJson(data);
+  }
+
+  Future<List<Reservation>> getMyReservations() async {
+    SearchResult<Reservation> result = await super.get();
+    return result.result; // vraća čistu listu
   }
 }
