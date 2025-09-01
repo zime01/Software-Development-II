@@ -1,0 +1,40 @@
+name: hotelease_mobile_new
+description: "A new Flutter project for HotelEase"
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.8.0 <4.0.0"
+  flutter: ">=3.32.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  http: ^1.5.0
+  provider: ^6.1.5
+  json_annotation: ^4.8.1
+  flutter_datetime_picker_plus: ^2.2.0
+  date_time_picker: ^2.1.0
+  intl: ^0.17.0
+  table_calendar: ^3.0.8
+  flutter_stripe: ^11.5.0
+  flutter_dotenv: ^5.2.1
+  url_launcher: ^6.3.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+  json_serializable: ^6.10.0
+  build_runner: ^2.7.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/fit.png
+    - assets/images/cant_load_image.png

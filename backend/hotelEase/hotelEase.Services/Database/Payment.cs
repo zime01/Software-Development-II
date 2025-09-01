@@ -11,7 +11,7 @@ public partial class Payment
 
     public string Provider { get; set; } = null!;
 
-    public string ProviderPaymentId { get; set; } = null!;
+    public string? ProviderPaymentId { get; set; } 
 
     public decimal Amount { get; set; }
 

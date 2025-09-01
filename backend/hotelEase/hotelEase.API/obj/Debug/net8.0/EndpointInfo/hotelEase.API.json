@@ -1818,20 +1818,41 @@
         }
       }
     },
-    "/api/Payments/stripe-update-status/{paymentIntentId}": {
+    "/api/Payments/stripe-checkout-session": {
       "post": {
         "tags": [
           "Payments"
         ],
-        "parameters": [
-          {
-            "name": "paymentIntentId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentsCreateIntentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentsCreateIntentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentsCreateIntentRequest"
+              }
             }
           }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payments/stripe-webhook": {
+      "post": {
+        "tags": [
+          "Payments"
         ],
         "responses": {
           "200": {

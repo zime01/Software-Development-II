@@ -1223,6 +1223,22 @@
   },
   {
     "ContainingType": "hotelEase.API.Controllers.PaymentsController",
+    "Method": "CreateCheckoutSession",
+    "RelativePath": "api/Payments/stripe-checkout-session",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "hotelEase.Model.Requests.PaymentsCreateIntentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.PaymentsController",
     "Method": "StripeCreateIntent",
     "RelativePath": "api/Payments/stripe-create-intent",
     "HttpMethod": "POST",
@@ -1239,18 +1255,12 @@
   },
   {
     "ContainingType": "hotelEase.API.Controllers.PaymentsController",
-    "Method": "StripeUpdateStatus",
-    "RelativePath": "api/Payments/stripe-update-status/{paymentIntentId}",
+    "Method": "StripeWebhook",
+    "RelativePath": "api/Payments/stripe-webhook",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "paymentIntentId",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
