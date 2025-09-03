@@ -13,5 +13,6 @@ namespace hotelEase.Services
         List<Model.Reservation> GetByUserId(int id);
         Task<Model.Reservation> UpdateStatusAsync(int reservationId, string newStatus, int actingUserId);
         Task<Model.Reservation> InsertAsync(ReservationsUpsertRequest request);
+        List<Model.Reservation> GetReservationsByHotel(int hotelId);
     }
 }

@@ -123,6 +123,34 @@ class BaseProvider<T> with ChangeNotifier {
     return jsonDecode(response.body);
   }
 
+  Future<T> update(int id, Map<String, dynamic> request) async {
+    var uri = Uri.parse("$baseUrl$endpoint/$id");
+    var response = await http.put(
+      uri,
+      headers: createHeaders(),
+      body: jsonEncode(request),
+    );
+
+    if (response.statusCode < 200 || response.statusCode > 299) {
+      throw Exception("Greška pri PUT: ${response.body}");
+    }
+
+    if (response.body.isEmpty) {
+      throw Exception("Prazan response kod update-a");
+    }
+
+    return fromJson(jsonDecode(response.body));
+  }
+
+  Future<void> delete(int id) async {
+    var uri = Uri.parse("$baseUrl$endpoint/$id");
+    var response = await http.delete(uri, headers: createHeaders());
+
+    if (response.statusCode < 200 || response.statusCode > 299) {
+      throw Exception("Greška pri DELETE: ${response.body}");
+    }
+  }
+
   bool isValidResponse(Response response) {
     if (response.statusCode >= 200 && response.statusCode <= 299) {
       return true;

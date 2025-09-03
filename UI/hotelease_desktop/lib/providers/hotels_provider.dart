@@ -13,6 +13,15 @@ class HotelsProvider extends BaseProvider<Hotel> {
     return Hotel.fromJson(data);
   }
 
+  int? _currentHotelId;
+
+  int? get currentHotelId => _currentHotelId;
+
+  void setCurrentHotelId(int id) {
+    _currentHotelId = id;
+    notifyListeners();
+  }
+
   Future<dynamic> getCustom(String endpoint) async {
     var uri = Uri.parse("$baseUrl$endpoint"); // baseUrl već koristiš
     var response = await http.get(uri, headers: await createHeaders());
@@ -96,5 +105,33 @@ class HotelsProvider extends BaseProvider<Hotel> {
     return (jsonDecode(response.body) as List)
         .map((e) => Hotel.fromJson(e))
         .toList();
+  }
+
+  Future<void> delete(int id) async {
+    var uri = Uri.parse("$baseUrl$endpoint/$id");
+    var response = await http.delete(uri, headers: createHeaders());
+
+    if (!isValidResponse(response)) {
+      throw Exception("Failed to delete hotel: ${response.body}");
+    }
+  }
+
+  Future<Hotel> update(int id, Map<String, dynamic> payload) async {
+    var url = "$baseUrl$endpoint/$id";
+    var uri = Uri.parse(url);
+
+    var response = await http.put(
+      uri,
+      headers: createHeaders(),
+      body: jsonEncode(payload),
+    );
+
+    if (isValidResponse(response)) {
+      return fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception(
+        "Update failed: ${response.statusCode} - ${response.body}",
+      );
+    }
   }
 }

@@ -59,5 +59,23 @@ namespace hotelEase.API.Controllers
             var result = _hotelRecommender.GetCollaborativeFiltering(userId, top) ?? new List<Hotel>();
             return Ok(result.Any() ? result : new List<Hotel>());
         }
+
+        [Authorize(Roles = "Admin")]
+        public override ActionResult<Hotel> Insert([FromBody] HotelsInsertRequest request)
+        {
+            return base.Insert(request);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public override ActionResult<Hotel> Update(int id, [FromBody] HotelsUpdateRequest request)
+        {
+            return base.Update(id, request);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public override ActionResult<Hotel> Delete(int id)
+        {
+            return base.Delete(id);
+        }
     }
 }

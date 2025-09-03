@@ -14,10 +14,12 @@ namespace hotelEase.API.Controllers
     public class UsersController : BaseCRUDController<Model.User, UsersSearchObject, UsersInsertRequest, UsersUpdateRequest>
     {
         protected IUsersService _usersService;
+        ILogger<UsersService> _logger;
 
-        public UsersController(IUsersService usersService) : base(usersService)
+        public UsersController(IUsersService usersService, ILogger<UsersService> logger) : base(usersService)
         {
             _usersService = usersService;
+            _logger = logger;
         }
 
         [AllowAnonymous]
@@ -91,5 +93,33 @@ namespace hotelEase.API.Controllers
                 return BadRequest(new { message = ex.Message }); 
             }
         }
+
+        [HttpPut("{id}/change-status")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult ChangeStatus(int id, [FromQuery] bool isActive)
+        {
+            var user = (_service as IUsersService).GetById(id);
+            if (user == null) return NotFound();
+
+            var updateRequest = new UsersUpdateRequest
+            {
+                IsActive = isActive
+            };
+
+            _usersService.Update(id, updateRequest);
+            return Ok(new { message = $"User {(isActive ? "activated" : "deactivated")} successfully" });
+        }
+
+        [HttpPut("{id}/change-role")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult ChangeRole(int id, [FromQuery] string role)
+        {
+            var user = (_service as IUsersService).GetById(id);
+            if (user == null) return NotFound();
+
+            _usersService.ChangeUserRole(id, role);
+            _logger.LogInformation($"ChangeRole called for user {id} -> {role}");
+            return Ok(new { message = $"User role changed to {role}" });
+        } 
     }
 }

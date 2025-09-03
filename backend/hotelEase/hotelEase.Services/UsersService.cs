@@ -25,6 +25,15 @@ namespace hotelEase.Services
             _notificationsService = notificationsService;
         }
 
+        public override IQueryable<Database.User> AddInclude(UsersSearchObject search, IQueryable<Database.User> query)
+        {
+            if (search.IncludeRoles)
+            {
+                query = query.Include(u => u.Roles);
+            }
+
+            return query;
+        }
         public override IQueryable<Database.User> AddFilter(UsersSearchObject searchObject, IQueryable<Database.User> query)
         {
            query =  base.AddFilter(searchObject, query);
@@ -53,6 +62,9 @@ namespace hotelEase.Services
             {
                 query = query.Skip(searchObject.Page.Value * searchObject.PageSize.Value).Take(searchObject.PageSize.Value);
             }
+
+            if (searchObject?.IncludeRoles == true)
+                query = query.Include(u => u.Roles);
 
 
             return query;
@@ -272,6 +284,32 @@ namespace hotelEase.Services
                 return null;
 
             return Mapper.Map<Model.User>(entity);
+        }
+
+        public void ChangeUserRole(int userId, string newRole)
+        {
+            var userEntity = Context.Users
+                                    .Include(u => u.Roles) // učitaj kolekciju uloga
+                                    .FirstOrDefault(u => u.Id == userId);
+
+            if (userEntity == null)
+                throw new Exception("User not found");
+
+            // ukloni sve postojeće uloge
+            userEntity.Roles.Clear();
+
+            // pronađi ili kreiraj novu rolu
+            var roleEntity = Context.Roles.FirstOrDefault(r => r.Name == newRole);
+            if (roleEntity == null)
+            {
+                roleEntity = new Database.Role { Name = newRole };
+                Context.Roles.Add(roleEntity);
+            }
+
+            // dodaj novu rolu korisniku
+            userEntity.Roles.Add(roleEntity);
+
+            Context.SaveChanges();
         }
     }
 }

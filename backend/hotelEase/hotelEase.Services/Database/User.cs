@@ -40,4 +40,5 @@ public partial class User
     public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
 
     public virtual ICollection<Role> Roles { get; set; } = new List<Role>();
+
 }

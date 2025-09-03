@@ -1,3 +1,4 @@
+import 'package:hotelease_mobile_new/models/role.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';
@@ -13,6 +14,7 @@ class User {
   bool? isActive;
   DateTime? createdAt;
   DateTime? lastLoginAt;
+  List<Role>? roles;
   User({
     required this.id,
     required this.username,

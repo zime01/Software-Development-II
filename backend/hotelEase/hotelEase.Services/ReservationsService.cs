@@ -83,5 +83,16 @@ namespace hotelEase.Services
                 throw;
             }
         }
+
+        public List<Model.Reservation> GetReservationsByHotel(int hotelId)
+        {
+            var query = Context.Reservations
+                .Include(r => r.Room)
+                .ThenInclude(r => r.Hotel)
+                .Where(r => r.Room.HotelId == hotelId && (r.IsDeleted == null || r.IsDeleted == false))
+                .ToList();
+
+            return Mapper.Map<List<Model.Reservation>>(query);
+        }
     }
 }

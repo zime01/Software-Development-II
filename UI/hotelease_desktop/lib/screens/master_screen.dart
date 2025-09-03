@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hotelease_mobile_new/providers/hotels_provider.dart';
+import 'package:hotelease_mobile_new/screens/admin_screen.dart';
 import 'package:hotelease_mobile_new/screens/hotels_list_screen.dart';
+import 'package:hotelease_mobile_new/screens/manager_dashboard_screen.dart';
+import 'package:hotelease_mobile_new/screens/manager_services_screen.dart';
 import 'package:hotelease_mobile_new/screens/users_screen.dart';
+import 'package:provider/provider.dart';
 
 class MasterScreen extends StatefulWidget {
   final Widget? child;
@@ -19,38 +24,102 @@ class _MasterScreenState extends State<MasterScreen> {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(17, 45, 78, 1),
 
-      drawer: Drawer(
-        backgroundColor: const Color.fromRGBO(15, 41, 70, 1),
-        shadowColor: const Color.fromRGBO(15, 41, 70, 1),
-        child: ListView(
-          children: [
-            ListTile(
-              title: const Text("Back", style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Navigator.of(context).pop();
-              },
+      drawer: Builder(
+        builder: (rootContext) {
+          return Drawer(
+            backgroundColor: const Color.fromRGBO(15, 41, 70, 1),
+            shadowColor: const Color.fromRGBO(15, 41, 70, 1),
+            child: ListView(
+              children: [
+                ListTile(
+                  title: const Text(
+                    "Back",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                ListTile(
+                  title: const Text(
+                    "Search hotels",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => HotelsListScreen(),
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  title: const Text(
+                    "User",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => UsersScreen()),
+                    );
+                  },
+                ),
+                ListTile(
+                  title: const Text(
+                    "Admin",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => AdminDashboardScreen(),
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  title: const Text(
+                    "Manager",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const ManagerDashboardScreen(),
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  title: const Text(
+                    "Manager Hotels Services",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () {
+                    final managerHotelId = context
+                        .read<HotelsProvider>()
+                        .currentHotelId;
+
+                    if (managerHotelId != null) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ManagerServicesScreen(hotelId: managerHotelId),
+                        ),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(rootContext).showSnackBar(
+                        const SnackBar(
+                          content: Text("Please select a hotel first"),
+                        ),
+                      );
+                    }
+                  },
+                ),
+              ],
             ),
-            ListTile(
-              title: const Text(
-                "Search hotels",
-                style: TextStyle(color: Colors.white),
-              ),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => HotelsListScreen()),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text("User", style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Navigator.of(
-                  context,
-                ).push(MaterialPageRoute(builder: (context) => UsersScreen()));
-              },
-            ),
-          ],
-        ),
+          );
+        },
       ),
 
       appBar: AppBar(

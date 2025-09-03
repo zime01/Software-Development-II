@@ -14,4 +14,23 @@ class RoomsProvider extends BaseProvider<Room> {
   Future<Room?> getRoomById(int id) async {
     return await getById(id);
   }
+
+  // Dobavljanje svih soba
+  Future<List<Room>> getRooms() async {
+    var result = await get(); // ovo vraća SearchResult<Room>
+    return result.result;
+  }
+
+  // Insert soba
+  Future<Room> addRoom(Room room) async {
+    var json = await super.insert(room.toJson());
+    return Room.fromJson(json);
+  }
+
+  Future<Room> editRoom(Room room) async {
+    if (room.id == null) {
+      throw Exception("Room ID is required for update");
+    }
+    return await super.update(room.id!, room.toJson());
+  }
 }

@@ -17,11 +17,23 @@ namespace hotelEase.API.Controllers
 
         public RoomTypesController(IRoomTypesService service) : base(service) { }
 
-        
-        public override RoomType Insert(RoomTypesUpsertRequest request)
+        [Authorize(Roles = "Admin")]
+        public override ActionResult<RoomType> Insert(RoomTypesUpsertRequest request)
         {
             return base.Insert(request);
         }
+        [Authorize(Roles = "Admin")]
+        public override ActionResult<RoomType> Update(int id, RoomTypesUpsertRequest request)
+        {
+            return base.Update(id, request);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public override ActionResult<RoomType> Delete(int id)
+        {
+            return base.Delete(id);
+        }
+
 
         //[Authorize(Roles = "Admin")]
         [AllowAnonymous]

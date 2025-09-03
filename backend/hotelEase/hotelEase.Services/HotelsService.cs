@@ -275,6 +275,7 @@ namespace hotelEase.Services
         }
     }
 
+
         //public List<Model.Hotel> List = new List<Model.Hotel>()
         //{
         //    new Model.Hotel()

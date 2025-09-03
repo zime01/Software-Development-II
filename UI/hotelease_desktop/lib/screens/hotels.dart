@@ -302,6 +302,9 @@ class _HotelsState extends State<Hotels> {
                   color: const Color.fromRGBO(15, 30, 70, 1),
                   child: InkWell(
                     onTap: () {
+                      context.read<HotelsProvider>().setCurrentHotelId(
+                        hotel.id!,
+                      );
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (_) => HotelDetailsScreen(

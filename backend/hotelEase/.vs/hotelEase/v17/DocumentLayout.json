@@ -3,16 +3,244 @@
   "WorkspaceRootPath": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\basecrudservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\basecrudservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\servicesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\servicesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\iservicesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\iservicesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\iservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\iservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\icrudservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\icrudservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\requests\\servicesupsertobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\requests\\servicesupsertobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\searchobjects\\servicessearchobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\searchobjects\\servicessearchobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\searchobjects\\basesearchobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\searchobjects\\basesearchobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\roomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\roomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\roomsavailabilitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\roomsavailabilitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\iroomsavailabilityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\iroomsavailabilityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\roomsavailabilityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\roomsavailabilityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\roomavailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\roomavailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\requests\\roomsupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\requests\\roomsupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\requests\\roomsinsertrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\requests\\roomsinsertrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\searchobjects\\roomssearchobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\searchobjects\\roomssearchobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\roomscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\roomscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\iroomsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\iroomsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\requests\\reservationsupsertrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\requests\\reservationsupsertrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\reservationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\reservationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\reservationsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\reservationsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\ireservationsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\ireservationsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\searchobjects\\userssearchobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\searchobjects\\userssearchobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\hotelsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\hotelsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\iusersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\iusersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\hoteleasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\hoteleasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\hotelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\hotelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\requests\\hotelsupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\requests\\hotelsupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\requests\\hotelsinsertrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\requests\\hotelsinsertrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\hotel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\hotel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\hotel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\hotel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\roomtypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\roomtypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\roomtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\roomtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\roomtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\roomtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\basecrudcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\basecrudcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\roomtypesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\roomtypesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\iroomtypesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\iroomtypesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\ihotelsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\ihotelsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\rolesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\rolesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\irolesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\irolesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\paymentsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,120 +259,8 @@
       "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\requests\\paymentsupsertrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\hotel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\hotel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\ipaymentsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\ipaymentsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\basecrudservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\basecrudservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\reservationsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\reservationsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\basecrudcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\basecrudcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\rolesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\rolesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\irolesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\irolesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\ireservationsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\ireservationsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\roomtypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\roomtypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\roomtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\roomtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\roomtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\roomtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\roomtypesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\roomtypesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\iroomtypesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\iroomtypesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\hotelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\hotelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\hotelsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\hotelsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\ihotelsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\ihotelsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\hotel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\hotel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\iusersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\iusersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\searchobjects\\roomtypessearchobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -155,10 +271,6 @@
       "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\requests\\usersupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\requests\\hotelsupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\requests\\hotelsupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -167,44 +279,8 @@
       "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\basicauthenticationhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\roomscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\roomscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\roomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\roomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\iroomsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\iroomsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\roomdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\roomdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\searchobjects\\roomssearchobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\searchobjects\\roomssearchobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\icrudservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\icrudservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\reservationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\reservationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\searchobjects\\userssearchobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\searchobjects\\userssearchobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\requests\\usersinsertrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -225,14 +301,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\iservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\iservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\requests\\hotelsinsertrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\requests\\hotelsinsertrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\searchobjects\\hotelssearchobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -291,14 +359,6 @@
       "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\reservationsstatusupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\servicesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\servicesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\hoteleasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\hoteleasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\notificationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\notificationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -315,28 +375,12 @@
       "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\requests\\reservationsupsertrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\requests\\reservationsupsertrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\roomsavailabilityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\roomsavailabilityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\roomavailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\database\\roomavailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\roomavailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\roomavailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\hotelsstatemachine\\initialhotelstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|solutionrelative:hotelease.services\\hotelsstatemachine\\initialhotelstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\controllers\\roomsavailabilitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|solutionrelative:hotelease.api\\controllers\\roomsavailabilitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3006D0A4-74F6-4E52-8E51-855C69D449B0}|hotelEase.API\\hotelEase.API.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -357,10 +401,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\searchobjects\\assetssearchobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\searchobjects\\assetssearchobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.model\\searchobjects\\basesearchobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0326038B-E326-4090-B0AF-404D7EBDA5E9}|hotelEase.Model\\hotelEase.Model.csproj|solutionrelative:hotelease.model\\searchobjects\\basesearchobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D45BADAB-0A98-46A5-8E68-F60F5294F110}|hotelEase.Services\\hotelEase.Services.csproj|c:\\users\\hazim\\desktop\\hotelease-rs2\\software-development-ii\\backend\\hotelease\\hotelease.services\\database\\asset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -430,11 +470,114 @@
       "DocumentGroups": [
         {
           "DockedWidth": 191,
-          "SelectedChildIndex": 21,
+          "SelectedChildIndex": 87,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 2,
+              "Title": "ServicesService.cs",
+              "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\ServicesService.cs",
+              "RelativeDocumentMoniker": "hotelEase.Services\\ServicesService.cs",
+              "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\ServicesService.cs",
+              "RelativeToolTip": "hotelEase.Services\\ServicesService.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAwAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T09:29:47.225Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IServicesService.cs",
+              "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\IServicesService.cs",
+              "RelativeDocumentMoniker": "hotelEase.Services\\IServicesService.cs",
+              "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\IServicesService.cs",
+              "RelativeToolTip": "hotelEase.Services\\IServicesService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-03T09:02:11.82Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Service.cs",
+              "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Service.cs",
+              "RelativeDocumentMoniker": "hotelEase.Model\\Service.cs",
+              "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Service.cs",
+              "RelativeToolTip": "hotelEase.Model\\Service.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAcwBUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-03T09:01:57.673Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Service.cs",
+              "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\Service.cs",
+              "RelativeDocumentMoniker": "hotelEase.Services\\Database\\Service.cs",
+              "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\Service.cs",
+              "RelativeToolTip": "hotelEase.Services\\Database\\Service.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAcwBkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-03T09:02:01.774Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ServicesSearchObject.cs",
+              "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\SearchObjects\\ServicesSearchObject.cs",
+              "RelativeDocumentMoniker": "hotelEase.Model\\SearchObjects\\ServicesSearchObject.cs",
+              "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\SearchObjects\\ServicesSearchObject.cs",
+              "RelativeToolTip": "hotelEase.Model\\SearchObjects\\ServicesSearchObject.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-03T09:01:40.852Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ServicesUpsertObject.cs",
+              "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\ServicesUpsertObject.cs",
+              "RelativeDocumentMoniker": "hotelEase.Model\\Requests\\ServicesUpsertObject.cs",
+              "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\ServicesUpsertObject.cs",
+              "RelativeToolTip": "hotelEase.Model\\Requests\\ServicesUpsertObject.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAcwBMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-03T09:01:36.795Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ServicesController.cs",
+              "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\ServicesController.cs",
+              "RelativeDocumentMoniker": "hotelEase.API\\Controllers\\ServicesController.cs",
+              "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\ServicesController.cs",
+              "RelativeToolTip": "hotelEase.API\\Controllers\\ServicesController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAqwBUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-03T09:01:31.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "UserRole.cs",
+              "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\UserRole.cs",
+              "RelativeDocumentMoniker": "hotelEase.Services\\Database\\UserRole.cs",
+              "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\UserRole.cs",
+              "RelativeToolTip": "hotelEase.Services\\Database\\UserRole.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwA4AAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T08:32:40.002Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 69,
               "Title": "RoomDTO.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\RoomDTO.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\RoomDTO.cs",
@@ -446,19 +589,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
-              "Title": "RoomsSearchObject.cs",
-              "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\SearchObjects\\RoomsSearchObject.cs",
-              "RelativeDocumentMoniker": "hotelEase.Model\\SearchObjects\\RoomsSearchObject.cs",
-              "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\SearchObjects\\RoomsSearchObject.cs",
-              "RelativeToolTip": "hotelEase.Model\\SearchObjects\\RoomsSearchObject.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-30T11:58:48.326Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 79,
               "Title": "ReviewsUpsertRequest.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\ReviewsUpsertRequest.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Requests\\ReviewsUpsertRequest.cs",
@@ -470,7 +601,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 80,
               "Title": "ReviewsController.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\ReviewsController.cs",
               "RelativeDocumentMoniker": "hotelEase.API\\Controllers\\ReviewsController.cs",
@@ -482,7 +613,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 83,
               "Title": "PaymentsSearchObject.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\SearchObjects\\PaymentsSearchObject.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\SearchObjects\\PaymentsSearchObject.cs",
@@ -494,7 +625,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 76,
               "Title": "IReviewsService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\IReviewsService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\IReviewsService.cs",
@@ -506,7 +637,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 82,
               "Title": "Review.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\Review.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\Database\\Review.cs",
@@ -518,7 +649,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 78,
               "Title": "Review.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Review.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Review.cs",
@@ -530,7 +661,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 72,
               "Title": "HotelRecommenderService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\HotelRecommenderService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\HotelRecommenderService.cs",
@@ -542,7 +673,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 81,
               "Title": "ReviewsSearchObject.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\SearchObjects\\ReviewsSearchObject.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\SearchObjects\\ReviewsSearchObject.cs",
@@ -554,7 +685,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 61,
               "Title": "PaymentsStatusUpdateRequest.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\PaymentsStatusUpdateRequest.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Requests\\PaymentsStatusUpdateRequest.cs",
@@ -562,24 +693,24 @@
               "RelativeToolTip": "hotelEase.Model\\Requests\\PaymentsStatusUpdateRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAYwA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-18T08:21:13.515Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-18T08:21:13.515Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 4,
               "Title": "IService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\IService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\IService.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\IService.cs",
               "RelativeToolTip": "hotelEase.Services\\IService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAqwBAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T13:46:34.444Z"
+              "WhenOpened": "2025-08-03T13:46:34.444Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 77,
               "Title": "ReviewsService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\ReviewsService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\ReviewsService.cs",
@@ -591,7 +722,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 62,
               "Title": "PaymentsCreateIntentRequest.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\PaymentsCreateIntentRequest.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Requests\\PaymentsCreateIntentRequest.cs",
@@ -599,12 +730,11 @@
               "RelativeToolTip": "hotelEase.Model\\Requests\\PaymentsCreateIntentRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-18T08:20:32.862Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-18T08:20:32.862Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 63,
               "Title": "PaymentsUpsertRequest.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\PaymentsUpsertRequest.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Requests\\PaymentsUpsertRequest.cs",
@@ -612,12 +742,11 @@
               "RelativeToolTip": "hotelEase.Model\\Requests\\PaymentsUpsertRequest.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAiwBAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-18T08:19:17.402Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-18T08:19:17.402Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 64,
               "Title": "IPaymentsService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\IPaymentsService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\IPaymentsService.cs",
@@ -625,12 +754,11 @@
               "RelativeToolTip": "hotelEase.Services\\IPaymentsService.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAmwBEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-18T08:22:28.635Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-18T08:22:28.635Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 60,
               "Title": "PaymentsService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\PaymentsService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\PaymentsService.cs",
@@ -638,12 +766,11 @@
               "RelativeToolTip": "hotelEase.Services\\PaymentsService.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAABIAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-18T08:23:56.235Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-18T08:23:56.235Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 57,
               "Title": "PaymentsController.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\PaymentsController.cs",
               "RelativeDocumentMoniker": "hotelEase.API\\Controllers\\PaymentsController.cs",
@@ -651,12 +778,11 @@
               "RelativeToolTip": "hotelEase.API\\Controllers\\PaymentsController.cs",
               "ViewState": "AgIAAK8AAAAAAAAAAAAkwLIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-18T08:50:55.212Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-18T08:50:55.212Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 86,
               "Title": "CreatePaymentIntentRequest.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\CreatePaymentIntentRequest.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Requests\\CreatePaymentIntentRequest.cs",
@@ -668,19 +794,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
-              "Title": "ServicesService.cs",
-              "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\ServicesService.cs",
-              "RelativeDocumentMoniker": "hotelEase.Services\\ServicesService.cs",
-              "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\ServicesService.cs",
-              "RelativeToolTip": "hotelEase.Services\\ServicesService.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAowAwAAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-16T09:29:47.225Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 59,
               "Title": "Payment.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Payment.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Payment.cs",
@@ -688,12 +802,11 @@
               "RelativeToolTip": "hotelEase.Model\\Payment.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAA0wBUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-18T08:18:00.499Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-18T08:18:00.499Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 58,
               "Title": "Payment.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\Payment.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\Database\\Payment.cs",
@@ -701,12 +814,11 @@
               "RelativeToolTip": "hotelEase.Services\\Database\\Payment.cs",
               "ViewState": "AgIAAB0AAAAAAAAAAAAgwB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-16T14:09:44.797Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-16T14:09:44.797Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 80,
+              "DocumentIndex": 93,
               "Title": "RoomAvailability.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\RoomAvailability.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\Database\\RoomAvailability.cs",
@@ -718,7 +830,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 84,
+              "DocumentIndex": 95,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "hotelEase.API\\Properties\\launchSettings.json",
@@ -730,43 +842,80 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 20,
+              "Title": "RoomsSearchObject.cs",
+              "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\SearchObjects\\RoomsSearchObject.cs",
+              "RelativeDocumentMoniker": "hotelEase.Model\\SearchObjects\\RoomsSearchObject.cs",
+              "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\SearchObjects\\RoomsSearchObject.cs",
+              "RelativeToolTip": "hotelEase.Model\\SearchObjects\\RoomsSearchObject.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA1wAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-30T11:58:48.326Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
               "Title": "IRoomsService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\IRoomsService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\IRoomsService.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\IRoomsService.cs",
               "RelativeToolTip": "hotelEase.Services\\IRoomsService.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwBQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAYwBQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-30T11:56:24.311Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 12,
               "Title": "RoomService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\RoomService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\RoomService.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\RoomService.cs",
               "RelativeToolTip": "hotelEase.Services\\RoomService.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAAwEMAAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwA8AAACDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-12T17:01:15.174Z"
+              "WhenOpened": "2025-08-12T17:01:15.174Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 18,
+              "Title": "RoomsUpdateRequest.cs",
+              "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\RoomsUpdateRequest.cs",
+              "RelativeDocumentMoniker": "hotelEase.Model\\Requests\\RoomsUpdateRequest.cs",
+              "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\RoomsUpdateRequest.cs",
+              "RelativeToolTip": "hotelEase.Model\\Requests\\RoomsUpdateRequest.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAA0wBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T13:16:58.663Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "RoomsInsertRequest.cs",
+              "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\RoomsInsertRequest.cs",
+              "RelativeDocumentMoniker": "hotelEase.Model\\Requests\\RoomsInsertRequest.cs",
+              "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\RoomsInsertRequest.cs",
+              "RelativeToolTip": "hotelEase.Model\\Requests\\RoomsInsertRequest.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAA0wBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T13:16:49.434Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
               "Title": "RoomsController.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\RoomsController.cs",
               "RelativeDocumentMoniker": "hotelEase.API\\Controllers\\RoomsController.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\RoomsController.cs",
               "RelativeToolTip": "hotelEase.API\\Controllers\\RoomsController.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAQwBcAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAYwGMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-12T17:00:51.161Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 85,
+              "DocumentIndex": 96,
               "Title": "AssetsController.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\AssetsController.cs",
               "RelativeDocumentMoniker": "hotelEase.API\\Controllers\\AssetsController.cs",
@@ -778,7 +927,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 88,
+              "DocumentIndex": 99,
               "Title": "AssetsSearchObject.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\SearchObjects\\AssetsSearchObject.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\SearchObjects\\AssetsSearchObject.cs",
@@ -790,7 +939,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 86,
+              "DocumentIndex": 97,
               "Title": "IAssetsService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\IAssetsService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\IAssetsService.cs",
@@ -802,7 +951,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 87,
+              "DocumentIndex": 98,
               "Title": "AssetsService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\AssetsService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\AssetsService.cs",
@@ -814,7 +963,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 73,
               "Title": "Asset.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Asset.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Asset.cs",
@@ -826,7 +975,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 90,
+              "DocumentIndex": 100,
               "Title": "Asset.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\Asset.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\Database\\Asset.cs",
@@ -838,31 +987,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 17,
               "Title": "Room.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Room.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Room.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Room.cs",
               "RelativeToolTip": "hotelEase.Model\\Room.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAAwCUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACIAAAAAAAAAAAA1wCUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-12T12:36:22.026Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 23,
               "Title": "Room.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\Room.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\Database\\Room.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\Room.cs",
               "RelativeToolTip": "hotelEase.Services\\Database\\Room.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAiwCUAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAACsAAAAAAAAAAAAQwC0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-12T12:36:17.232Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 91,
+              "DocumentIndex": 101,
               "Title": "docker-compose.yml",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\docker-compose.yml",
               "RelativeDocumentMoniker": "docker-compose.yml",
@@ -874,7 +1023,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 92,
+              "DocumentIndex": 102,
               "Title": "Dockerfile",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\Dockerfile",
               "RelativeDocumentMoniker": "Dockerfile",
@@ -886,55 +1035,68 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 83,
+              "DocumentIndex": 13,
               "Title": "RoomsAvailabilityController.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\RoomsAvailabilityController.cs",
               "RelativeDocumentMoniker": "hotelEase.API\\Controllers\\RoomsAvailabilityController.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\RoomsAvailabilityController.cs",
               "RelativeToolTip": "hotelEase.API\\Controllers\\RoomsAvailabilityController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-08T18:21:58.044Z"
+              "WhenOpened": "2025-08-08T18:21:58.044Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 79,
+              "DocumentIndex": 14,
+              "Title": "IRoomsAvailabilityService.cs",
+              "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\IRoomsAvailabilityService.cs",
+              "RelativeDocumentMoniker": "hotelEase.Services\\IRoomsAvailabilityService.cs",
+              "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\IRoomsAvailabilityService.cs",
+              "RelativeToolTip": "hotelEase.Services\\IRoomsAvailabilityService.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA1wA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T19:10:07.709Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "RoomsAvailabilityService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\RoomsAvailabilityService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\RoomsAvailabilityService.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\RoomsAvailabilityService.cs",
               "RelativeToolTip": "hotelEase.Services\\RoomsAvailabilityService.cs",
-              "ViewState": "AgIAADoAAAAAAAAAAAAuwEgAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAxwA0AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-08T18:20:56.626Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 81,
+              "DocumentIndex": 16,
               "Title": "RoomAvailability.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\RoomAvailability.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\RoomAvailability.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\RoomAvailability.cs",
               "RelativeToolTip": "hotelEase.Model\\RoomAvailability.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAQwBMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAA8wBMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-16T08:24:22.876Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 78,
+              "DocumentIndex": 24,
               "Title": "ReservationsUpsertRequest.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\ReservationsUpsertRequest.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Requests\\ReservationsUpsertRequest.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\ReservationsUpsertRequest.cs",
               "RelativeToolTip": "hotelEase.Model\\Requests\\ReservationsUpsertRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAIBZwBsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAA1wBsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-16T14:31:23.422Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 71,
+              "DocumentIndex": 88,
               "Title": "ReservationsStatusUpdateRequest.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\ReservationsStatusUpdateRequest.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\ReservationsStatusUpdateRequest.cs",
@@ -946,67 +1108,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 25,
               "Title": "ReservationsController.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\ReservationsController.cs",
               "RelativeDocumentMoniker": "hotelEase.API\\Controllers\\ReservationsController.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\ReservationsController.cs",
               "RelativeToolTip": "hotelEase.API\\Controllers\\ReservationsController.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAQwCYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAYwE4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-08T17:44:14.843Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 28,
               "Title": "Reservation.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Reservation.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Reservation.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Reservation.cs",
               "RelativeToolTip": "hotelEase.Model\\Reservation.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAIwB4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAYwB4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-16T08:17:27.31Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 29,
               "Title": "Reservation.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\Reservation.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\Database\\Reservation.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\Reservation.cs",
               "RelativeToolTip": "hotelEase.Services\\Database\\Reservation.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAUwCUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAAQwCUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-08T17:37:05.446Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 26,
               "Title": "ReservationsService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\ReservationsService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\ReservationsService.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\ReservationsService.cs",
               "RelativeToolTip": "hotelEase.Services\\ReservationsService.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAcwA4AAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAYwGIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-08T17:33:54.818Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 27,
               "Title": "IReservationsService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\IReservationsService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\IReservationsService.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\IReservationsService.cs",
               "RelativeToolTip": "hotelEase.Services\\IReservationsService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAA1wBIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-08T17:33:51.345Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 84,
               "Title": "NotificationMessage.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\NotificationMessage.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\NotificationMessage.cs",
@@ -1018,7 +1180,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 93,
+              "DocumentIndex": 103,
               "Title": "NotificationWorker.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\NotificationWorker.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\NotificationWorker.cs",
@@ -1030,7 +1192,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 74,
+              "DocumentIndex": 89,
               "Title": "NotificationRequest.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\NotificationRequest.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\NotificationRequest.cs",
@@ -1042,7 +1204,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 87,
               "Title": "NotificationsController.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\NotificationsController.cs",
               "RelativeDocumentMoniker": "hotelEase.API\\Controllers\\NotificationsController.cs",
@@ -1054,7 +1216,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 85,
               "Title": "NotificationsService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\NotificationsService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\NotificationsService.cs",
@@ -1066,7 +1228,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 75,
+              "DocumentIndex": 90,
               "Title": "INotificationsService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\INotificationsService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\INotificationsService.cs",
@@ -1078,7 +1240,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 94,
+              "DocumentIndex": 104,
               "Title": "NotificationsUpsertRequest.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\NotificationsUpsertRequest.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Requests\\NotificationsUpsertRequest.cs",
@@ -1090,7 +1252,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 95,
+              "DocumentIndex": 105,
               "Title": "NotificationsSearchObject.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\SearchObjects\\NotificationsSearchObject.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\SearchObjects\\NotificationsSearchObject.cs",
@@ -1102,7 +1264,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 76,
+              "DocumentIndex": 91,
               "Title": "Notification.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Notification.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Notification.cs",
@@ -1114,7 +1276,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 77,
+              "DocumentIndex": 92,
               "Title": "Notification.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\Notification.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\Database\\Notification.cs",
@@ -1126,19 +1288,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 48,
               "Title": "RolesController.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\RolesController.cs",
               "RelativeDocumentMoniker": "hotelEase.API\\Controllers\\RolesController.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\RolesController.cs",
               "RelativeToolTip": "hotelEase.API\\Controllers\\RolesController.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAqwAsAAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAwBMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-05T15:31:37.003Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 96,
+              "DocumentIndex": 106,
               "Title": "RolesUpsertRequest.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\RolesUpsertRequest.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Requests\\RolesUpsertRequest.cs",
@@ -1150,7 +1312,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 98,
+              "DocumentIndex": 108,
               "Title": "RolesSearchObject.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\SearchObjects\\RolesSearchObject.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\SearchObjects\\RolesSearchObject.cs",
@@ -1162,19 +1324,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 54,
               "Title": "RolesService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\RolesService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\RolesService.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\RolesService.cs",
               "RelativeToolTip": "hotelEase.Services\\RolesService.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAqwBMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAwBMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-05T13:50:42.69Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 55,
               "Title": "IRolesService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\IRolesService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\IRolesService.cs",
@@ -1186,31 +1348,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 39,
               "Title": "Role.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Role.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Role.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Role.cs",
               "RelativeToolTip": "hotelEase.Model\\Role.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAcwA8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAmwA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-05T12:58:17.103Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 37,
               "Title": "Role.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\Role.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\Database\\Role.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\Role.cs",
               "RelativeToolTip": "hotelEase.Services\\Database\\Role.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAUwBEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAxwBAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-05T12:57:57.742Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 68,
               "Title": "BasicAuthenticationHandler.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\BasicAuthenticationHandler.cs",
               "RelativeDocumentMoniker": "hotelEase.API\\BasicAuthenticationHandler.cs",
@@ -1222,7 +1384,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 100,
+              "DocumentIndex": 110,
               "Title": "ExceptionFilter.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Filters\\ExceptionFilter.cs",
               "RelativeDocumentMoniker": "hotelEase.API\\Filters\\ExceptionFilter.cs",
@@ -1234,7 +1396,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 101,
+              "DocumentIndex": 111,
               "Title": "UserException.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\UserException.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\UserException.cs",
@@ -1246,7 +1408,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 104,
+              "DocumentIndex": 114,
               "Title": "HiddenHotelsState.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\HotelsStateMachine\\HiddenHotelsState.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\HotelsStateMachine\\HiddenHotelsState.cs",
@@ -1258,7 +1420,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 103,
+              "DocumentIndex": 113,
               "Title": "ActiveHotelsState.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\HotelsStateMachine\\ActiveHotelsState.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\HotelsStateMachine\\ActiveHotelsState.cs",
@@ -1270,7 +1432,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 102,
+              "DocumentIndex": 112,
               "Title": "DraftHotelsState.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\HotelsStateMachine\\DraftHotelsState.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\HotelsStateMachine\\DraftHotelsState.cs",
@@ -1282,7 +1444,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 82,
+              "DocumentIndex": 94,
               "Title": "InitialHotelState.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\HotelsStateMachine\\InitialHotelState.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\HotelsStateMachine\\InitialHotelState.cs",
@@ -1294,7 +1456,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 99,
+              "DocumentIndex": 109,
               "Title": "BaseHotelsState.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\HotelsStateMachine\\BaseHotelsState.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\HotelsStateMachine\\BaseHotelsState.cs",
@@ -1306,104 +1468,107 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 49,
               "Title": "BaseCRUDController.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\BaseCRUDController.cs",
               "RelativeDocumentMoniker": "hotelEase.API\\Controllers\\BaseCRUDController.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\BaseCRUDController.cs",
               "RelativeToolTip": "hotelEase.API\\Controllers\\BaseCRUDController.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAcwAkAAABXAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwB4AAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-03T18:34:37.179Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 1,
               "Title": "BaseCRUDService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\BaseCRUDService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\BaseCRUDService.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\BaseCRUDService.cs",
               "RelativeToolTip": "hotelEase.Services\\BaseCRUDService.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAIwAsAAABlAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAewAsAAABlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T17:56:35.232Z"
+              "WhenOpened": "2025-08-03T17:56:35.232Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 5,
               "Title": "ICRUDService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\ICRUDService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\ICRUDService.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\ICRUDService.cs",
               "RelativeToolTip": "hotelEase.Services\\ICRUDService.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAiwBAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAmwAkAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T17:50:01.502Z"
+              "WhenOpened": "2025-08-03T17:50:01.502Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 50,
               "Title": "BaseController.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\BaseController.cs",
               "RelativeDocumentMoniker": "hotelEase.API\\Controllers\\BaseController.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\BaseController.cs",
               "RelativeToolTip": "hotelEase.API\\Controllers\\BaseController.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAA8wCEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAwCEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-03T14:15:35.518Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 89,
+              "DocumentIndex": 9,
               "Title": "BaseSearchObject.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\SearchObjects\\BaseSearchObject.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\SearchObjects\\BaseSearchObject.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\SearchObjects\\BaseSearchObject.cs",
               "RelativeToolTip": "hotelEase.Model\\SearchObjects\\BaseSearchObject.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAADwvwkAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T13:49:04.05Z"
+              "WhenOpened": "2025-08-03T13:49:04.05Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 0,
               "Title": "BaseService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\BaseService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\BaseService.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\BaseService.cs",
               "RelativeToolTip": "hotelEase.Services\\BaseService.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAgwFkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAcwFkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-03T13:54:22.622Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 45,
               "Title": "RoomTypesController.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\RoomTypesController.cs",
               "RelativeDocumentMoniker": "hotelEase.API\\Controllers\\RoomTypesController.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\RoomTypesController.cs",
               "RelativeToolTip": "hotelEase.API\\Controllers\\RoomTypesController.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAuwCcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAkwDMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-03T13:22:33.604Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 51,
               "Title": "RoomTypesService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\RoomTypesService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\RoomTypesService.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\RoomTypesService.cs",
               "RelativeToolTip": "hotelEase.Services\\RoomTypesService.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAADAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAYwDAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-03T13:16:53.886Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 52,
               "Title": "IRoomTypesService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\IRoomTypesService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\IRoomTypesService.cs",
@@ -1415,7 +1580,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 65,
               "Title": "RoomTypesSearchObject.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\SearchObjects\\RoomTypesSearchObject.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\SearchObjects\\RoomTypesSearchObject.cs",
@@ -1427,31 +1592,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 46,
               "Title": "RoomType.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\RoomType.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\RoomType.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\RoomType.cs",
               "RelativeToolTip": "hotelEase.Model\\RoomType.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAUwBEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAA5wBEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-03T13:13:34.893Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 47,
               "Title": "RoomType.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\RoomType.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\Database\\RoomType.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\RoomType.cs",
               "RelativeToolTip": "hotelEase.Services\\Database\\RoomType.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAUwBMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAmwAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-03T13:13:45.285Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 97,
+              "DocumentIndex": 107,
               "Title": "PagedResult.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\PagedResult.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\PagedResult.cs",
@@ -1463,19 +1628,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 31,
               "Title": "UsersSearchObject.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\SearchObjects\\UsersSearchObject.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\SearchObjects\\UsersSearchObject.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\SearchObjects\\UsersSearchObject.cs",
               "RelativeToolTip": "hotelEase.Model\\SearchObjects\\UsersSearchObject.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAcwBEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAUwBIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-02T16:16:42.23Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 66,
               "Title": "UsersUpdateRequest.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\UsersUpdateRequest.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Requests\\UsersUpdateRequest.cs",
@@ -1487,7 +1652,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 70,
               "Title": "UsersInsertRequest.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\UsersInsertRequest.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Requests\\UsersInsertRequest.cs",
@@ -1499,13 +1664,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 56,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\User.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\User.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\User.cs",
               "RelativeToolTip": "hotelEase.Model\\User.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAiwCoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABwAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-01T15:33:44.668Z"
             },
@@ -1517,31 +1682,31 @@
               "RelativeDocumentMoniker": "hotelEase.Services\\Database\\User.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\User.cs",
               "RelativeToolTip": "hotelEase.Services\\Database\\User.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAUwCsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAxwCoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-01T15:33:53.648Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 34,
               "Title": "UsersController.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "hotelEase.API\\Controllers\\UsersController.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\UsersController.cs",
               "RelativeToolTip": "hotelEase.API\\Controllers\\UsersController.cs",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAuwF8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGsAAAAAAAAAAAAuwH0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-01T15:20:57.83Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 30,
               "Title": "UsersService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\UsersService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\UsersService.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\UsersService.cs",
               "RelativeToolTip": "hotelEase.Services\\UsersService.cs",
-              "ViewState": "AgIAAAMBAAAAAAAAAAAuwBUBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAQwCMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-01T15:19:21.911Z"
             },
@@ -1553,25 +1718,25 @@
               "RelativeDocumentMoniker": "hotelEase.Services\\IUsersService.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\IUsersService.cs",
               "RelativeToolTip": "hotelEase.Services\\IUsersService.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAiwBYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAcwAwAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-01T15:18:13.93Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 73,
+              "DocumentIndex": 36,
               "Title": "HotelEaseContext.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\HotelEaseContext.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\Database\\HotelEaseContext.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\HotelEaseContext.cs",
               "RelativeToolTip": "hotelEase.Services\\Database\\HotelEaseContext.cs",
-              "ViewState": "AgIAAKoAAAAAAAAAAAAQwC4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAwBAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-31T18:23:41.548Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 41,
               "Title": "HotelsUpdateRequest.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\HotelsUpdateRequest.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Requests\\HotelsUpdateRequest.cs",
@@ -1583,19 +1748,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 42,
               "Title": "HotelsInsertRequest.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\HotelsInsertRequest.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Requests\\HotelsInsertRequest.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Requests\\HotelsInsertRequest.cs",
               "RelativeToolTip": "hotelEase.Model\\Requests\\HotelsInsertRequest.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAIwBsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAwBsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-03T18:54:57.066Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 75,
               "Title": "HotelsSearchObject.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\SearchObjects\\HotelsSearchObject.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\SearchObjects\\HotelsSearchObject.cs",
@@ -1607,56 +1772,79 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 71,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "hotelEase.API\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\appsettings.Development.json",
+              "RelativeToolTip": "hotelEase.API\\appsettings.Development.json",
+              "ViewState": "AgIAAAsAAAAAAAAAAABRwBEAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-04T17:25:48.828Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
               "Title": "HotelsService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\HotelsService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\HotelsService.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\HotelsService.cs",
               "RelativeToolTip": "hotelEase.Services\\HotelsService.cs",
-              "ViewState": "AgIAAEMBAAAAAAAAAAAAAFUBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEQBAAAAAAAAAAAAAFYBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-31T13:43:45.064Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 53,
               "Title": "IHotelsService.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\IHotelsService.cs",
               "RelativeDocumentMoniker": "hotelEase.Services\\IHotelsService.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\IHotelsService.cs",
               "RelativeToolTip": "hotelEase.Services\\IHotelsService.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAIwBYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAA+wBMAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-05T13:47:57.38Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 44,
+              "Title": "Hotel.cs",
+              "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\Hotel.cs",
+              "RelativeDocumentMoniker": "hotelEase.Services\\Database\\Hotel.cs",
+              "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\Hotel.cs",
+              "RelativeToolTip": "hotelEase.Services\\Database\\Hotel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAADsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-02T17:19:43.405Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
               "Title": "HotelsController.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\HotelsController.cs",
               "RelativeDocumentMoniker": "hotelEase.API\\Controllers\\HotelsController.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Controllers\\HotelsController.cs",
               "RelativeToolTip": "hotelEase.API\\Controllers\\HotelsController.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAqwD8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAQwFEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-31T13:16:14.069Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 43,
               "Title": "Hotel.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Hotel.cs",
               "RelativeDocumentMoniker": "hotelEase.Model\\Hotel.cs",
               "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Model\\Hotel.cs",
               "RelativeToolTip": "hotelEase.Model\\Hotel.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAywCoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACYAAAAAAAAAAAAzwCoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T13:20:45.129Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-31T13:20:45.129Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 74,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\appsettings.json",
               "RelativeDocumentMoniker": "hotelEase.API\\appsettings.json",
@@ -1668,19 +1856,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "Hotel.cs",
-              "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\Hotel.cs",
-              "RelativeDocumentMoniker": "hotelEase.Services\\Database\\Hotel.cs",
-              "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.Services\\Database\\Hotel.cs",
-              "RelativeToolTip": "hotelEase.Services\\Database\\Hotel.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAUwDsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T17:19:43.405Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 67,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\Program.cs",
               "RelativeDocumentMoniker": "hotelEase.API\\Program.cs",
@@ -1689,18 +1865,6 @@
               "ViewState": "AgIAAJUAAAAAAAAAAAAQwJkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-31T15:38:01.86Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 52,
-              "Title": "appsettings.Development.json",
-              "DocumentMoniker": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\appsettings.Development.json",
-              "RelativeDocumentMoniker": "hotelEase.API\\appsettings.Development.json",
-              "ToolTip": "C:\\Users\\Hazim\\Desktop\\HotelEase-RS2\\Software-Development-II\\backend\\hotelEase\\hotelEase.API\\appsettings.Development.json",
-              "RelativeToolTip": "hotelEase.API\\appsettings.Development.json",
-              "ViewState": "AgIAAAsAAAAAAAAAAABRwBEAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-04T17:25:48.828Z"
             }
           ]
         }

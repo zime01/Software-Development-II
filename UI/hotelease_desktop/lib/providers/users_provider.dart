@@ -30,6 +30,25 @@ class UsersProvider extends BaseProvider<User> {
     }
   }
 
+  // 🔹 nova metoda da dobavi sve korisnike sa IncludeRoles
+  Future<List<User>> getAll({bool includeRoles = true}) async {
+    var uri = Uri.parse("$baseUrl$endpoint?IncludeRoles=$includeRoles");
+    var response = await http.get(uri, headers: createHeaders());
+
+    if (isValidResponse(response)) {
+      var data = jsonDecode(response.body);
+      // Ako je API paged result
+      if (data is Map && data.containsKey("resultList")) {
+        return (data["resultList"] as List).map((x) => fromJson(x)).toList();
+      }
+      return (data as List).map((x) => fromJson(x)).toList();
+    } else {
+      throw Exception(
+        "Failed to fetch users: ${response.statusCode} - ${response.body}",
+      );
+    }
+  }
+
   Future<Map<String, dynamic>> registerUser(
     Map<String, dynamic> payload,
   ) async {
@@ -64,6 +83,28 @@ class UsersProvider extends BaseProvider<User> {
       throw Exception(
         "Update failed: ${response.statusCode} - ${response.body}",
       );
+    }
+  }
+
+  Future<void> updateStatus(int id, bool isActive) async {
+    var uri = Uri.parse(
+      "$baseUrl$endpoint/$id/change-status?isActive=$isActive",
+    );
+
+    var response = await http.put(uri, headers: createHeaders());
+
+    if (!isValidResponse(response)) {
+      throw Exception("Failed to update status: ${response.body}");
+    }
+  }
+
+  Future<void> changeRole(int id, String role) async {
+    var uri = Uri.parse("$baseUrl$endpoint/$id/change-role?role=$role");
+
+    var response = await http.put(uri, headers: createHeaders());
+
+    if (!isValidResponse(response)) {
+      throw Exception("Failed to change role: ${response.body}");
     }
   }
 }

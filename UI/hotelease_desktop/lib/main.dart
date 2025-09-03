@@ -9,6 +9,7 @@ import 'package:hotelease_mobile_new/providers/payments_provider.dart';
 import 'package:hotelease_mobile_new/providers/reservations_provider.dart';
 import 'package:hotelease_mobile_new/providers/reviews_provider.dart';
 import 'package:hotelease_mobile_new/providers/room_availability.dart';
+import 'package:hotelease_mobile_new/providers/room_type_provider.dart';
 import 'package:hotelease_mobile_new/providers/rooms.provider.dart';
 import 'package:hotelease_mobile_new/providers/services_provider.dart';
 import 'package:hotelease_mobile_new/providers/users_provider.dart';
@@ -38,6 +39,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => UsersProvider()),
         ChangeNotifierProvider(create: (_) => PaymentsProvider()),
         ChangeNotifierProvider(create: (_) => ReviewsProvider()),
+        ChangeNotifierProvider(create: (_) => RoomTypesProvider()),
       ],
       child: const MyApp(),
     ),
