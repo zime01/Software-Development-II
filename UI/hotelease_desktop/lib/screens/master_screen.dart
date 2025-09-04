@@ -4,7 +4,9 @@ import 'package:hotelease_mobile_new/screens/admin_screen.dart';
 import 'package:hotelease_mobile_new/screens/hotels_list_screen.dart';
 import 'package:hotelease_mobile_new/screens/manager_dashboard_screen.dart';
 import 'package:hotelease_mobile_new/screens/manager_services_screen.dart';
+import 'package:hotelease_mobile_new/screens/manager_stats_screen.dart';
 import 'package:hotelease_mobile_new/screens/users_screen.dart';
+import 'package:hotelease_mobile_new/utils/util.dart';
 import 'package:provider/provider.dart';
 
 class MasterScreen extends StatefulWidget {
@@ -114,6 +116,39 @@ class _MasterScreenState extends State<MasterScreen> {
                         ),
                       );
                     }
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.dashboard),
+                  title: const Text("Manager Stats"),
+                  onTap: () {
+                    final managerHotelId = context
+                        .read<HotelsProvider>()
+                        .currentHotelId;
+
+                    if (managerHotelId == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Please select a hotel first"),
+                        ),
+                      );
+                      return;
+                    }
+
+                    if (Authorization.username == null ||
+                        Authorization.password == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Not logged in")),
+                      );
+                      return;
+                    }
+
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) =>
+                            ManagerStatsScreen(hotelId: managerHotelId),
+                      ),
+                    );
                   },
                 ),
               ],

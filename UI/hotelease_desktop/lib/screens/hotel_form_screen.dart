@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotelease_mobile_new/models/hotel.dart';
 import 'package:hotelease_mobile_new/providers/hotels_provider.dart';
+import 'package:hotelease_mobile_new/screens/master_screen.dart';
 
 class HotelFormScreen extends StatefulWidget {
   final Hotel? hotel; // ako je null => dodavanje, ako nije => edit
@@ -63,33 +64,47 @@ class _HotelFormScreenState extends State<HotelFormScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.hotel == null ? "Add Hotel" : "Edit Hotel"),
-      ),
-      body: Padding(
+    return MasterScreen(
+      title: widget.hotel == null ? "Add Hotel" : "Edit Hotel",
+      child: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
           key: _formKey,
           child: ListView(
             children: [
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 controller: _nameController,
-                decoration: const InputDecoration(labelText: "Hotel Name"),
+                decoration: const InputDecoration(
+                  labelText: "Hotel Name",
+                  labelStyle: TextStyle(color: Colors.grey),
+                ),
                 validator: (val) => val!.isEmpty ? "Enter name" : null,
               ),
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 controller: _addressController,
-                decoration: const InputDecoration(labelText: "Address"),
+                decoration: const InputDecoration(
+                  labelText: "Address",
+                  labelStyle: TextStyle(color: Colors.grey),
+                ),
                 validator: (val) => val!.isEmpty ? "Enter address" : null,
               ),
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 controller: _descriptionController,
-                decoration: const InputDecoration(labelText: "Description"),
+                decoration: const InputDecoration(
+                  labelText: "Description",
+                  labelStyle: TextStyle(color: Colors.grey),
+                ),
               ),
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 controller: _starRatingController,
-                decoration: const InputDecoration(labelText: "Star Rating"),
+                decoration: const InputDecoration(
+                  labelText: "Star Rating",
+                  labelStyle: TextStyle(color: Colors.grey),
+                ),
                 keyboardType: TextInputType.number,
               ),
               const SizedBox(height: 20),

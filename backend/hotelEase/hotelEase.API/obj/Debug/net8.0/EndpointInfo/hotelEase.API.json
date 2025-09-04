@@ -728,6 +728,46 @@
         }
       }
     },
+    "/api/Dashboard/manager/{hotelId}": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "parameters": [
+          {
+            "name": "hotelId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagerDashboardDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagerDashboardDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagerDashboardDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Hotels/{id}/activate": {
       "put": {
         "tags": [
@@ -5096,6 +5136,57 @@
         },
         "additionalProperties": false
       },
+      "ManagerDashboardDTO": {
+        "type": "object",
+        "properties": {
+          "totalReservations": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "activeReservations": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cancelledReservations": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "monthlyRevenue": {
+            "type": "number",
+            "format": "double"
+          },
+          "roomOccupancy": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoomOccupancyDTO"
+            },
+            "nullable": true
+          },
+          "topServices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceUsageDTO"
+            },
+            "nullable": true
+          },
+          "newUsers": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "occupancyRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "recentReservations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RecentReservationDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Notification": {
         "type": "object",
         "properties": {
@@ -5368,6 +5459,38 @@
           "status": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RecentReservationDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "checkInDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "checkOutDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserDTO"
+          },
+          "room": {
+            "$ref": "#/components/schemas/RoomDTo"
           }
         },
         "additionalProperties": false
@@ -5812,6 +5935,30 @@
         },
         "additionalProperties": false
       },
+      "RoomDTo": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RoomOccupancyDTO": {
+        "type": "object",
+        "properties": {
+          "roomName": {
+            "type": "string",
+            "nullable": true
+          },
+          "occupancyRate": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
       "RoomPagedResult": {
         "type": "object",
         "properties": {
@@ -6059,6 +6206,20 @@
         },
         "additionalProperties": false
       },
+      "ServiceUsageDTO": {
+        "type": "object",
+        "properties": {
+          "serviceName": {
+            "type": "string",
+            "nullable": true
+          },
+          "usageCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "ServicesUpsertObject": {
         "type": "object",
         "properties": {
@@ -6145,6 +6306,20 @@
             "items": {
               "$ref": "#/components/schemas/Role"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserDTO": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
             "nullable": true
           }
         },

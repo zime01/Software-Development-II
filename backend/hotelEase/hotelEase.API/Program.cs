@@ -31,6 +31,7 @@ builder.Services.AddTransient<IServicesService, ServicesService>();
 builder.Services.AddTransient<IReviewsService, ReviewsService>();
 builder.Services.AddTransient<INotificationsService, NotificationsService>();
 builder.Services.AddTransient<IPaymentsService, PaymentsService>();
+builder.Services.AddTransient<IDashboardService, DashboardService>();
 
 builder.Services.AddTransient<HotelRecommenderService>();
 
