@@ -60,8 +60,8 @@ namespace hotelEase.Services
                     Hotel = h,
                     AvgPrice = h.Rooms.Any() ? h.Rooms.Average(r => r.PricePerNight) : 0
                 })
-                .OrderBy(h => Math.Abs(h.AvgPrice - selectedAvgPrice)) // slična cijena
-                .ThenByDescending(h => h.Hotel.StarRating)             // prioritet veće zvjezdice
+                .OrderBy(h => Math.Abs(h.AvgPrice - selectedAvgPrice)) 
+                .ThenByDescending(h => h.Hotel.StarRating)             
                 .Take(top)
                 .Select(h => _mapper.Map<Model.Hotel>(h.Hotel))
                 .ToList();
@@ -124,10 +124,10 @@ namespace hotelEase.Services
         // ML.NET input/output klase
         public class HotelRating
         {
-            [KeyType(count: 10000)]  // predpostavi max broj usera
+            [KeyType(count: 10000)]  // max broj usera
             public uint UserId { get; set; }
 
-            [KeyType(count: 10000)]  // predpostavi max broj hotela
+            [KeyType(count: 10000)]  //  max broj hotela
             public uint HotelId { get; set; }
 
             public float Label { get; set; }
