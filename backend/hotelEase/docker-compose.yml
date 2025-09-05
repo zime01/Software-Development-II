@@ -20,7 +20,7 @@ services:
     build:
       context: .
     environment:
-      - ConnectionStrings:HotelEaseConnection=Server=hotelease-sql,1433;Database=HotelEaseTest;User=sa;Password=QWEasd123!;ConnectRetryCount=0; TrustServerCertificate=True
+      - ConnectionStrings:HotelEaseConnection=Server=hotelease-sql,1433;Database=HotelEase;User Id=sa;Password=QWEasd123!;ConnectRetryCount=0; TrustServerCertificate=True
       - ASPNETCORE_ENVIRONMENT=Development
       - RABBITMQ_HOST=rabbitmq           
       - RABBITMQ_USER=guest             
