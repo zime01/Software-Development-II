@@ -10,7 +10,8 @@ class BaseProvider<T> with ChangeNotifier {
   final String baseUrl = const String.fromEnvironment(
     "baseUrl",
     //defaultValue: "http://localhost:5296/api/",
-    defaultValue: "http://192.168.0.13:5000/api/",
+    //defaultValue: "http://192.168.0.13:5000/api/",
+    defaultValue: "http://192.168.0.13:5296/api/", //docker
   );
 
   String endpoint = "";
