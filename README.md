@@ -40,12 +40,11 @@ cd Software-Development-II/backend/hotelEase
 docker-compose up --build
 
 5. Credentials for testing:
-| Role    | Username | Password |
-| ------- | -------- | -------- |
-| Admin   | admin    | test     |
-| Manager | manager  | test     |
-| Desktop | desktop  | test     |
-| Mobile  | mobile   | test     |
+username: admin password:test 
+username: manager password:test 
+username: desktop password:test 
+username: mobile password:test 
+
 Features
 
 RabbitMQ + SMTP integration ensures successful email notifications on:
