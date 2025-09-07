@@ -583,7 +583,6 @@ public partial class HotelEaseContext : DbContext
         Id = 17,
         Name = "Family Suite",
         Description = "1 sofa bed and 1 queen bed",
-        IsDeleted = false
     },
     new RoomType
     {
@@ -670,7 +669,87 @@ public partial class HotelEaseContext : DbContext
     new User { Id = 8, FirstName = "test", LastName = "test", Email = "zime1921@gmail.com", Username = "test", PasswordHash = "DUdL3t0xvuewcsxxsSrW23x948I=", PasswordSalt = "Rfk+5T78WxlZGOiYrl2j9A==", IsActive = true, CreatedAt = DateTime.Parse("2025-08-20T10:40:04.5") },
     new User { Id = 9, FirstName = "abcd", LastName = "abcd", Email = "abcd", Username = "abcd", PasswordHash = "9ciStnRAT8sF6RjAI4dy5L4FCO8=", PasswordSalt = "C5DJk5nT7x+gkzuYTcZ5fA==", PhoneNumber = "string", IsActive = true, CreatedAt = DateTime.Parse("2025-08-20T08:51:11.363") },
     new User { Id = 10, FirstName = "", LastName = "", Email = "", Username = "", PasswordHash = "G6FEm+iqUeqJr7qE2wKhCo6xzqk=", PasswordSalt = "Aa8kPMrOl2Y0xdJNLrUErw==", IsActive = true, CreatedAt = DateTime.Parse("2025-08-20T19:20:20.337") },
-    new User { Id = 13, FirstName = "mujo", LastName = "mujo", Email = "eaglehl022@gmail.com", Username = "mujo", PasswordHash = "rtNMo9LEpchW1xPiej9xshhp/Js=", PasswordSalt = "b5mgx/KFt/oB/LFCFX/Dag==", PhoneNumber = "061111111" }
+    new User { Id = 13, FirstName = "mujo", LastName = "mujo", Email = "eaglehl022@gmail.com", Username = "mujo", PasswordHash = "rtNMo9LEpchW1xPiej9xshhp/Js=", PasswordSalt = "b5mgx/KFt/oB/LFCFX/Dag==", PhoneNumber = "061111111" },
+    new User
+    {
+        Id = 14,
+        FirstName = "desktop",
+        LastName = "desktop",
+        Email = "zime1921@gmail.com",
+        Username = "desktop",
+        PasswordHash = "OypiMGzMHp0o9DYe5yWSnkky54A=",
+        PasswordSalt = "o5hAjrnYH7NRqp9OBA6J9Q==",
+        PhoneNumber = "060000000",
+        IsActive = true,
+        CreatedAt = DateTime.Parse("2025-09-07T08:41:35.897"),
+        LastLoginAt = DateTime.Parse("2025-09-07T08:41:35.897")
+    },
+    new User
+    {
+        Id = 15,
+        FirstName = "mobile",
+        LastName = "mobile",
+        Email = "zime1921@gmail.com",
+        Username = "mobile",
+        PasswordHash = "OypiMGzMHp0o9DYe5yWSnkky54A=",
+        PasswordSalt = "o5hAjrnYH7NRqp9OBA6J9Q==",
+        PhoneNumber = "060000000",
+        IsActive = true,
+        CreatedAt = DateTime.Parse("2025-09-07T08:41:35.897"),
+        LastLoginAt = DateTime.Parse("2025-09-07T08:41:35.897")
+    },
+    new User
+    {
+        Id = 16,
+        FirstName = "manager",
+        LastName = "manager",
+        Email = "zime1921@gmail.com",
+        Username = "manager",
+        PasswordHash = "OypiMGzMHp0o9DYe5yWSnkky54A=",
+        PasswordSalt = "o5hAjrnYH7NRqp9OBA6J9Q==",
+        PhoneNumber = "060000000",
+        IsActive = true,
+        CreatedAt = DateTime.Parse("2025-09-07T08:41:35.897"),
+        LastLoginAt = DateTime.Parse("2025-09-07T08:41:35.897")
+    },
+    new User
+    {
+        Id = 17,
+        FirstName = "user",
+        LastName = "user",
+        Email = "zime1921@gmail.com",
+        Username = "user",
+        PasswordHash = "OypiMGzMHp0o9DYe5yWSnkky54A=",
+        PasswordSalt = "o5hAjrnYH7NRqp9OBA6J9Q==",
+        PhoneNumber = "060000000",
+        IsActive = true,
+        CreatedAt = DateTime.Parse("2025-09-07T08:41:35.897"),
+        LastLoginAt = DateTime.Parse("2025-09-07T08:41:35.897")
+    },
+    new User
+    {
+        Id = 18,
+        FirstName = "admin",
+        LastName = "admin",
+        Email = "zime1921@gmail.com",
+        Username = "admin",
+        PasswordHash = "OypiMGzMHp0o9DYe5yWSnkky54A=",
+        PasswordSalt = "o5hAjrnYH7NRqp9OBA6J9Q==",
+        PhoneNumber = "060000000",
+        IsActive = true,
+        CreatedAt = DateTime.Parse("2025-09-07T08:41:35.897"),
+        LastLoginAt = DateTime.Parse("2025-09-07T08:41:35.897")
+    }
+
+);
+
+        //UserRoles
+        modelBuilder.Entity<UserRole>().HasData(
+    new UserRole { UserId = 14, RoleId = 1 },
+    new UserRole { UserId = 15, RoleId = 4 },
+    new UserRole { UserId = 16, RoleId = 2 },
+    new UserRole { UserId = 17, RoleId = 4 },
+    new UserRole { UserId = 18, RoleId = 1 }
 );
 
         // Reservations
