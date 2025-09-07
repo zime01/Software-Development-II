@@ -2,6 +2,8 @@ HotelEase Application
 
 HotelEase is a full-stack application designed for hotel and flight reservations. The mobile app is intended for end-users to browse hotels, make reservations, and complete payments, while the desktop application is designed for hotel admins and managers to manage hotels, rooms, reservations, and users.
 
+Note: The mobile project used is hotelease_mobile_new because the original hotelease_mobile project had issues with v2 embedding. The desktop application project remains hotelease_desktop.
+
 The application is built using .NET 8 for the backend API and Flutter for the mobile frontend. Key technologies and integrations include:
 
 Entity Framework Core (for database management)
