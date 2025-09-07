@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("hotelEase.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0f6a3ebc7f67302378f1f004efe58ed083ec3fcd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3698c68857c2519f89b53cdea201b93ff6ae3ed9")]
 [assembly: System.Reflection.AssemblyProductAttribute("hotelEase.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("hotelEase.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

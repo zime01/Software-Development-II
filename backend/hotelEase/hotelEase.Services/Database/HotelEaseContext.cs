@@ -305,23 +305,29 @@ public partial class HotelEaseContext : DbContext
             entity.Property(e => e.PhoneNumber).HasMaxLength(20);
             entity.Property(e => e.Username).HasMaxLength(100);
 
-            entity.HasMany(d => d.Roles).WithMany(p => p.Users)
-                .UsingEntity<Dictionary<string, object>>(
-                    "UserRole",
-                    r => r.HasOne<Role>().WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__UserRoles__RoleI__6477ECF3"),
-                    l => l.HasOne<User>().WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__UserRoles__UserI__6383C8BA"),
-                    j =>
-                    {
-                        j.HasKey("UserId", "RoleId").HasName("PK__UserRole__AF2760AD81661037");
-                        j.ToTable("UserRoles");
-                    });
+            entity.HasMany(e => e.Roles)
+          .WithMany(r => r.Users)
+          .UsingEntity<UserRole>(
+              j => j
+                  .HasOne(ur => ur.Role)
+                  .WithMany()
+                  .HasForeignKey(ur => ur.RoleId)
+                  .OnDelete(DeleteBehavior.ClientSetNull),
+              j => j
+                  .HasOne(ur => ur.User)
+                  .WithMany()
+                  .HasForeignKey(ur => ur.UserId)
+                  .OnDelete(DeleteBehavior.ClientSetNull),
+              j =>
+              {
+                  j.HasKey(ur => new { ur.UserId, ur.RoleId });
+                  j.ToTable("UserRoles");
+              });
         });
+
+
+    //    modelBuilder.Entity<UserRole>()
+    //.HasKey(ur => new { ur.UserId, ur.RoleId });
 
         base.OnModelCreating(modelBuilder);
 
@@ -641,14 +647,7 @@ public partial class HotelEaseContext : DbContext
         // Assets
 
 
-        // Roles
-        modelBuilder.Entity<Role>().HasData(
-            new Role { Id = 1, Name = "Admin" },
-            new Role { Id = 2, Name = "Manager" },
-            new Role { Id = 4, Name = "User" }
-
-
-        );
+        
 
         //RoomsAvailability
         modelBuilder.Entity<RoomAvailability>().HasData(
@@ -670,78 +669,22 @@ public partial class HotelEaseContext : DbContext
     new User { Id = 9, FirstName = "abcd", LastName = "abcd", Email = "abcd", Username = "abcd", PasswordHash = "9ciStnRAT8sF6RjAI4dy5L4FCO8=", PasswordSalt = "C5DJk5nT7x+gkzuYTcZ5fA==", PhoneNumber = "string", IsActive = true, CreatedAt = DateTime.Parse("2025-08-20T08:51:11.363") },
     new User { Id = 10, FirstName = "", LastName = "", Email = "", Username = "", PasswordHash = "G6FEm+iqUeqJr7qE2wKhCo6xzqk=", PasswordSalt = "Aa8kPMrOl2Y0xdJNLrUErw==", IsActive = true, CreatedAt = DateTime.Parse("2025-08-20T19:20:20.337") },
     new User { Id = 13, FirstName = "mujo", LastName = "mujo", Email = "eaglehl022@gmail.com", Username = "mujo", PasswordHash = "rtNMo9LEpchW1xPiej9xshhp/Js=", PasswordSalt = "b5mgx/KFt/oB/LFCFX/Dag==", PhoneNumber = "061111111" },
-    new User
-    {
-        Id = 14,
-        FirstName = "desktop",
-        LastName = "desktop",
-        Email = "zime1921@gmail.com",
-        Username = "desktop",
-        PasswordHash = "OypiMGzMHp0o9DYe5yWSnkky54A=",
-        PasswordSalt = "o5hAjrnYH7NRqp9OBA6J9Q==",
-        PhoneNumber = "060000000",
-        IsActive = true,
-        CreatedAt = DateTime.Parse("2025-09-07T08:41:35.897"),
-        LastLoginAt = DateTime.Parse("2025-09-07T08:41:35.897")
-    },
-    new User
-    {
-        Id = 15,
-        FirstName = "mobile",
-        LastName = "mobile",
-        Email = "zime1921@gmail.com",
-        Username = "mobile",
-        PasswordHash = "OypiMGzMHp0o9DYe5yWSnkky54A=",
-        PasswordSalt = "o5hAjrnYH7NRqp9OBA6J9Q==",
-        PhoneNumber = "060000000",
-        IsActive = true,
-        CreatedAt = DateTime.Parse("2025-09-07T08:41:35.897"),
-        LastLoginAt = DateTime.Parse("2025-09-07T08:41:35.897")
-    },
-    new User
-    {
-        Id = 16,
-        FirstName = "manager",
-        LastName = "manager",
-        Email = "zime1921@gmail.com",
-        Username = "manager",
-        PasswordHash = "OypiMGzMHp0o9DYe5yWSnkky54A=",
-        PasswordSalt = "o5hAjrnYH7NRqp9OBA6J9Q==",
-        PhoneNumber = "060000000",
-        IsActive = true,
-        CreatedAt = DateTime.Parse("2025-09-07T08:41:35.897"),
-        LastLoginAt = DateTime.Parse("2025-09-07T08:41:35.897")
-    },
-    new User
-    {
-        Id = 17,
-        FirstName = "user",
-        LastName = "user",
-        Email = "zime1921@gmail.com",
-        Username = "user",
-        PasswordHash = "OypiMGzMHp0o9DYe5yWSnkky54A=",
-        PasswordSalt = "o5hAjrnYH7NRqp9OBA6J9Q==",
-        PhoneNumber = "060000000",
-        IsActive = true,
-        CreatedAt = DateTime.Parse("2025-09-07T08:41:35.897"),
-        LastLoginAt = DateTime.Parse("2025-09-07T08:41:35.897")
-    },
-    new User
-    {
-        Id = 18,
-        FirstName = "admin",
-        LastName = "admin",
-        Email = "zime1921@gmail.com",
-        Username = "admin",
-        PasswordHash = "OypiMGzMHp0o9DYe5yWSnkky54A=",
-        PasswordSalt = "o5hAjrnYH7NRqp9OBA6J9Q==",
-        PhoneNumber = "060000000",
-        IsActive = true,
-        CreatedAt = DateTime.Parse("2025-09-07T08:41:35.897"),
-        LastLoginAt = DateTime.Parse("2025-09-07T08:41:35.897")
-    }
+    new User { Id = 14, FirstName = "desktop", LastName = "desktop", Email = "zime1921@gmail.com", Username = "desktop", PasswordHash = "Y4Janfy1qua8GMku6qDTz9Jgz4E=", PasswordSalt = "NGNxtZEDNXRYCIZ4BmpfCA==", PhoneNumber = "060000000", IsActive = true, CreatedAt = DateTime.Parse("2025-09-07T08:41:35.897"), LastLoginAt = DateTime.Parse("2025-09-07T08:41:35.897") },
+    new User { Id = 15, FirstName = "mobile", LastName = "mobile", Email = "zime1921@gmail.com", Username = "mobile", PasswordHash = "n2fzGycplgIHEO4s8nkTI02+h9s=", PasswordSalt = "l0mdchhOcVIle5zMGBzNsw==", PhoneNumber = "060000000", IsActive = true, CreatedAt = DateTime.Parse("2025-09-07T08:41:35.897"), LastLoginAt = DateTime.Parse("2025-09-07T08:41:35.897") },
+    new User { Id = 16, FirstName = "manager", LastName = "manager", Email = "zime1921@gmail.com", Username = "manager", PasswordHash = "SlQMpOoWgdEk/XraKqgzsgAoSQk=", PasswordSalt = "4CfVppyqsb2hDrDrtIH75Q==", PhoneNumber = "060000000", IsActive = true, CreatedAt = DateTime.Parse("2025-09-07T08:41:35.897"), LastLoginAt = DateTime.Parse("2025-09-07T08:41:35.897") },
+    new User { Id = 17, FirstName = "user", LastName = "user", Email = "zime1921@gmail.com", Username = "user", PasswordHash = "ZLlQ1tOvhGD5nfnBCXq4IDpWMcA=", PasswordSalt = "iI4aRztVcPsWPBh7kLNY8w==", PhoneNumber = "060000000", IsActive = true, CreatedAt = DateTime.Parse("2025-09-07T08:41:35.897"), LastLoginAt = DateTime.Parse("2025-09-07T08:41:35.897") },
+    new User { Id = 18, FirstName = "admin", LastName = "admin", Email = "zime1921@gmail.com", Username = "admin", PasswordHash = "4eAriAdT1M44UGPF39XdOq3xFmI=", PasswordSalt = "zwqMc1j7EAsIqYvuztBaOA==", PhoneNumber = "060000000", IsActive = true, CreatedAt = DateTime.Parse("2025-09-07T08:41:35.897"), LastLoginAt = DateTime.Parse("2025-09-07T08:41:35.897") }
 
 );
+
+        // Roles
+        modelBuilder.Entity<Role>().HasData(
+            new Role { Id = 1, Name = "Admin" },
+            new Role { Id = 2, Name = "Manager" },
+            new Role { Id = 4, Name = "User" }
+
+
+        );
 
         //UserRoles
         modelBuilder.Entity<UserRole>().HasData(

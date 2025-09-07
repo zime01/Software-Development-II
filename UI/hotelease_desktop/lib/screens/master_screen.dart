@@ -119,8 +119,10 @@ class _MasterScreenState extends State<MasterScreen> {
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.dashboard),
-                  title: const Text("Manager Stats"),
+                  title: const Text(
+                    "Manager Stats",
+                    style: TextStyle(color: Colors.white),
+                  ),
                   onTap: () {
                     final managerHotelId = context
                         .read<HotelsProvider>()
