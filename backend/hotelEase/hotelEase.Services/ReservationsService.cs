@@ -20,9 +20,28 @@ namespace hotelEase.Services
             _notificationsService = notificationsService;
         }
 
+        public override IQueryable<Database.Reservation> AddInclude(ReservationsSearchObject search, IQueryable<Database.Reservation> query)
+        {
+            query = query.Include(r => r.Room)
+                 .ThenInclude(r => r.Hotel)
+                 .Include(r => r.Room)
+                 .ThenInclude(r => r.Assets);
+
+            
+
+            return query;
+        }
+
         public List<Model.Reservation> GetByUserId(int id)
         {
-            var query = Context.Reservations.Where(x=>x.UserId == id && (x.IsDeleted == null || x.IsDeleted == false)).AsQueryable();
+            var query = Context.Reservations
+                .Include(r => r.Room)
+                    .ThenInclude(r => r.Hotel)
+                .Include(r => r.Room)
+                    .ThenInclude(r => r.Assets)  // 🔹 dodano da povuče slike
+                .Include(r => r.User)
+                .Where(r => r.UserId == id && (r.IsDeleted == null || r.IsDeleted == false))
+                .AsQueryable();
 
             var list = query.ToList();
 

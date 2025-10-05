@@ -402,7 +402,7 @@ public partial class HotelEaseContext : DbContext
     new Hotel
     {
         Id = 7,
-        Name = "Courtyard by Marriott Banja Luka",
+        Name = "Courtyard by Marriott",
         Description = "The 4-star Courtyard by Marriott Banja Luka offers modern-style accommodations and a number of amenities including a state-of-the-art lobby and an on-site restaurant. Located 1640 feet from the National Theater and within 1 mi of Kastel Fortress, it provides a 24-hour front desk and free WiFi.",
         Address = "Prvog krajiškog korpusa 33, Banja Luka 78000",
         CityId = 4,

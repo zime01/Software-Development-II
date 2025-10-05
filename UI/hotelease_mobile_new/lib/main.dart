@@ -10,7 +10,9 @@ import 'package:hotelease_mobile_new/providers/reservations_provider.dart';
 import 'package:hotelease_mobile_new/providers/reviews_provider.dart';
 import 'package:hotelease_mobile_new/providers/room_availability.dart';
 import 'package:hotelease_mobile_new/providers/rooms.provider.dart';
+import 'package:hotelease_mobile_new/providers/search_provider.dart';
 import 'package:hotelease_mobile_new/providers/services_provider.dart';
+import 'package:hotelease_mobile_new/providers/theme_provider.dart';
 import 'package:hotelease_mobile_new/providers/users_provider.dart';
 import 'package:hotelease_mobile_new/screens/hotels_list_screen.dart';
 import 'package:hotelease_mobile_new/screens/register_screen.dart';
@@ -38,6 +40,8 @@ void main() async {
         ChangeNotifierProvider(create: (_) => UsersProvider()),
         ChangeNotifierProvider(create: (_) => PaymentsProvider()),
         ChangeNotifierProvider(create: (_) => ReviewsProvider()),
+        ChangeNotifierProvider(create: (_) => SearchProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
       child: const MyApp(),
     ),
@@ -49,15 +53,66 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
+    const primaryColor = Color.fromRGBO(17, 45, 78, 1); //
+    const secondaryColor = Color(0xFFBFD7ED);
+
     return MaterialApp(
       title: 'HotelEase',
+      debugShowCheckedModeBanner: false,
+      // 🌞 LIGHT MODE
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromRGBO(17, 45, 78, 1),
-          primary: const Color.fromRGBO(17, 45, 78, 1),
-          secondary: const Color.fromRGBO(17, 45, 78, 1),
+          seedColor: secondaryColor,
+          brightness: Brightness.light,
+          primary: secondaryColor, // svijetla plava dominira
+          onPrimary: primaryColor,
+          secondary: const Color.fromARGB(
+            255,
+            64,
+            134,
+            215,
+          ), // tamna za akcente
+          background: Colors.white,
+          surface: Colors.white,
         ),
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: secondaryColor,
+          foregroundColor: Colors.black,
+          elevation: 1,
+        ),
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(color: Colors.black87),
+          bodyMedium: TextStyle(color: Colors.black87),
+        ),
+        useMaterial3: true,
       ),
+
+      // 🌙 DARK MODE
+      darkTheme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: primaryColor,
+          onPrimary: Colors.white,
+          brightness: Brightness.dark,
+          primary: primaryColor, // tamno plava dominira
+          secondary: Color.fromRGBO(15, 30, 70, 1), // svijetla za akcente
+          background: const Color(0xFF0F1E46),
+          surface: const Color(0xFF112D4E),
+        ),
+        scaffoldBackgroundColor: const Color(0xFF0F1E46),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: primaryColor,
+          foregroundColor: Colors.white,
+        ),
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(color: Colors.white),
+          bodyMedium: TextStyle(color: Colors.white),
+        ),
+        useMaterial3: true,
+      ),
+      themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
       home: LoginPage(),
     );
   }

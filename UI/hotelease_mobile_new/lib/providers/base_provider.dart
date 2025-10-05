@@ -58,6 +58,7 @@ class BaseProvider<T> with ChangeNotifier {
 
   Future<dynamic> post(String endpoint, dynamic payload) async {
     var url = Uri.parse("$baseUrl$endpoint");
+    print("POST -> $url");
     var response = await http.post(
       url,
       headers: createHeaders(),
@@ -121,6 +122,24 @@ class BaseProvider<T> with ChangeNotifier {
     }
 
     return jsonDecode(response.body);
+  }
+
+  Future<dynamic> put(String endpoint, [dynamic payload]) async {
+    var url = Uri.parse("$baseUrl$endpoint");
+    print("PUT -> $url");
+
+    var response = await http.put(
+      url,
+      headers: createHeaders(),
+      body: payload != null ? jsonEncode(payload) : null,
+    );
+
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      if (response.body.isEmpty) return null;
+      return jsonDecode(response.body);
+    } else {
+      throw Exception("Error: ${response.statusCode} ${response.reasonPhrase}");
+    }
   }
 
   bool isValidResponse(Response response) {

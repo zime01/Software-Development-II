@@ -61,7 +61,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
       // 4. Update status na backendu
       await context.read<PaymentsProvider>().updateStripeStatus(
-        intent.paymentIntentId,
+        paymentId: intent
+            .paymentId, // ovo moraš da dodaš u PaymentIntentResult model da ti backend vrati
+        newStatus: "succeeded",
+        providerPaymentId: intent.paymentIntentId,
       );
 
       if (!mounted) return;
@@ -99,18 +102,18 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       Text(
                         "Reservation: ",
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.onPrimary,
                         ),
                       ),
                       Text(
                         "#${widget.reservationId}",
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.onPrimary,
                         ),
                       ),
                     ],
@@ -122,17 +125,17 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       Text(
                         "Amount: ",
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 18,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.onPrimary,
                         ),
                       ),
                       Text(
                         "${widget.amount.toStringAsFixed(2)} ${widget.currency.toUpperCase()}",
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.onPrimary,
                         ),
                       ),
                     ],

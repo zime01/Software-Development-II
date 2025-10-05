@@ -1457,6 +1457,22 @@
   },
   {
     "ContainingType": "hotelEase.API.Controllers.ReservationsController",
+    "Method": "CancelReservation",
+    "RelativePath": "api/Reservations/cancel/{reservationId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reservationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "hotelEase.API.Controllers.ReservationsController",
     "Method": "Insert",
     "RelativePath": "api/Reservations/insert-reservation",
     "HttpMethod": "POST",

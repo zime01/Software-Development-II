@@ -1,14 +1,13 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:hotelease_mobile_new/models/asset.dart';
 import 'package:hotelease_mobile_new/models/hotel.dart';
 import 'package:hotelease_mobile_new/models/search_result.dart';
 import 'package:hotelease_mobile_new/providers/hotels_provider.dart';
+import 'package:hotelease_mobile_new/providers/search_provider.dart';
 import 'package:hotelease_mobile_new/screens/hotel_details_screen.dart';
 import 'package:hotelease_mobile_new/screens/hotels.dart';
 import 'package:hotelease_mobile_new/screens/master_screen.dart';
-
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -24,29 +23,16 @@ class HotelsListScreen extends StatefulWidget {
 class _HotelsListScreenState extends State<HotelsListScreen> {
   late HotelsProvider _hotelsProvider;
 
-  late Future<List<Hotel>> _recommendedHotelsFuture;
-  late Future<List<Hotel>> _popularHotelsFuture;
-
-  SearchResult<Hotel>? result = null;
-  String searchQuery = "";
-
   DateTime? _dateFrom;
   DateTime? _dateTo;
+  int _adults = 1;
+  int _children = 0;
+  int _rooms = 1;
 
-  List<int> adults = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  List<int> children = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  List<int> rooms = [1, 2, 3, 4, 5, 6, 7];
-
-  int _selectedPass1 = 1;
-  int _selectedPass2 = 1;
-
-  int _selectedroom = 1;
-
+  String searchQuery = "";
   String? selectedSort;
-
   double minPrice = 0;
   double maxPrice = 500;
-  int minStars = 1;
   bool wifi = false;
   bool parking = false;
   bool pool = false;
@@ -58,106 +44,123 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
   ];
 
   @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
     _hotelsProvider = context.read<HotelsProvider>();
+    _restorePreviousSearch();
   }
 
-  void _selectDateFrom() async {
-    print("pozvana funkcija za datume");
-    final now = DateTime.now();
-    // final firstDate = DateTime(now.year - 1, now.month, now.day);
-    final firstDate = DateTime(now.year - 1, now.month, now.day);
-    final lastDate = DateTime(now.year + 1, now.month, now.day);
-    final pickedDate = await showDatePicker(
-      context: context,
-      initialDate: _dateFrom ?? now,
-      firstDate: firstDate,
-      lastDate: lastDate,
-    );
-    if (pickedDate != null) {
-      final pickedTime = await showTimePicker(
-        context: context,
-        initialTime: TimeOfDay(hour: 10, minute: 0),
-      );
-      if (pickedTime != null) {
-        final combined = DateTime(
-          pickedDate.year,
-          pickedDate.month,
-          pickedDate.day,
-          pickedTime.hour,
-          pickedTime.minute,
-        );
-        setState(() {
-          _dateFrom = combined;
-          print("Date picker ${_dateFrom}");
-        });
-      }
-    } else {
-      print("Picked date is null");
+  void _restorePreviousSearch() {
+    final params = context.read<SearchProvider>().params;
+    if (params != null) {
+      setState(() {
+        _dateFrom = params.checkInDate;
+        _dateTo = params.checkOutDate;
+        _adults = params.guests;
+      });
     }
   }
 
-  void _selectDateTo() async {
+  Future<void> _selectDateFrom() async {
     final now = DateTime.now();
-    final firstDate = DateTime(now.year - 1, now.month, now.day);
-    final lastDate = DateTime(now.year + 1, now.month, now.day);
-    final pickedDate = await showDatePicker(
+    final picked = await showDatePicker(
       context: context,
       initialDate: _dateFrom ?? now,
-      firstDate: firstDate,
-      lastDate: lastDate,
+      firstDate: now,
+      lastDate: DateTime(now.year + 1),
     );
-    if (pickedDate != null) {
-      final pickedTime = await showTimePicker(
+    if (picked != null) {
+      final time = await showTimePicker(
         context: context,
-        initialTime: TimeOfDay(hour: 10, minute: 0),
+        initialTime: const TimeOfDay(hour: 10, minute: 0),
       );
-      if (pickedTime != null) {
-        final combined = DateTime(
-          pickedDate.year,
-          pickedDate.month,
-          pickedDate.day,
-          pickedTime.hour,
-          pickedTime.minute,
-        );
+      if (time != null) {
         setState(() {
-          _dateTo = combined;
-          print("Date picker ${_dateTo}");
+          _dateFrom = DateTime(
+            picked.year,
+            picked.month,
+            picked.day,
+            time.hour,
+            time.minute,
+          );
         });
       }
-    } else {
-      print("Picked date is null");
+    }
+  }
+
+  Future<void> _selectDateTo() async {
+    final now = DateTime.now();
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: _dateTo ?? _dateFrom ?? now,
+      firstDate: now,
+      lastDate: DateTime(now.year + 1),
+    );
+    if (picked != null) {
+      final time = await showTimePicker(
+        context: context,
+        initialTime: const TimeOfDay(hour: 10, minute: 0),
+      );
+      if (time != null) {
+        setState(() {
+          _dateTo = DateTime(
+            picked.year,
+            picked.month,
+            picked.day,
+            time.hour,
+            time.minute,
+          );
+        });
+      }
     }
   }
 
   Future<void> _searchAvailableHotels() async {
     if (_dateFrom == null || _dateTo == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Please select check-in and check-out dates")),
+        const SnackBar(
+          content: Text("Please select check-in and check-out dates"),
+        ),
       );
       return;
     }
 
+    final totalGuests = _adults + _children;
+
+    context.read<SearchProvider>().setParams(
+      SearchParams(
+        checkInDate: _dateFrom!,
+        checkOutDate: _dateTo!,
+        guests: totalGuests,
+      ),
+    );
+
     try {
       final data = await _hotelsProvider.searchAvailableHotels(
-        adults:
-            _selectedPass1, // ili možeš sabrati _selectedPass1 + _selectedPass2
+        cityName: searchQuery.isEmpty ? null : searchQuery,
+        adults: totalGuests,
+        rooms: _rooms,
         checkIn: _dateFrom!,
         checkOut: _dateTo!,
+        minPrice: minPrice,
+        maxPrice: maxPrice,
+        wifi: wifi,
+        parking: parking,
+        pool: pool,
+        sortBy: selectedSort,
       );
 
       if (data.result.isEmpty) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(SnackBar(content: Text("No available hotels found")));
-      } else {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Hotels(result: data)),
-        );
+        ).showSnackBar(const SnackBar(content: Text("No hotels found")));
+        return;
       }
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Hotels(result: data)),
+      ).then((_) => _restorePreviousSearch());
     } catch (e) {
       ScaffoldMessenger.of(
         context,
@@ -175,7 +178,6 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
     }
 
     try {
-      // Backend ti šalje BASE64 ENCODED URL
       final decodedUrl = utf8.decode(base64.decode(base64Image));
       return Image.network(
         decodedUrl,
@@ -201,590 +203,344 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
     return MasterScreen(
       title: "Hotels List",
       child: SingleChildScrollView(
-        child: Container(child: Column(children: [_buildSearch()])),
-      ),
-    );
-  }
-
-  Widget _buildSearch() {
-    return SingleChildScrollView(
-      child: Container(
-        decoration: BoxDecoration(color: const Color.fromRGBO(17, 45, 78, 1)),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SingleChildScrollView(
+        child: Container(
+          color: Theme.of(context).colorScheme.primary,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                SizedBox(height: 20),
-                Text(
-                  "🏨HotelEase",
-                  style: TextStyle(
-                    fontSize: 32,
-                    color: const Color.fromRGBO(255, 255, 255, 1),
-                  ),
+                const SizedBox(height: 20),
+                const Text(
+                  "🏨 HotelEase",
+                  style: TextStyle(fontSize: 32, color: Colors.white),
                 ),
-                SizedBox(height: 30),
-                // Row(
-                //   children: [
-                //     Expanded(
-                //       child: TextField(
-                //         decoration: InputDecoration(labelText: "Name"),
-                //       ),
-                //     ),
-                //     Expanded(child: Text("daddada")),
-                //     ElevatedButton(
-                //       onPressed: () async {
-                //         print("Called");
-                //         result = await _hotelsProvider.get();
-                //         print("data ${result?.result[0].name}");
-                //       },
-                //       child: Text("Search"),
-                //     ),
-                //     ElevatedButton(
-                //       onPressed: () async {
-                //         print("Called");
-                //         var data = await _hotelsProvider.get();
-                //         print("data ${data.result[0].name}");
-                //       },
-                //       child: Text("Add"),
-                //     ),
-                //   ],
-                // ),,
-                DropdownButton<String>(
-                  style: TextStyle(color: Colors.white),
-                  dropdownColor: const Color.fromRGBO(17, 45, 78, 1),
-                  hint: Text('Sort by', style: TextStyle(color: Colors.white)),
-                  value: selectedSort,
-                  items: sortOptions.map((option) {
-                    return DropdownMenuItem(
-                      value: option['value'],
-                      child: Text(option['label']!),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    setState(() => selectedSort = value);
-                  },
-                ),
-                CheckboxListTile(
-                  title: Text(
-                    "Free WiFi",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  value: wifi,
-                  onChanged: (value) => setState(() => wifi = value ?? false),
-                ),
-                CheckboxListTile(
-                  tileColor: const Color.fromRGBO(
-                    15,
-                    30,
-                    70,
-                    1,
-                  ), // boja kada nije selektovano
-                  selectedTileColor: const Color.fromRGBO(15, 30, 70, 1),
-                  title: Text("Parking", style: TextStyle(color: Colors.white)),
-                  value: parking,
-                  onChanged: (value) =>
-                      setState(() => parking = value ?? false),
-                ),
-                CheckboxListTile(
-                  title: Text("Pool", style: TextStyle(color: Colors.white)),
-                  value: pool,
-                  onChanged: (value) => setState(() => pool = value ?? false),
-                ),
-
-                Text("Price", style: TextStyle(color: Colors.white)),
-                RangeSlider(
-                  activeColor: const Color.fromRGBO(15, 30, 70, 1),
-                  inactiveColor: Colors.white,
-                  values: RangeValues(minPrice, maxPrice),
-                  min: 0,
-                  max: 1000,
-                  divisions: 20,
-                  labels: RangeLabels(
-                    '${minPrice.toInt()}',
-                    '${maxPrice.toInt()}',
-                  ),
-                  onChanged: (values) {
-                    setState(() {
-                      minPrice = values.start;
-                      maxPrice = values.end;
-                    });
-                  },
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(50),
-                            topLeft: Radius.circular(50),
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 5,
-                              offset: Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
-                          child: TextField(
-                            onChanged: (value) {
-                              setState(() {
-                                searchQuery = value;
-                              });
-                            },
-                            style: TextStyle(
-                              color: const Color.fromRGBO(17, 45, 78, 1),
-                            ),
-                            decoration: InputDecoration(
-                              hintText: "City ...",
-                              hintStyle: TextStyle(color: Colors.grey),
-                              // prefixIcon: Icon(Icons.search, color: Colors.grey),
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.symmetric(
-                                vertical: 10,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                const SizedBox(height: 20),
+                _buildFilters(),
+                const SizedBox(height: 30),
+                _buildDatePickers(),
+                const SizedBox(height: 20),
+                _buildGuestsAndRooms(),
+                const SizedBox(height: 30),
+                ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 12,
                     ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 8, 8, 8),
-                      child: Container(
-                        height: 67,
-
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(50),
-                            bottomRight: Radius.circular(50),
-                          ),
-                        ),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(50),
-                                bottomRight: Radius.circular(50),
-                              ),
-                            ),
-                          ),
-                          onPressed: () async {
-                            if (_dateFrom == null || _dateTo == null) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    "Please select check-in and check-out dates",
-                                  ),
-                                ),
-                              );
-                              return;
-                            }
-
-                            final data = await _hotelsProvider
-                                .searchAvailableHotels(
-                                  cityName: searchQuery.isEmpty
-                                      ? null
-                                      : searchQuery,
-                                  adults: _selectedPass1 + _selectedPass2,
-                                  rooms: _selectedroom,
-                                  checkIn: _dateFrom!,
-                                  checkOut: _dateTo!,
-                                  minPrice: minPrice,
-                                  maxPrice: maxPrice,
-                                  wifi: wifi,
-                                  parking: parking,
-                                  pool: pool,
-                                  sortBy: selectedSort,
-                                );
-
-                            if (data.result.isEmpty) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text("No hotels found")),
-                              );
-                              return;
-                            }
-
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Hotels(result: data),
-                              ),
-                            );
-                          },
-                          child: Icon(
-                            Icons.search,
-                            color: const Color.fromRGBO(17, 45, 78, 1),
-                            size: 24,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-
-                SizedBox(height: 30),
-
-                Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: _selectDateFrom,
-                        child: Text(
-                          _dateFrom == null
-                              ? 'Check in date'
-                              : formatter.format(_dateFrom!),
-                          style: TextStyle(fontSize: 22, color: Colors.white),
-                        ),
-                      ),
-
-                      IconButton(
-                        onPressed: _selectDateFrom,
-                        icon: Icon(Icons.calendar_month),
-                        iconSize: 50,
-                        color: Colors.white,
-                      ),
-                    ],
+                  ),
+                  onPressed: _searchAvailableHotels,
+                  icon: const Icon(
+                    Icons.search,
+                    color: Color.fromRGBO(17, 45, 78, 1),
+                  ),
+                  label: const Text(
+                    "Search Hotels",
+                    style: TextStyle(color: Color.fromRGBO(17, 45, 78, 1)),
                   ),
                 ),
-
-                SizedBox(height: 15),
-                Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: _selectDateTo,
-                        child: Text(
-                          _dateTo == null
-                              ? 'Check out date'
-                              : formatter.format(_dateTo!),
-                          style: TextStyle(fontSize: 22, color: Colors.white),
-                        ),
-                      ),
-
-                      IconButton(
-                        onPressed: _selectDateTo,
-                        icon: Icon(Icons.calendar_month),
-                        iconSize: 50,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 20,
-                      ),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Adults',
-                            style: TextStyle(fontSize: 22, color: Colors.white),
-                          ),
-                          SizedBox(width: 20),
-                          Container(
-                            width: 50,
-                            child: DropdownButtonFormField<int>(
-                              dropdownColor: Color.fromARGB(255, 11, 13, 26),
-                              value: _selectedPass1,
-                              items: adults
-                                  .map(
-                                    (passenger) => DropdownMenuItem<int>(
-                                      value: passenger,
-                                      child: Text(
-                                        passenger.toString(),
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                  .toList(),
-                              onChanged: (value) {
-                                setState(() {
-                                  _selectedPass1 = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 20,
-                      ),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Children',
-                            style: TextStyle(fontSize: 22, color: Colors.white),
-                          ),
-                          SizedBox(width: 20),
-                          Container(
-                            width: 50,
-                            child: DropdownButtonFormField<int>(
-                              dropdownColor: Color.fromARGB(255, 11, 13, 26),
-                              value: _selectedPass2,
-                              items: adults
-                                  .map(
-                                    (passenger) => DropdownMenuItem<int>(
-                                      value: passenger,
-                                      child: Text(
-                                        passenger.toString(),
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                  .toList(),
-                              onChanged: (value) {
-                                setState(() {
-                                  _selectedPass2 = value!;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20),
-                Text(
-                  'Rooms',
-                  style: TextStyle(fontSize: 22, color: Colors.white),
-                ),
-                SizedBox(width: 20),
-                Container(
-                  width: 50,
-                  child: DropdownButtonFormField<int>(
-                    dropdownColor: Color.fromARGB(255, 11, 13, 26),
-                    value: _selectedroom,
-                    items: rooms
-                        .map(
-                          (passenger) => DropdownMenuItem<int>(
-                            value: passenger,
-                            child: Text(
-                              passenger.toString(),
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ),
-                        )
-                        .toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        _selectedPass2 = value!;
-                      });
-                    },
-                  ),
-                ),
-                SizedBox(height: 20),
-                SizedBox(height: 20),
-                Text(
-                  "Popular Hotels",
-                  style: TextStyle(color: Colors.white, fontSize: 22),
-                ),
-                SizedBox(height: 15),
-                FutureBuilder<List<Hotel>>(
-                  future: _hotelsProvider.getPopularHotels(top: 5),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator(color: Colors.white);
-                    }
-                    if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                      return Text(
-                        "No popular hotels",
-                        style: TextStyle(color: Colors.white),
-                      );
-                    }
-
-                    final hotels = snapshot.data!;
-                    return SizedBox(
-                      height: 220,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: hotels.length,
-                        itemBuilder: (context, index) {
-                          final hotel = hotels[index];
-                          final List<Asset> assets = [];
-                          if (hotel.rooms != null) {
-                            for (var r in hotel.rooms!) {
-                              if (r.assets != null) {
-                                assets.addAll(r.assets!);
-                              }
-                            }
-                          }
-
-                          return Container(
-                            width: 160,
-                            margin: EdgeInsets.all(8),
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => HotelDetailsScreen(
-                                      id: hotel.id,
-                                      name: hotel.name,
-                                      starRating: hotel.starRating,
-                                      price: hotel.price,
-                                      description: hotel.description,
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: assets != null && assets.isNotEmpty
-                                        ? PageView.builder(
-                                            itemCount: assets.length,
-                                            itemBuilder: (context, i) {
-                                              return _buildHotelImage(
-                                                assets[i].image,
-                                              );
-                                            },
-                                          )
-                                        : Image.asset(
-                                            'assets/images/cant_load_image.png',
-                                            fit: BoxFit.cover,
-                                          ),
-                                  ),
-                                  SizedBox(height: 5),
-                                  Text(
-                                    hotel.name ?? "",
-                                    style: TextStyle(color: Colors.white),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  Text(
-                                    "${hotel.starRating} ★",
-                                    style: TextStyle(color: Colors.yellow),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    );
-                  },
-                ),
-                Text(
-                  "Hotels Recommended For You",
-                  style: TextStyle(color: Colors.white, fontSize: 22),
-                ),
-                SizedBox(height: 15),
-                FutureBuilder<List<Hotel>>(
-                  future: _hotelsProvider.getCollaborativeHotels(1, top: 5),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator(color: Colors.white);
-                    }
-                    if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                      return Text(
-                        "No popular hotels",
-                        style: TextStyle(color: Colors.white),
-                      );
-                    }
-
-                    final hotels = snapshot.data!;
-                    return SizedBox(
-                      height: 220,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: hotels.length,
-                        itemBuilder: (context, index) {
-                          final hotel = hotels[index];
-                          final List<Asset> assets = [];
-                          if (hotel.rooms != null) {
-                            for (var r in hotel.rooms!) {
-                              if (r.assets != null) {
-                                assets.addAll(r.assets!);
-                              }
-                            }
-                          }
-
-                          return Container(
-                            width: 160,
-                            margin: EdgeInsets.all(8),
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => HotelDetailsScreen(
-                                      id: hotel.id,
-                                      name: hotel.name,
-                                      starRating: hotel.starRating,
-                                      price: hotel.price,
-                                      description: hotel.description,
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: assets != null && assets.isNotEmpty
-                                        ? PageView.builder(
-                                            itemCount: assets.length,
-                                            itemBuilder: (context, i) {
-                                              return _buildHotelImage(
-                                                assets[i].image,
-                                              );
-                                            },
-                                          )
-                                        : Image.asset(
-                                            'assets/images/cant_load_image.png',
-                                            fit: BoxFit.cover,
-                                          ),
-                                  ),
-                                  SizedBox(height: 5),
-                                  Text(
-                                    hotel.name ?? "",
-                                    style: TextStyle(color: Colors.white),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  Text(
-                                    "${hotel.starRating} ★",
-                                    style: TextStyle(color: Colors.yellow),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    );
-                  },
-                ),
-
-                SizedBox(height: 30),
+                const SizedBox(height: 40),
+                _sectionTitle("🌟 Popular Hotels"),
+                const SizedBox(height: 10),
+                _buildPopularHotels(),
+                const SizedBox(height: 40),
+                _sectionTitle("✨ Recommended For You"),
+                const SizedBox(height: 10),
+                _buildRecommendedHotels(),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _sectionTitle(String title) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 26,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFilters() {
+    return Column(
+      children: [
+        DropdownButton<String>(
+          style: const TextStyle(color: Colors.white),
+          dropdownColor: Theme.of(context).colorScheme.primary,
+          hint: const Text('Sort by', style: TextStyle(color: Colors.white)),
+          value: selectedSort,
+          items: sortOptions.map((option) {
+            return DropdownMenuItem(
+              value: option['value'],
+              child: Text(option['label']!),
+            );
+          }).toList(),
+          onChanged: (value) => setState(() => selectedSort = value),
+        ),
+        CheckboxListTile(
+          title: Text(
+            "Free WiFi",
+            style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+          ),
+          value: wifi,
+          onChanged: (v) => setState(() => wifi = v ?? false),
+        ),
+        CheckboxListTile(
+          title: Text(
+            "Parking",
+            style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+          ),
+          value: parking,
+          onChanged: (v) => setState(() => parking = v ?? false),
+        ),
+        CheckboxListTile(
+          title: Text(
+            "Pool",
+            style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+          ),
+          value: pool,
+          onChanged: (v) => setState(() => pool = v ?? false),
+        ),
+        Text(
+          "Price Range",
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        ),
+        RangeSlider(
+          activeColor: Colors.blueAccent,
+          inactiveColor: Colors.white24,
+          values: RangeValues(minPrice, maxPrice),
+          min: 0,
+          max: 1000,
+          divisions: 20,
+          labels: RangeLabels('${minPrice.toInt()}', '${maxPrice.toInt()}'),
+          onChanged: (values) => setState(() {
+            minPrice = values.start;
+            maxPrice = values.end;
+          }),
+        ),
+        const SizedBox(height: 10),
+        TextField(
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.white,
+            hintText: "City...",
+            prefixIcon: Icon(
+              Icons.location_city,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
+          ),
+          onChanged: (v) => setState(() => searchQuery = v),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDatePickers() {
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: _selectDateFrom,
+          child: Text(
+            _dateFrom == null ? "Check-in Date" : formatter.format(_dateFrom!),
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onPrimary,
+              fontSize: 20,
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        GestureDetector(
+          onTap: _selectDateTo,
+          child: Text(
+            _dateTo == null ? "Check-out Date" : formatter.format(_dateTo!),
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onPrimary,
+              fontSize: 20,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildGuestsAndRooms() {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _dropdown(
+              "Adults",
+              _adults,
+              (v) => setState(() => _adults = v!),
+              startFrom: 1,
+            ),
+            _dropdown(
+              "Children",
+              _children,
+              (v) => setState(() => _children = v!),
+              startFrom: 0,
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        _dropdown(
+          "Rooms",
+          _rooms,
+          (v) => setState(() => _rooms = v!),
+          startFrom: 1,
+        ),
+      ],
+    );
+  }
+
+  Widget _dropdown(
+    String label,
+    int value,
+    ValueChanged<int?> onChanged, {
+    int startFrom = 1,
+  }) {
+    return Column(
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary,
+            fontSize: 20,
+          ),
+        ),
+        DropdownButton<int>(
+          dropdownColor: Theme.of(context).colorScheme.primary,
+          value: value,
+          items: List.generate(10 - startFrom + 1, (i) => i + startFrom)
+              .map(
+                (num) => DropdownMenuItem<int>(
+                  value: num,
+                  child: Text(
+                    num.toString(),
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
+              )
+              .toList(),
+          onChanged: onChanged,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPopularHotels() {
+    return FutureBuilder<List<Hotel>>(
+      future: _hotelsProvider.getPopularHotels(top: 5),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator(
+            color: Theme.of(context).colorScheme.onPrimary,
+          );
+        }
+        if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          return Text(
+            "No popular hotels",
+            style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+          );
+        }
+        return _horizontalHotelList(snapshot.data!);
+      },
+    );
+  }
+
+  Widget _buildRecommendedHotels() {
+    return FutureBuilder<List<Hotel>>(
+      future: _hotelsProvider.getCollaborativeHotels(1, top: 5),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator(
+            color: Theme.of(context).colorScheme.onPrimary,
+          );
+        }
+        if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          return Text(
+            "No recommendations",
+            style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+          );
+        }
+        return _horizontalHotelList(snapshot.data!);
+      },
+    );
+  }
+
+  Widget _horizontalHotelList(List<Hotel> hotels) {
+    return SizedBox(
+      height: 220,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: hotels.length,
+        itemBuilder: (context, index) {
+          final hotel = hotels[index];
+          final List<Asset> assets = [];
+          if (hotel.rooms != null) {
+            for (var r in hotel.rooms!) {
+              if (r.assets != null) assets.addAll(r.assets!);
+            }
+          }
+          return Container(
+            width: 160,
+            margin: const EdgeInsets.all(8),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => HotelDetailsScreen(
+                      id: hotel.id,
+                      name: hotel.name,
+                      starRating: hotel.starRating,
+                      price: hotel.price,
+                      description: hotel.description,
+                      hotel: hotel,
+                    ),
+                  ),
+                ).then((_) => _restorePreviousSearch());
+              },
+              child: Column(
+                children: [
+                  Expanded(
+                    child: assets.isNotEmpty
+                        ? PageView.builder(
+                            itemCount: assets.length,
+                            itemBuilder: (context, i) =>
+                                _buildHotelImage(assets[i].image),
+                          )
+                        : Image.asset(
+                            'assets/images/cant_load_image.png',
+                            fit: BoxFit.cover,
+                          ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    hotel.name ?? "Hotel",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                  ),
+                  Text(
+                    "${hotel.starRating} ★",
+                    style: const TextStyle(color: Colors.yellow),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

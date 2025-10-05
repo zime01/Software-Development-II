@@ -21,10 +21,20 @@ class PaymentsProvider extends BaseProvider<Payment> {
     return PaymentIntentResult.fromJson(rsp);
   }
 
-  Future<Map<String, dynamic>?> updateStripeStatus(
-    String paymentIntentId,
-  ) async {
-    // Add "Payments/" before the endpoint
-    return await post("Payments/stripe-update-status/$paymentIntentId", {});
+  Future<Map<String, dynamic>?> updateStripeStatus({
+    required int paymentId,
+    required String newStatus,
+    String? providerPaymentId,
+  }) async {
+    final body = {
+      "paymentId": paymentId,
+      "newStatus": newStatus, // npr. "succeeded" ili "failed"
+      if (providerPaymentId != null) "providerPaymentId": providerPaymentId,
+    };
+
+    final rsp = await post("Payments/update-status", body);
+
+    if (rsp == null) return null;
+    return rsp as Map<String, dynamic>;
   }
 }

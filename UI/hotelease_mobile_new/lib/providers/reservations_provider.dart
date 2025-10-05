@@ -19,4 +19,8 @@ class ReservationsProvider extends BaseProvider<Reservation> {
     SearchResult<Reservation> result = await super.get();
     return result.result; // vraća čistu listu
   }
+
+  Future<void> cancelReservation(int reservationId) async {
+    await super.put("Reservations/cancel/$reservationId");
+  }
 }

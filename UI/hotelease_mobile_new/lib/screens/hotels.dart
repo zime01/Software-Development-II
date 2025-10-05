@@ -6,6 +6,7 @@ import 'package:hotelease_mobile_new/models/hotel.dart';
 import 'package:hotelease_mobile_new/models/search_result.dart';
 import 'package:hotelease_mobile_new/providers/assets_provider.dart';
 import 'package:hotelease_mobile_new/providers/hotels_provider.dart';
+import 'package:hotelease_mobile_new/providers/reviews_provider.dart';
 import 'package:hotelease_mobile_new/screens/hotel_details_screen.dart';
 import 'package:hotelease_mobile_new/screens/master_screen.dart';
 
@@ -23,6 +24,8 @@ class Hotels extends StatefulWidget {
 class _HotelsState extends State<Hotels> {
   late AssetsProvider _assetsProvider;
   late HotelsProvider _hotelsProvider;
+  late ReviewsProvider _reviewsProvider;
+  final Map<int, double> _hotelRatings = {};
 
   final Map<int, List<Asset>> _hotelAssets = {};
   final Map<int, PageController> _pageControllers = {};
@@ -42,6 +45,7 @@ class _HotelsState extends State<Hotels> {
     super.didChangeDependencies();
     _assetsProvider = context.read<AssetsProvider>();
     _hotelsProvider = context.read<HotelsProvider>();
+    _reviewsProvider = context.read<ReviewsProvider>();
   }
 
   @override
@@ -89,6 +93,16 @@ class _HotelsState extends State<Hotels> {
 
     await Future.wait(
       widget.result!.result.map((hotel) async {
+        final reviews = await _reviewsProvider.getByHotelId(hotel.id ?? 0);
+
+        if (reviews.isNotEmpty) {
+          final avg =
+              reviews.map((r) => r.rating).reduce((a, b) => a + b) /
+              reviews.length;
+          _hotelRatings[hotel.id ?? 0] = avg;
+        } else {
+          _hotelRatings[hotel.id ?? 0] = 0;
+        }
         try {
           final assets = await _assetsProvider.getAssetsByHotelId(
             hotel.id ?? 0,
@@ -195,7 +209,7 @@ class _HotelsState extends State<Hotels> {
                   child: DropdownButtonFormField<String>(
                     style: TextStyle(color: Colors.white),
                     focusColor: const Color.fromRGBO(15, 30, 70, 1),
-                    dropdownColor: const Color.fromRGBO(17, 45, 78, 1),
+                    dropdownColor: Theme.of(context).colorScheme.primary,
                     value: selectedSort,
                     decoration: InputDecoration(
                       labelText: "Sort by",
@@ -226,7 +240,7 @@ class _HotelsState extends State<Hotels> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: DropdownButtonFormField<String>(
-                    dropdownColor: const Color.fromRGBO(17, 45, 78, 1),
+                    dropdownColor: Theme.of(context).colorScheme.primary,
                     value: selectedFilter,
                     decoration: InputDecoration(
                       labelText: "Filter by",
@@ -299,7 +313,7 @@ class _HotelsState extends State<Hotels> {
                     horizontal: 12,
                     vertical: 8,
                   ),
-                  color: const Color.fromRGBO(15, 30, 70, 1),
+                  color: Theme.of(context).colorScheme.secondary,
                   child: InkWell(
                     onTap: () {
                       Navigator.of(context).push(
@@ -310,6 +324,7 @@ class _HotelsState extends State<Hotels> {
                             price: hotel.price,
                             description: hotel.description,
                             id: hotel.id,
+                            hotel: hotel,
                           ),
                         ),
                       );
@@ -334,8 +349,10 @@ class _HotelsState extends State<Hotels> {
                                 children: [
                                   Text(
                                     hotel.name ?? "Unknown Hotel",
-                                    style: const TextStyle(
-                                      color: Colors.white,
+                                    style: TextStyle(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onPrimary,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20,
                                     ),
@@ -385,23 +402,73 @@ class _HotelsState extends State<Hotels> {
                                 ],
                               ),
                               const SizedBox(height: 12),
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.location_on,
+                                    color: Colors.red,
+                                    size: 20,
+                                  ),
+                                  Text(
+                                    "${hotel.address ?? "Unknown City"}",
+                                    style: TextStyle(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onPrimary,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 12),
+                              if (_hotelRatings.containsKey(hotel.id))
+                                Row(
+                                  children: [
+                                    Text(
+                                      "Reviews",
+                                      style: TextStyle(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onPrimary,
+                                      ),
+                                    ),
+                                    const Icon(
+                                      Icons.star,
+                                      color: Colors.amber,
+                                      size: 18,
+                                    ),
+                                    const SizedBox(width: 4),
+                                    Text(
+                                      "${_hotelRatings[hotel.id]!.toStringAsFixed(1)}/5",
+                                      style: TextStyle(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onPrimary,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              const SizedBox(height: 12),
                               Center(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "${hotel.price}",
-                                      style: const TextStyle(
+                                      "${hotel.price?.toStringAsFixed(2)} \$",
+                                      style: TextStyle(
                                         fontSize: 24,
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.white,
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onPrimary,
                                       ),
                                     ),
-                                    const Text(
+                                    Text(
                                       "/night",
                                       style: TextStyle(
                                         fontSize: 22,
-                                        color: Colors.white,
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onPrimary,
                                       ),
                                     ),
                                   ],

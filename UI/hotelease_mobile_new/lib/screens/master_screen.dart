@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hotelease_mobile_new/providers/theme_provider.dart';
 import 'package:hotelease_mobile_new/screens/hotels_list_screen.dart';
 import 'package:hotelease_mobile_new/screens/users_screen.dart';
+import 'package:provider/provider.dart';
 
 class MasterScreen extends StatefulWidget {
   final Widget? child;
@@ -17,7 +19,7 @@ class _MasterScreenState extends State<MasterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(17, 45, 78, 1),
+      backgroundColor: Theme.of(context).colorScheme.primary,
 
       drawer: Drawer(
         backgroundColor: const Color.fromRGBO(15, 41, 70, 1),
@@ -25,12 +27,23 @@ class _MasterScreenState extends State<MasterScreen> {
         child: ListView(
           children: [
             ListTile(
+              leading: Icon(Icons.arrow_back),
               title: const Text("Back", style: TextStyle(color: Colors.white)),
               onTap: () {
                 Navigator.of(context).pop();
               },
             ),
             ListTile(
+              leading: const Icon(Icons.home, color: Colors.white),
+              title: const Text("Home", style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => HotelsListScreen()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.search),
               title: const Text(
                 "Search hotels",
                 style: TextStyle(color: Colors.white),
@@ -42,6 +55,7 @@ class _MasterScreenState extends State<MasterScreen> {
               },
             ),
             ListTile(
+              leading: Icon(Icons.verified_user),
               title: const Text("User", style: TextStyle(color: Colors.white)),
               onTap: () {
                 Navigator.of(
@@ -55,14 +69,30 @@ class _MasterScreenState extends State<MasterScreen> {
 
       appBar: AppBar(
         automaticallyImplyLeading: false, // sprječava dupli hamburger
-        title:
+        title: Row(
+          children: [
             widget.title_widget ??
-            Text(
-              widget.title ?? "",
-              style: const TextStyle(color: Colors.white),
+                Text(
+                  widget.title ?? "",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                ),
+            Switch(
+              value: Provider.of<ThemeProvider>(context).isDarkMode,
+              onChanged: (val) {
+                Provider.of<ThemeProvider>(
+                  context,
+                  listen: false,
+                ).toggleTheme(val);
+              },
             ),
-        backgroundColor: const Color.fromRGBO(17, 45, 78, 1),
-        iconTheme: const IconThemeData(color: Colors.white),
+          ],
+        ),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        iconTheme: IconThemeData(
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
 
         // back dugme samo ako se može vratiti
         leading: Navigator.canPop(context)

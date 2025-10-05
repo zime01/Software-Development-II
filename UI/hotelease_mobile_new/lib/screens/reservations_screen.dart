@@ -59,6 +59,35 @@ class _ReservationScreenState extends State<ReservationScreen> {
 
   double get totalCost => roomCost + servicesCost;
 
+  Widget _buildInfoRow(IconData icon, String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Row(
+        children: [
+          Icon(
+            icon,
+            color: Theme.of(context).colorScheme.onPrimary,
+            size: 20,
+          ), // ikonica
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              label,
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+            ),
+          ),
+          Text(
+            value,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     String formattedCheckIn = DateFormat(
@@ -76,45 +105,59 @@ class _ReservationScreenState extends State<ReservationScreen> {
           children: [
             Text(
               "${widget.hotelName}",
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
             ),
             const SizedBox(height: 8),
             Text(
               "${widget.room.name}",
-              style: const TextStyle(fontSize: 20, color: Colors.white),
-            ),
-            Text(
-              "Capacity: ${widget.room.capacity}",
-              style: const TextStyle(color: Colors.white),
-            ),
-            Text(
-              "Price per night: \$${widget.room.pricePerNight}",
-              style: const TextStyle(color: Colors.white),
+              style: TextStyle(
+                fontSize: 20,
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
             ),
             const Divider(),
-            Text(
-              "Dates: $formattedCheckIn → $formattedCheckOut",
-              style: const TextStyle(color: Colors.white),
+            _buildInfoRow(Icons.bed, "Capacity", "${widget.room.capacity}"),
+            _buildInfoRow(
+              Icons.attach_money,
+              "Price per night",
+              "\$${widget.room.pricePerNight!.toStringAsFixed(2)}",
             ),
-            Text(
-              "Nights: $nights",
-              style: const TextStyle(color: Colors.white),
+            _buildInfoRow(
+              Icons.calendar_today,
+              "Dates",
+              "$formattedCheckIn → $formattedCheckOut",
             ),
+            _buildInfoRow(Icons.night_shelter, "Nights", "$nights"),
             const Divider(),
             Row(
               children: [
-                const Text("Guests: ", style: TextStyle(color: Colors.white)),
+                Icon(
+                  Icons.group,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  "Guests: ",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                ),
                 IconButton(
                   onPressed: () {
                     if (guests > 1) setState(() => guests--);
                   },
                   icon: const Icon(Icons.remove),
                 ),
-                Text("$guests", style: const TextStyle(color: Colors.white)),
+                Text(
+                  "$guests",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                ),
                 IconButton(
                   onPressed: () => setState(() => guests++),
                   icon: const Icon(Icons.add),
@@ -122,16 +165,18 @@ class _ReservationScreenState extends State<ReservationScreen> {
               ],
             ),
             const Divider(),
-            const Text(
+            Text(
               "Additional Services",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
             ),
             ...availableServices.map((s) {
               bool selected = selectedServices.contains(s);
               return CheckboxListTile(
                 title: Text(
                   "${s.name} (\$${s.price})",
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
                 ),
                 value: selected,
                 onChanged: (val) {
@@ -146,26 +191,27 @@ class _ReservationScreenState extends State<ReservationScreen> {
               );
             }),
             const Divider(),
-            Text(
-              "Room cost: \$${roomCost.toStringAsFixed(2)}",
-              style: const TextStyle(color: Colors.white),
+            _buildInfoRow(
+              Icons.meeting_room,
+              "Room cost",
+              "\$${roomCost.toStringAsFixed(2)}",
             ),
-            Text(
-              "Services: \$${servicesCost.toStringAsFixed(2)}",
-              style: const TextStyle(color: Colors.white),
+            _buildInfoRow(
+              Icons.miscellaneous_services,
+              "Services",
+              "\$${servicesCost.toStringAsFixed(2)}",
             ),
-            Text(
-              "Total: \$${totalCost.toStringAsFixed(2)}",
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+            _buildInfoRow(
+              Icons.payments,
+              "Total",
+              "\$${totalCost.toStringAsFixed(2)}",
             ),
             const SizedBox(height: 40),
             Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.white),
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
                 borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
               child: ElevatedButton(
@@ -219,13 +265,15 @@ class _ReservationScreenState extends State<ReservationScreen> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(15, 30, 70, 1),
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   textStyle: const TextStyle(fontSize: 18),
                 ),
-                child: const Text(
+                child: Text(
                   "Continue to payment",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
                 ),
               ),
             ),

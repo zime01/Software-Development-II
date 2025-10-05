@@ -97,4 +97,10 @@ class HotelsProvider extends BaseProvider<Hotel> {
         .map((e) => Hotel.fromJson(e))
         .toList();
   }
+
+  @override
+  Future<Hotel> getById(int id) async {
+    final data = await super.getById(id); // ovo vraća dynamic
+    return Hotel.fromJson(data); // sada imamo Future<Hotel>
+  }
 }

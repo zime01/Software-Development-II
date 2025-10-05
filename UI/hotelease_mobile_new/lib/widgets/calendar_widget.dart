@@ -7,11 +7,15 @@ import 'package:table_calendar/table_calendar.dart';
 class CalendarWidget extends StatefulWidget {
   final int roomId;
   final Function(DateTime start, DateTime end) onDateRangeSelected;
+  final DateTime? initialCheckInDate;
+  final DateTime? initialCheckOutDate;
 
   const CalendarWidget({
     super.key,
     required this.roomId,
     required this.onDateRangeSelected,
+    this.initialCheckInDate,
+    this.initialCheckOutDate,
   });
 
   @override
@@ -27,6 +31,19 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   DateTime? _rangeStart;
   DateTime? _rangeEnd;
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode.toggledOff;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _rangeStart = widget.initialCheckInDate;
+    _rangeEnd = widget.initialCheckOutDate;
+    _rangeSelectionMode = (_rangeStart != null && _rangeEnd != null)
+        ? RangeSelectionMode.toggledOn
+        : RangeSelectionMode.toggledOff;
+
+    _focusedDay = _rangeStart ?? DateTime.now();
+  }
 
   @override
   void didChangeDependencies() {
@@ -84,7 +101,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
         _rangeEnd = selectedDay;
         _rangeSelectionMode = RangeSelectionMode.toggledOn;
 
-        // Pozovi callback kad je range kompletan
         widget.onDateRangeSelected(_rangeStart!, _rangeEnd!);
       } else {
         _rangeStart = selectedDay;

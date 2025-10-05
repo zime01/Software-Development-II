@@ -37,6 +37,21 @@ namespace hotelEase.Services
             return query;
         }
 
+        public override Model.Room GetById(int id)
+        {
+            var room = Context.Rooms
+                .Include(r => r.Assets)
+                .Include(r => r.Hotel)
+                .FirstOrDefault(r => r.Id == id);
+
+            if (room == null)
+                return null;
+
+            return Mapper.Map<Model.Room>(room);
+        }
+
+
+
         public List<Model.Room> GetRoomByHotel(int hotelId)
         {
             var query = Context.Rooms.Include(x=>x.Assets).AsQueryable();

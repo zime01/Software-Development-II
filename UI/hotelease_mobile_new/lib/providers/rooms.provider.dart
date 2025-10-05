@@ -7,7 +7,13 @@ class RoomsProvider extends BaseProvider<Room> {
   @override
   Room fromJson(data) => Room.fromJson(data);
 
-  Future<List<Room>> getRoomsByHotelId(int hotelId) async {
+  Future<List<Room>> getRoomsByHotelId(
+    int hotelId, {
+    DateTime? checkInDate,
+    DateTime? checkOutDate,
+    int? guests,
+  }) async {
+    // Ako kasnije dodaš filtere na API-u, možeš ih ovdje prosijediti kao query parametre
     return await getList("Rooms/by-hotel/$hotelId");
   }
 

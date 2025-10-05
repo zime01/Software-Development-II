@@ -74,5 +74,24 @@ namespace hotelEase.API.Controllers
             return Ok(updated);
         }
 
+        [HttpPut("cancel/{reservationId}")]
+        public IActionResult CancelReservation(int reservationId)
+        {
+            var reservation = _context.Reservations.FirstOrDefault(r => r.Id == reservationId);
+            if (reservation == null)
+                return NotFound(new { message = "Reservation not found" });
+
+            if (reservation.Status == "Canceled")
+                return BadRequest(new { message = "Reservation already canceled" });
+
+            reservation.Status = "Canceled";
+            reservation.IsDeleted = true;
+            reservation.DeletedTime = DateTime.Now;
+
+            _context.SaveChanges();
+
+            return Ok(new { message = "Reservation canceled successfully" });
+        }
+
     }
 }
