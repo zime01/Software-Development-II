@@ -27,7 +27,7 @@ class _MasterScreenState extends State<MasterScreen> {
         child: ListView(
           children: [
             ListTile(
-              leading: Icon(Icons.arrow_back),
+              leading: Icon(Icons.arrow_back, color: Colors.white),
               title: const Text("Back", style: TextStyle(color: Colors.white)),
               onTap: () {
                 Navigator.of(context).pop();
@@ -43,7 +43,7 @@ class _MasterScreenState extends State<MasterScreen> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.search),
+              leading: Icon(Icons.search, color: Colors.white),
               title: const Text(
                 "Search hotels",
                 style: TextStyle(color: Colors.white),
@@ -55,7 +55,7 @@ class _MasterScreenState extends State<MasterScreen> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.verified_user),
+              leading: Icon(Icons.verified_user, color: Colors.white),
               title: const Text("User", style: TextStyle(color: Colors.white)),
               onTap: () {
                 Navigator.of(

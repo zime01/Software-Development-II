@@ -131,9 +131,12 @@ class _ManagerRoomTypesScreenState extends State<ManagerRoomTypesScreen> {
                 );
               },
             ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _openForm(),
-        child: const Icon(Icons.add),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(right: 100),
+        child: FloatingActionButton(
+          onPressed: () => _openForm(),
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }

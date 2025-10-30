@@ -309,8 +309,8 @@ class _UsersScreenState extends State<UsersScreen>
           style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
         ),
         bottom: TabBar(
-          labelColor: Colors.white,
-          unselectedLabelColor: Colors.white,
+          labelColor: Theme.of(context).colorScheme.onPrimary,
+          unselectedLabelColor: Theme.of(context).colorScheme.onPrimary,
           controller: _tabController,
           tabs: const [
             Tab(text: "Profile"),
@@ -366,7 +366,12 @@ class _UsersScreenState extends State<UsersScreen>
                     const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: _updateProfile,
-                      child: const Text("Save"),
+                      child: Text(
+                        "Save",
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                      ),
                     ),
                   ],
                 ),

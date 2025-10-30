@@ -47,6 +47,7 @@ class _RoomTypesScreenState extends State<RoomTypesScreen> {
               children: [
                 Expanded(
                   child: TextField(
+                    style: TextStyle(color: Colors.white),
                     controller: _nameController,
                     decoration: const InputDecoration(
                       labelText: "Room Type Name",

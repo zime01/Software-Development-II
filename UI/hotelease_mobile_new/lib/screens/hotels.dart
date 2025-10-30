@@ -207,13 +207,17 @@ class _HotelsState extends State<Hotels> {
               children: [
                 Expanded(
                   child: DropdownButtonFormField<String>(
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
                     focusColor: const Color.fromRGBO(15, 30, 70, 1),
                     dropdownColor: Theme.of(context).colorScheme.primary,
                     value: selectedSort,
                     decoration: InputDecoration(
                       labelText: "Sort by",
-                      labelStyle: TextStyle(color: Colors.white),
+                      labelStyle: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
                       // filled: true,
                       // fillColor: Colors.white,
                     ),
@@ -244,51 +248,65 @@ class _HotelsState extends State<Hotels> {
                     value: selectedFilter,
                     decoration: InputDecoration(
                       labelText: "Filter by",
-                      labelStyle: TextStyle(color: Colors.white),
+                      labelStyle: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
                       // filled: true,
                       // fillColor: Colors.white,
                     ),
-                    items: const [
+                    items: [
                       DropdownMenuItem(
                         value: "wifi",
                         child: Text(
                           "WiFi",
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "parking",
                         child: Text(
                           "Parking",
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "pool",
                         child: Text(
                           "Pool",
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "bar",
                         child: Text(
                           "Bar",
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "fitness",
                         child: Text(
                           "Fitness",
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
                         ),
                       ),
                       DropdownMenuItem(
                         value: "spa",
                         child: Text(
                           "Spa",
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
                         ),
                       ),
                     ],

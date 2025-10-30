@@ -91,9 +91,12 @@ class _ManagerRoomsScreenState extends State<ManagerRoomsScreen> {
                 );
               },
             ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _openRoomForm(),
-        child: const Icon(Icons.add),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(right: 50.0),
+        child: FloatingActionButton(
+          onPressed: () => _openRoomForm(),
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }

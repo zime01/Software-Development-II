@@ -39,19 +39,19 @@ class AdminDashboardScreen extends StatelessWidget {
               );
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.bed, color: Colors.orange),
-            title: const Text(
-              "Manage Room Types",
-              style: TextStyle(color: Colors.white),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const RoomTypesScreen()),
-              );
-            },
-          ),
+          // ListTile(
+          //   leading: const Icon(Icons.bed, color: Colors.orange),
+          //   title: const Text(
+          //     "Manage Room Types",
+          //     style: TextStyle(color: Colors.white),
+          //   ),
+          //   onTap: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(builder: (_) => const RoomTypesScreen()),
+          //     );
+          //   },
+          // ),
         ],
       ),
     );

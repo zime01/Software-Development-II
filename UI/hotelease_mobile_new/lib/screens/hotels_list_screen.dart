@@ -210,9 +210,12 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
             child: Column(
               children: [
                 const SizedBox(height: 20),
-                const Text(
+                Text(
                   "🏨 HotelEase",
-                  style: TextStyle(fontSize: 32, color: Colors.white),
+                  style: TextStyle(
+                    fontSize: 32,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 _buildFilters(),
@@ -260,8 +263,8 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
       alignment: Alignment.centerLeft,
       child: Text(
         title,
-        style: const TextStyle(
-          color: Colors.white,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.onPrimary,
           fontSize: 26,
           fontWeight: FontWeight.bold,
         ),
@@ -273,7 +276,7 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
     return Column(
       children: [
         DropdownButton<String>(
-          style: const TextStyle(color: Colors.white),
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
           dropdownColor: Theme.of(context).colorScheme.primary,
           hint: const Text('Sort by', style: TextStyle(color: Colors.white)),
           value: selectedSort,
@@ -328,10 +331,15 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
         ),
         const SizedBox(height: 10),
         TextField(
+          style: TextStyle(color: Color.fromRGBO(17, 45, 78, 1)),
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,
             hintText: "City...",
+            labelStyle: TextStyle(
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
+
             prefixIcon: Icon(
               Icons.location_city,
               color: Theme.of(context).colorScheme.primary,
@@ -427,7 +435,9 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
                   value: num,
                   child: Text(
                     num.toString(),
-                    style: const TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
                   ),
                 ),
               )
