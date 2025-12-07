@@ -8,6 +8,7 @@ import 'package:hotelease_mobile_new/providers/assets_provider.dart';
 import 'package:hotelease_mobile_new/providers/hotels_provider.dart';
 import 'package:hotelease_mobile_new/screens/hotel_details_screen.dart';
 import 'package:hotelease_mobile_new/screens/master_screen.dart';
+import 'package:hotelease_mobile_new/utils/USDformat.dart';
 
 import 'package:provider/provider.dart';
 
@@ -150,18 +151,23 @@ class _HotelsState extends State<Hotels> {
         controller: controller,
         itemCount: assets.length,
         itemBuilder: (context, index) {
-          final imageString = assets[index].image;
-          if (imageString == null || imageString.isEmpty) {
+          final imageStr = assets[index].image;
+
+          if (imageStr == null || imageStr.isEmpty) {
             return Image.asset(
               'assets/images/cant_load_image.png',
               fit: BoxFit.cover,
             );
           }
+
           try {
-            final decodedUrl = utf8.decode(base64.decode(imageString));
-            if (decodedUrl.startsWith('http')) {
+            final decoded = base64.decode(imageStr);
+            final asString = utf8.decode(decoded, allowMalformed: true);
+
+            if (asString.startsWith('http://') ||
+                asString.startsWith('https://')) {
               return Image.network(
-                decodedUrl,
+                asString,
                 fit: BoxFit.cover,
                 errorBuilder: (_, __, ___) => Image.asset(
                   'assets/images/cant_load_image.png',
@@ -169,11 +175,16 @@ class _HotelsState extends State<Hotels> {
                 ),
               );
             }
-          } catch (_) {}
-          return Image.asset(
-            'assets/images/cant_load_image.png',
-            fit: BoxFit.cover,
-          );
+
+            // Raw slika
+            return Image.memory(decoded, fit: BoxFit.cover);
+          } catch (e) {
+            print("Image decode error: $e");
+            return Image.asset(
+              'assets/images/cant_load_image.png',
+              fit: BoxFit.cover,
+            );
+          }
         },
       ),
     );
@@ -308,11 +319,12 @@ class _HotelsState extends State<Hotels> {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (_) => HotelDetailsScreen(
+                            hotel: hotel,
                             name: hotel.name,
                             starRating: hotel.starRating,
                             price: hotel.price,
                             description: hotel.description,
-                            id: hotel.id,
+                            id: hotel.id!,
                           ),
                         ),
                       );
@@ -393,7 +405,7 @@ class _HotelsState extends State<Hotels> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "${hotel.price}",
+                                      "${formatPrice(hotel.price)}",
                                       style: const TextStyle(
                                         fontSize: 24,
                                         fontWeight: FontWeight.bold,

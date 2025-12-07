@@ -16,7 +16,7 @@ namespace hotelEase.Model.Requests
 
         public string? MimeType { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
         public int HotelId { get; set; }
 

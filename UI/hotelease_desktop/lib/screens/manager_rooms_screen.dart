@@ -1,15 +1,21 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
-import 'package:hotelease_mobile_new/models/hotel.dart';
+import 'package:hotelease_mobile_new/models/asset.dart';
 import 'package:hotelease_mobile_new/models/room.dart';
 import 'package:hotelease_mobile_new/models/room_type.dart';
-import 'package:hotelease_mobile_new/providers/hotels_provider.dart';
+import 'package:hotelease_mobile_new/providers/assets_provider.dart';
 import 'package:hotelease_mobile_new/providers/room_type_provider.dart';
 import 'package:hotelease_mobile_new/providers/rooms.provider.dart';
 import 'package:hotelease_mobile_new/screens/master_screen.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class ManagerRoomsScreen extends StatefulWidget {
-  const ManagerRoomsScreen({super.key});
+  final int hotelId;
+  const ManagerRoomsScreen({super.key, required this.hotelId});
 
   @override
   State<ManagerRoomsScreen> createState() => _ManagerRoomsScreenState();
@@ -26,18 +32,18 @@ class _ManagerRoomsScreenState extends State<ManagerRoomsScreen> {
   }
 
   Future<void> _loadRooms() async {
+    setState(() => isLoading = true);
     try {
       var provider = context.read<RoomsProvider>();
-      var data = await provider.getRooms();
-
+      var data = await provider.getRoomsByHotelId(widget.hotelId);
       setState(() {
         rooms = data;
         isLoading = false;
       });
-    } catch (e) {
-      setState(() {
-        isLoading = false;
-      });
+      print("Rooms loaded: ${rooms.length}");
+    } catch (e, st) {
+      setState(() => isLoading = false);
+      print("Error loading rooms: $e\n$st");
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text("Error loading rooms: $e")));
@@ -47,9 +53,43 @@ class _ManagerRoomsScreenState extends State<ManagerRoomsScreen> {
   void _openRoomForm([Room? room]) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => RoomFormScreen(room: room)),
+      MaterialPageRoute(
+        builder: (_) => RoomFormScreen(room: room, hotelId: widget.hotelId),
+      ),
     ).then((_) => _loadRooms());
   }
+
+  Future<void> _deleteRoom(int roomId) async {
+    try {
+      await context.read<RoomsProvider>().delete(roomId);
+      print("Deleted room id: $roomId");
+      _loadRooms();
+    } catch (e, st) {
+      print("Error deleting room: $e\n$st");
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Error deleting room: $e")));
+    }
+  }
+
+  Uint8List? tryDecodeBase64(String? base64Str) {
+    if (base64Str == null || base64Str.isEmpty) return null;
+    try {
+      if (base64Str.startsWith('data:image')) {
+        base64Str = base64Str.split(',').last;
+      }
+      return base64Decode(base64Str);
+    } catch (e, st) {
+      print("Error decoding Base64 image: $e\n$st");
+      return null;
+    }
+  }
+
+  bool _roomHasImage(Room room) =>
+      room.assets != null &&
+      room.assets!.isNotEmpty &&
+      room.assets!.first.image != null &&
+      room.assets!.first.image!.isNotEmpty;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +106,12 @@ class _ManagerRoomsScreenState extends State<ManagerRoomsScreen> {
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : rooms.isEmpty
-          ? const Center(child: Text("No rooms available"))
+          ? const Center(
+              child: Text(
+                "No rooms available",
+                style: TextStyle(color: Colors.white),
+              ),
+            )
           : ListView.builder(
               itemCount: rooms.length,
               itemBuilder: (context, index) {
@@ -74,18 +119,48 @@ class _ManagerRoomsScreenState extends State<ManagerRoomsScreen> {
                 return Card(
                   color: const Color.fromRGBO(15, 41, 70, 1),
                   child: ListTile(
-                    leading: const Icon(Icons.bed, color: Colors.white),
+                    leading: _roomHasImage(room)
+                        ? Builder(
+                            builder: (_) {
+                              final bytes = tryDecodeBase64(
+                                room.assets!.first.image,
+                              );
+                              if (bytes == null) {
+                                print("Invalid image for room id ${room.id}");
+                                return const Icon(
+                                  Icons.bed,
+                                  color: Colors.white,
+                                );
+                              }
+                              return Image.memory(
+                                bytes,
+                                width: 50,
+                                height: 50,
+                                fit: BoxFit.cover,
+                              );
+                            },
+                          )
+                        : const Icon(Icons.bed, color: Colors.white),
                     title: Text(
-                      "Room #${room.id}",
-                      style: TextStyle(color: Colors.white),
+                      room.name ?? "Room #${room.id}",
+                      style: const TextStyle(color: Colors.white),
                     ),
                     subtitle: Text(
-                      "Type: ${room.name} | Price: ${room.pricePerNight} €",
-                      style: TextStyle(color: Colors.grey),
+                      "Capacity: ${room.capacity ?? '-'} | Price: ${room.pricePerNight ?? '-'} €",
+                      style: const TextStyle(color: Colors.grey),
                     ),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.edit, color: Colors.white),
-                      onPressed: () => _openRoomForm(room),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.edit, color: Colors.white),
+                          onPressed: () => _openRoomForm(room),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.delete, color: Colors.red),
+                          onPressed: () => _deleteRoom(room.id!),
+                        ),
+                      ],
                     ),
                   ),
                 );
@@ -102,10 +177,11 @@ class _ManagerRoomsScreenState extends State<ManagerRoomsScreen> {
   }
 }
 
+// -------- Room Form Screen --------
 class RoomFormScreen extends StatefulWidget {
   final Room? room;
-
-  const RoomFormScreen({super.key, this.room});
+  final int hotelId;
+  const RoomFormScreen({super.key, this.room, required this.hotelId});
 
   @override
   State<RoomFormScreen> createState() => _RoomFormScreenState();
@@ -118,117 +194,159 @@ class _RoomFormScreenState extends State<RoomFormScreen> {
   final _priceController = TextEditingController();
   final _descController = TextEditingController();
 
-  Hotel? _selectedHotel;
   RoomType? _selectedRoomType;
-  bool _queenBed = false;
-  bool _wifi = false;
-  bool _cityView = false;
-  bool _ac = false;
+  bool _queenBed = false, _wifi = false, _cityView = false, _ac = false;
 
-  List<Hotel> _hotels = [];
   List<RoomType> _roomTypes = [];
+  List<Asset> _images = []; // postojeće slike
+  List<File> _newImages = []; // nove slike
+  List<int> _imagesToDelete = []; // id slike koje user briše
+
+  bool _isSaving = false;
+  final ImagePicker _picker = ImagePicker();
 
   @override
   void initState() {
     super.initState();
-    _loadData();
+    _loadRoomTypes();
+    _initRoomValues();
+  }
+
+  void _initRoomValues() {
     if (widget.room != null) {
       _nameController.text = widget.room!.name ?? '';
-      _capacityController.text = widget.room!.capacity.toString();
-      _priceController.text = widget.room!.pricePerNight.toString();
+      _capacityController.text = widget.room!.capacity?.toString() ?? '';
+      _priceController.text = widget.room!.pricePerNight?.toString() ?? '';
       _descController.text = widget.room!.description ?? '';
       _queenBed = widget.room!.queenBed ?? false;
       _wifi = widget.room!.wiFi ?? false;
       _cityView = widget.room!.cityView ?? false;
-      _ac = widget.room!.ac ?? false;
+      _images = widget.room!.assets ?? [];
     }
   }
 
-  Future<void> _loadData() async {
-    var hotelsResult = await context.read<HotelsProvider>().get();
-    var roomTypesResult = await context.read<RoomTypesProvider>().get();
+  Future<void> _loadRoomTypes() async {
+    try {
+      var result = await context.read<RoomTypesProvider>().get();
+      setState(() {
+        _roomTypes = result.result;
+        if (_roomTypes.isNotEmpty) {
+          _selectedRoomType = widget.room != null
+              ? _roomTypes.firstWhere(
+                  (rt) => rt.id == widget.room!.roomTypeId,
+                  orElse: () => _roomTypes.first,
+                )
+              : _roomTypes.first;
+        }
+      });
+    } catch (e) {
+      print("Error loading room types: $e");
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Failed to load room types")),
+      );
+    }
+  }
 
-    setState(() {
-      _hotels = hotelsResult.result;
-      _roomTypes = roomTypesResult.result;
-
-      if (widget.room != null) {
-        _selectedHotel = _hotels.firstWhere(
-          (h) => h.id == widget.room!.hotelId,
-        );
-        _selectedRoomType = _roomTypes.firstWhere(
-          (rt) => rt.id == widget.room!.roomTypeId,
-        );
+  Future<void> _pickImage() async {
+    try {
+      final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+      if (pickedFile != null) {
+        final bytes = File(pickedFile.path).readAsBytesSync();
+        setState(() {
+          _newImages.add(File(pickedFile.path));
+          _images.add(
+            Asset(image: base64Encode(bytes), fileName: pickedFile.name),
+          );
+        });
       }
-    });
+    } catch (e) {
+      print("Error picking image: $e");
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Failed to pick image")));
+    }
   }
 
   Future<void> _saveRoom() async {
-    if (_formKey.currentState?.validate() != true) return;
-    if (_selectedHotel == null || _selectedRoomType == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please select hotel and room type")),
-      );
+    if (!_formKey.currentState!.validate()) return;
+    if (_selectedRoomType == null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Select a room type")));
       return;
     }
 
-    var provider = context.read<RoomsProvider>();
-    var room = Room(
-      id: widget.room?.id,
-      hotelId: _selectedHotel!.id,
-      roomTypeId: _selectedRoomType!.id,
-      name: _nameController.text,
-      capacity: int.tryParse(_capacityController.text) ?? 0,
-      pricePerNight: double.tryParse(_priceController.text) ?? 0,
-      description: _descController.text,
-      queenBed: _queenBed,
-      wiFi: _wifi,
-      cityView: _cityView,
-      ac: _ac,
-    );
+    setState(() => _isSaving = true);
 
-    if (widget.room == null) {
-      await provider.insert(room);
-    } else {
-      await provider.addRoom(room);
+    final roomsProvider = context.read<RoomsProvider>();
+    final assetsProvider = context.read<AssetsProvider>();
+
+    try {
+      Room roomData = Room(
+        id: widget.room?.id,
+        hotelId: widget.hotelId,
+        roomTypeId: _selectedRoomType!.id,
+        name: _nameController.text.trim(),
+        capacity: int.tryParse(_capacityController.text) ?? 1,
+        pricePerNight: double.tryParse(_priceController.text) ?? 0,
+        description: _descController.text.trim(),
+        queenBed: _queenBed,
+        wiFi: _wifi,
+        cityView: _cityView,
+      );
+
+      Room savedRoom;
+      if (widget.room == null) {
+        savedRoom = await roomsProvider.addRoom(roomData);
+      } else {
+        savedRoom = await roomsProvider.editRoom(roomData);
+      }
+
+      // --- BRISANJE SLIKA ---
+      if (_imagesToDelete.isNotEmpty) {
+        await Future.wait(
+          _imagesToDelete.map((id) => assetsProvider.deleteAsset(id)),
+        );
+      }
+
+      // --- DODAVANJE NOVIH SLIKA ---
+      if (_newImages.isNotEmpty) {
+        final List<Map<String, dynamic>> assetsData = _newImages.map((file) {
+          final bytes = file.readAsBytesSync();
+          return {
+            "RoomId": savedRoom.id,
+            "HotelId": widget.hotelId,
+            "FileName": file.path.split('/').last,
+            "Image": base64Encode(bytes),
+            "MimeType": "image/jpeg",
+          };
+        }).toList();
+
+        await assetsProvider.insertAssets(assetsData);
+      }
+
+      Navigator.pop(context, savedRoom);
+    } catch (e) {
+      print("Error saving room: $e");
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Error saving room: $e")));
+    } finally {
+      setState(() => _isSaving = false);
     }
-
-    Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return MasterScreen(
-      child: _hotels.isEmpty || _roomTypes.isEmpty
+      child: _roomTypes.isEmpty
           ? const Center(child: CircularProgressIndicator())
           : Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16),
               child: Form(
                 key: _formKey,
                 child: ListView(
                   children: [
-                    DropdownButtonFormField<Hotel>(
-                      dropdownColor: const Color.fromRGBO(17, 45, 78, 1),
-                      value: _selectedHotel,
-                      decoration: const InputDecoration(
-                        labelText: "Hotel",
-                        labelStyle: TextStyle(color: Colors.grey),
-                      ),
-                      items: _hotels
-                          .map(
-                            (h) => DropdownMenuItem(
-                              value: h,
-                              child: Text(
-                                h.name ?? "Unnamed",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (val) => setState(() => _selectedHotel = val),
-                      validator: (val) =>
-                          val == null ? "Please select hotel" : null,
-                    ),
                     DropdownButtonFormField<RoomType>(
                       dropdownColor: const Color.fromRGBO(17, 45, 78, 1),
                       value: _selectedRoomType,
@@ -242,93 +360,188 @@ class _RoomFormScreenState extends State<RoomFormScreen> {
                               value: rt,
                               child: Text(
                                 rt.name ?? "Unnamed",
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                               ),
                             ),
                           )
                           .toList(),
                       onChanged: (val) =>
                           setState(() => _selectedRoomType = val),
-                      validator: (val) =>
-                          val == null ? "Please select room type" : null,
                     ),
-                    TextFormField(
-                      style: TextStyle(color: Colors.white),
-                      controller: _nameController,
-                      decoration: const InputDecoration(
-                        labelText: "Name",
-                        labelStyle: TextStyle(color: Colors.grey),
-                      ),
-                      validator: (val) =>
-                          val == null || val.isEmpty ? "Required" : null,
+                    const SizedBox(height: 10),
+                    _buildTextField(_nameController, "Name"),
+                    const SizedBox(height: 10),
+                    _buildTextField(
+                      _capacityController,
+                      "Capacity",
+                      isNumber: true,
                     ),
-                    TextFormField(
-                      style: TextStyle(color: Colors.white),
-                      controller: _capacityController,
-                      decoration: const InputDecoration(
-                        labelText: "Capacity",
-                        labelStyle: TextStyle(color: Colors.grey),
-                      ),
-                      keyboardType: TextInputType.number,
+                    const SizedBox(height: 10),
+                    _buildTextField(
+                      _priceController,
+                      "Price per night",
+                      isNumber: true,
                     ),
-                    TextFormField(
-                      style: TextStyle(color: Colors.white),
-                      controller: _priceController,
-                      decoration: const InputDecoration(
-                        labelText: "Price per night",
-                        labelStyle: TextStyle(color: Colors.grey),
-                      ),
-                      keyboardType: TextInputType.number,
-                    ),
-                    TextFormField(
-                      style: TextStyle(color: Colors.white),
-                      controller: _descController,
-                      decoration: const InputDecoration(
-                        labelText: "Description",
-                        labelStyle: TextStyle(color: Colors.grey),
-                      ),
+                    const SizedBox(height: 10),
+                    _buildTextField(
+                      _descController,
+                      "Description",
                       maxLines: 3,
                     ),
-                    SwitchListTile(
-                      title: const Text(
-                        "Queen Bed",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      value: _queenBed,
-                      onChanged: (v) => setState(() => _queenBed = v),
+                    const SizedBox(height: 10),
+                    _buildSwitch(
+                      "Queen Bed",
+                      _queenBed,
+                      (v) => setState(() => _queenBed = v),
                     ),
-                    SwitchListTile(
-                      title: const Text(
-                        "WiFi",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      value: _wifi,
-                      onChanged: (v) => setState(() => _wifi = v),
+                    _buildSwitch(
+                      "WiFi",
+                      _wifi,
+                      (v) => setState(() => _wifi = v),
                     ),
-                    SwitchListTile(
-                      title: const Text(
-                        "City View",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      value: _cityView,
-                      onChanged: (v) => setState(() => _cityView = v),
+                    _buildSwitch(
+                      "City View",
+                      _cityView,
+                      (v) => setState(() => _cityView = v),
                     ),
-                    SwitchListTile(
-                      title: const Text(
-                        "Air Conditioning",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      value: _ac,
-                      onChanged: (v) => setState(() => _ac = v),
-                    ),
+
+                    const SizedBox(height: 10),
+                    _buildImagesPicker(),
+                    const SizedBox(height: 20),
                     ElevatedButton(
-                      onPressed: _saveRoom,
-                      child: Text(widget.room == null ? "Add Room" : "Save"),
+                      onPressed: _isSaving ? null : _saveRoom,
+                      child: _isSaving
+                          ? const CircularProgressIndicator(color: Colors.white)
+                          : Text(
+                              widget.room == null ? "Add Room" : "Save Room",
+                            ),
                     ),
                   ],
                 ),
               ),
             ),
+    );
+  }
+
+  TextFormField _buildTextField(
+    TextEditingController ctrl,
+    String label, {
+    bool isNumber = false,
+    int maxLines = 1,
+  }) {
+    return TextFormField(
+      controller: ctrl,
+      style: const TextStyle(color: Colors.white),
+      keyboardType: isNumber ? TextInputType.number : TextInputType.text,
+      maxLines: maxLines,
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: const TextStyle(color: Colors.grey),
+      ),
+      validator: (val) {
+        if (val == null || val.isEmpty) return "Required";
+        if (isNumber && double.tryParse(val) == null) return "Invalid number";
+        return null;
+      },
+    );
+  }
+
+  SwitchListTile _buildSwitch(
+    String label,
+    bool value,
+    ValueChanged<bool> onChanged,
+  ) {
+    return SwitchListTile(
+      title: Text(label, style: const TextStyle(color: Colors.white)),
+      value: value,
+      onChanged: onChanged,
+    );
+  }
+
+  Widget _buildImagesPicker() {
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: [
+        ..._images.asMap().entries.map((entry) {
+          final img = entry.value;
+          final index = entry.key;
+
+          Widget imageWidget;
+
+          try {
+            final imageStr = img.image;
+
+            if (imageStr == null || imageStr.isEmpty) {
+              imageWidget = Container(
+                width: 80,
+                height: 80,
+                color: Colors.grey,
+              );
+            } else {
+              // 1) Decode base64
+              final decoded = base64.decode(imageStr);
+
+              // 2) Probaj pretvoriti u UTF-8 (možda je URL u base64)
+              final asString = utf8.decode(decoded, allowMalformed: true);
+
+              // 3) Ako počinje sa http → prikaži kao URL
+              if (asString.startsWith("http://") ||
+                  asString.startsWith("https://")) {
+                imageWidget = Image.network(
+                  asString,
+                  width: 80,
+                  height: 80,
+                  fit: BoxFit.cover,
+                );
+              } else {
+                // 4) Inače je raw slika
+                imageWidget = Image.memory(
+                  decoded,
+                  width: 80,
+                  height: 80,
+                  fit: BoxFit.cover,
+                );
+              }
+            }
+          } catch (e) {
+            imageWidget = Container(width: 80, height: 80, color: Colors.grey);
+          }
+
+          return Stack(
+            children: [
+              GestureDetector(child: imageWidget),
+              Positioned(
+                right: 0,
+                top: 0,
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      if (img.id != null) _imagesToDelete.add(img.id!);
+                      _newImages.removeWhere(
+                        (f) => f.path.split('/').last == img.fileName,
+                      );
+                      _images.removeAt(index);
+                    });
+                  },
+                  child: const Icon(Icons.close, color: Colors.red),
+                ),
+              ),
+            ],
+          );
+        }),
+
+        // Add new image button
+        GestureDetector(
+          onTap: _pickImage,
+          child: Container(
+            width: 80,
+            height: 80,
+            color: Colors.grey[700],
+            child: const Icon(Icons.add, color: Colors.white),
+          ),
+        ),
+      ],
     );
   }
 }

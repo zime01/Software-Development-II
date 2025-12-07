@@ -9,7 +9,7 @@ import 'package:hotelease_mobile_new/providers/hotels_provider.dart';
 import 'package:hotelease_mobile_new/providers/reviews_provider.dart';
 import 'package:hotelease_mobile_new/screens/hotel_details_screen.dart';
 import 'package:hotelease_mobile_new/screens/master_screen.dart';
-
+import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:provider/provider.dart';
 
 class Hotels extends StatefulWidget {
@@ -26,13 +26,21 @@ class _HotelsState extends State<Hotels> {
   late HotelsProvider _hotelsProvider;
   late ReviewsProvider _reviewsProvider;
   final Map<int, double> _hotelRatings = {};
-
   final Map<int, List<Asset>> _hotelAssets = {};
   final Map<int, PageController> _pageControllers = {};
   final Map<int, Timer> _timers = {};
 
   String? selectedSort;
-  String? selectedFilter;
+  List<String> selectedFilters = [];
+
+  final List<MultiSelectItem<String>> filterItems = [
+    MultiSelectItem("wifi", "WiFi"),
+    MultiSelectItem("parking", "Parking"),
+    MultiSelectItem("pool", "Pool"),
+    MultiSelectItem("bar", "Bar"),
+    MultiSelectItem("fitness", "Fitness"),
+    MultiSelectItem("spa", "Spa"),
+  ];
 
   @override
   void initState() {
@@ -62,13 +70,14 @@ class _HotelsState extends State<Hotels> {
   Future<void> _loadHotels() async {
     var result = await _hotelsProvider.searchAvailableHotels(
       sortBy: selectedSort,
-      wifi: selectedFilter == "wifi" ? true : null,
-      parking: selectedFilter == "parking" ? true : null,
-      pool: selectedFilter == "pool" ? true : null,
-      bar: selectedFilter == "bar" ? true : null,
-      fitness: selectedFilter == "fitness" ? true : null,
-      spa: selectedFilter == "spa" ? true : null,
+      wifi: selectedFilters.contains("wifi") ? true : null,
+      parking: selectedFilters.contains("parking") ? true : null,
+      pool: selectedFilters.contains("pool") ? true : null,
+      bar: selectedFilters.contains("bar") ? true : null,
+      fitness: selectedFilters.contains("fitness") ? true : null,
+      spa: selectedFilters.contains("spa") ? true : null,
     );
+
     setState(() {
       widget.result?.result.clear();
       widget.result?.result.addAll(result.result);
@@ -94,15 +103,11 @@ class _HotelsState extends State<Hotels> {
     await Future.wait(
       widget.result!.result.map((hotel) async {
         final reviews = await _reviewsProvider.getByHotelId(hotel.id ?? 0);
+        _hotelRatings[hotel.id ?? 0] = reviews.isNotEmpty
+            ? reviews.map((r) => r.rating).reduce((a, b) => a + b) /
+                  reviews.length
+            : 0;
 
-        if (reviews.isNotEmpty) {
-          final avg =
-              reviews.map((r) => r.rating).reduce((a, b) => a + b) /
-              reviews.length;
-          _hotelRatings[hotel.id ?? 0] = avg;
-        } else {
-          _hotelRatings[hotel.id ?? 0] = 0;
-        }
         try {
           final assets = await _assetsProvider.getAssetsByHotelId(
             hotel.id ?? 0,
@@ -113,7 +118,6 @@ class _HotelsState extends State<Hotels> {
           _pageControllers[hotel.id ?? 0] = controller;
 
           if (assets.result.isNotEmpty) {
-            // Pokrećemo timer tek nakon što je PageView izgrađen
             WidgetsBinding.instance.addPostFrameCallback((_) {
               _timers[hotel.id ?? 0] = Timer.periodic(
                 const Duration(seconds: 3),
@@ -164,18 +168,27 @@ class _HotelsState extends State<Hotels> {
         controller: controller,
         itemCount: assets.length,
         itemBuilder: (context, index) {
-          final imageString = assets[index].image;
-          if (imageString == null || imageString.isEmpty) {
+          final imageStr = assets[index].image;
+
+          if (imageStr == null || imageStr.isEmpty) {
             return Image.asset(
               'assets/images/cant_load_image.png',
               fit: BoxFit.cover,
             );
           }
+
           try {
-            final decodedUrl = utf8.decode(base64.decode(imageString));
-            if (decodedUrl.startsWith('http')) {
+            // 1) Decode base64
+            final decoded = base64.decode(imageStr);
+
+            // 2) Probaj interpretirati kao UTF-8 (možda URL)
+            final asString = utf8.decode(decoded, allowMalformed: true);
+
+            // 3) Ako je URL → učitaj preko network
+            if (asString.startsWith("http://") ||
+                asString.startsWith("https://")) {
               return Image.network(
-                decodedUrl,
+                asString,
                 fit: BoxFit.cover,
                 errorBuilder: (_, __, ___) => Image.asset(
                   'assets/images/cant_load_image.png',
@@ -183,11 +196,16 @@ class _HotelsState extends State<Hotels> {
                 ),
               );
             }
-          } catch (_) {}
-          return Image.asset(
-            'assets/images/cant_load_image.png',
-            fit: BoxFit.cover,
-          );
+
+            // 4) Inače → raw slika
+            return Image.memory(decoded, fit: BoxFit.cover);
+          } catch (e) {
+            print("Hotel image decode error: $e");
+            return Image.asset(
+              'assets/images/cant_load_image.png',
+              fit: BoxFit.cover,
+            );
+          }
         },
       ),
     );
@@ -218,8 +236,6 @@ class _HotelsState extends State<Hotels> {
                       labelStyle: TextStyle(
                         color: Theme.of(context).colorScheme.onPrimary,
                       ),
-                      // filled: true,
-                      // fillColor: Colors.white,
                     ),
                     items: const [
                       DropdownMenuItem(
@@ -243,76 +259,25 @@ class _HotelsState extends State<Hotels> {
                 ),
                 const SizedBox(width: 10),
                 Expanded(
-                  child: DropdownButtonFormField<String>(
-                    dropdownColor: Theme.of(context).colorScheme.primary,
-                    value: selectedFilter,
-                    decoration: InputDecoration(
-                      labelText: "Filter by",
-                      labelStyle: TextStyle(
+                  child: MultiSelectDialogField(
+                    items: filterItems,
+                    title: const Text("Filter by"),
+                    buttonText: const Text("Select filters"),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primary,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    chipDisplay: MultiSelectChipDisplay(
+                      textStyle: TextStyle(
                         color: Theme.of(context).colorScheme.onPrimary,
                       ),
-                      // filled: true,
-                      // fillColor: Colors.white,
+                      chipColor: Theme.of(context).colorScheme.secondary,
                     ),
-                    items: [
-                      DropdownMenuItem(
-                        value: "wifi",
-                        child: Text(
-                          "WiFi",
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                          ),
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: "parking",
-                        child: Text(
-                          "Parking",
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                          ),
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: "pool",
-                        child: Text(
-                          "Pool",
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                          ),
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: "bar",
-                        child: Text(
-                          "Bar",
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                          ),
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: "fitness",
-                        child: Text(
-                          "Fitness",
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                          ),
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: "spa",
-                        child: Text(
-                          "Spa",
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                          ),
-                        ),
-                      ),
-                    ],
-                    onChanged: (val) {
-                      setState(() => selectedFilter = val);
-                      _loadHotels();
+                    onConfirm: (values) {
+                      setState(() {
+                        selectedFilters = values.cast<String>();
+                        _loadHotels();
+                      });
                     },
                   ),
                 ),

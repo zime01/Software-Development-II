@@ -25,6 +25,6 @@ namespace hotelEase.Model
         public DateTime? DeletedTime { get; set; }
         public virtual User User { get; set; } = null!;
         public virtual Room? Room { get; set; } = null!;
-
+        public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
     }
 }

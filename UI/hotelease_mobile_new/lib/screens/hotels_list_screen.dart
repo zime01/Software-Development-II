@@ -8,6 +8,7 @@ import 'package:hotelease_mobile_new/providers/search_provider.dart';
 import 'package:hotelease_mobile_new/screens/hotel_details_screen.dart';
 import 'package:hotelease_mobile_new/screens/hotels.dart';
 import 'package:hotelease_mobile_new/screens/master_screen.dart';
+import 'package:hotelease_mobile_new/utils/USDformat.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -169,30 +170,45 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
   }
 
   Widget _buildHotelImage(String? base64Image) {
+    const double imgHeight = 100;
+
     if (base64Image == null || base64Image.isEmpty) {
       return Image.asset(
         'assets/images/cant_load_image.png',
-        height: 100,
+        height: imgHeight,
         fit: BoxFit.cover,
       );
     }
 
     try {
-      final decodedUrl = utf8.decode(base64.decode(base64Image));
-      return Image.network(
-        decodedUrl,
-        height: 100,
-        fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) => Image.asset(
-          'assets/images/cant_load_image.png',
-          height: 100,
+      // 1) Decode base64
+      final decoded = base64.decode(base64Image);
+
+      // 2) Pokušaj interpretirati kao UTF-8 (možda je URL enkodiran u base64)
+      final asString = utf8.decode(decoded, allowMalformed: true);
+
+      // 3) Ako je asString URL → prikaži network image
+      if (asString.startsWith("http://") || asString.startsWith("https://")) {
+        return Image.network(
+          asString,
+          height: imgHeight,
           fit: BoxFit.cover,
-        ),
-      );
+          errorBuilder: (_, __, ___) => Image.asset(
+            'assets/images/cant_load_image.png',
+            height: imgHeight,
+            fit: BoxFit.cover,
+          ),
+        );
+      }
+
+      // 4) Inače → raw slika (PNG/JPEG)
+      return Image.memory(decoded, height: imgHeight, fit: BoxFit.cover);
     } catch (e) {
+      print("Hotel image decode error: $e");
+
       return Image.asset(
         'assets/images/cant_load_image.png',
-        height: 100,
+        height: imgHeight,
         fit: BoxFit.cover,
       );
     }
@@ -537,14 +553,36 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    hotel.name ?? "Hotel",
+                    hotel.name ?? "",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontSize: 16,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    hotel.city?.name ?? "Unknown city",
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onPrimary,
                     ),
+                    overflow: TextOverflow.ellipsis,
                   ),
+                  SizedBox(height: 5),
                   Text(
                     "${hotel.starRating} ★",
-                    style: const TextStyle(color: Colors.yellow),
+                    style: TextStyle(
+                      color: Colors.yellow,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    "${formatPrice(hotel.minPrice)} - ${formatPrice(hotel.maxPrice)} /night",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontSize: 12,
+                    ),
                   ),
                 ],
               ),

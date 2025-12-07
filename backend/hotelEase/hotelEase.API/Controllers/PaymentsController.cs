@@ -3,6 +3,7 @@ using hotelEase.Model.Requests;
 using hotelEase.Model.SearchObjects;
 using hotelEase.Services;
 using hotelEase.Services.Database;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Payment = hotelEase.Model.Payment;
@@ -69,7 +70,12 @@ namespace hotelEase.API.Controllers
         [HttpPost("stripe-checkout-session")]
         public async Task<IActionResult> CreateCheckoutSession([FromBody] PaymentsCreateIntentRequest request)
         {
+
             var reservation = await _context.Reservations.FindAsync(request.ReservationId);
+            if (_context.Payments.Any(p => p.ReservationId == reservation.Id && p.Status == "Succeeded"))
+            {
+                return BadRequest("Reservation already paid.");
+            }
             if (reservation == null) return NotFound("Reservation not found");
             if (reservation.TotalPrice == null) return BadRequest("Reservation total price is null");
 
@@ -90,30 +96,40 @@ namespace hotelEase.API.Controllers
             var options = new Stripe.Checkout.SessionCreateOptions
             {
                 PaymentMethodTypes = new List<string> { "card" },
-                LineItems = new List<Stripe.Checkout.SessionLineItemOptions>
-        {
-            new Stripe.Checkout.SessionLineItemOptions
-            {
-                PriceData = new Stripe.Checkout.SessionLineItemPriceDataOptions
-                {
-                    Currency = request.Currency,
-                    ProductData = new Stripe.Checkout.SessionLineItemPriceDataProductDataOptions
-                    {
-                        Name = $"Reservation #{reservation.Id}"
-                    },
-                    UnitAmount = (long)Math.Round(reservation.TotalPrice * 100)
-                },
-                Quantity = 1
-            }
-        },
                 Mode = "payment",
-                SuccessUrl = "http://localhost:5000/success",
-                CancelUrl = "http://localhost:5000/cancel",
-                Metadata = new Dictionary<string, string>
+
+                LineItems = new List<Stripe.Checkout.SessionLineItemOptions>
+    {
+        new Stripe.Checkout.SessionLineItemOptions
         {
-            { "reservationId", reservation.Id.ToString() },
-            { "paymentId", payment.Id.ToString() } // ⚡️ važno za webhook
+            PriceData = new Stripe.Checkout.SessionLineItemPriceDataOptions
+            {
+                Currency = request.Currency,
+                ProductData = new Stripe.Checkout.SessionLineItemPriceDataProductDataOptions
+                {
+                    Name = $"Reservation #{reservation.Id}"
+                },
+                UnitAmount = (long)(reservation.TotalPrice * 100),
+            },
+            Quantity = 1
         }
+    },
+
+                SuccessUrl = "https://yourapp.com/payment-success?paymentId=" + payment.Id,
+                CancelUrl = "https://yourapp.com/payment-cancel?paymentId=" + payment.Id,
+
+                Metadata = new Dictionary<string, string>
+    {
+        { "paymentId", payment.Id.ToString() }
+    },
+
+                PaymentIntentData = new Stripe.Checkout.SessionPaymentIntentDataOptions
+                {
+                    Metadata = new Dictionary<string, string>
+        {
+            { "paymentId", payment.Id.ToString() }
+        }
+                }
             };
 
             var service = new Stripe.Checkout.SessionService();
@@ -122,10 +138,20 @@ namespace hotelEase.API.Controllers
             return Ok(new
             {
                 url = session.Url,
-                sessionId = session.Id
+                sessionId = session.Id,
+                paymentId = payment.Id,
             });
         }
 
+        [HttpGet("status/{paymentId}")]
+        public async Task<IActionResult> GetStatus(int paymentId)
+        {
+            var payment = await _context.Payments.FindAsync(paymentId);
+            if (payment == null) return NotFound();
+
+            return Ok(new { status = payment.Status });
+        }
+        [AllowAnonymous]
         [HttpPost("stripe-webhook")]
         public async Task<IActionResult> StripeWebhook()
         {
@@ -134,7 +160,7 @@ namespace hotelEase.API.Controllers
             var stripeEvent = Stripe.EventUtility.ConstructEvent(
                 json,
                 Request.Headers["Stripe-Signature"],
-                "tvoj_webhook_secret"
+                "whsec_c1d694b83cbf39d149c7a811875fecb7b3bd4dbcddad054296091437e310574e"
             );
 
             if (stripeEvent.Type == "checkout.session.completed")

@@ -8,5 +8,6 @@ namespace hotelEase.Model.SearchObjects
     {
         public int? HotelId { get; set; }
         public int? RoomId { get; set; }
+        public bool? IsDeleted { get; set; } = false;
     }
 }

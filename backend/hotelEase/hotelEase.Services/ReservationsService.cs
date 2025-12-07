@@ -25,7 +25,8 @@ namespace hotelEase.Services
             query = query.Include(r => r.Room)
                  .ThenInclude(r => r.Hotel)
                  .Include(r => r.Room)
-                 .ThenInclude(r => r.Assets);
+                 .ThenInclude(r => r.Assets)
+                 .Include(h=>h.Payments);
 
             
 
@@ -113,5 +114,35 @@ namespace hotelEase.Services
 
             return Mapper.Map<List<Model.Reservation>>(query);
         }
+
+
+        public List<Model.Reservation> GetReservationsByDate(ReservationsSearchObject search)
+        {
+            var query = Context.Reservations
+                .Include(r => r.Room)
+                    .ThenInclude(r => r.Hotel)
+                .Include(r => r.Room)
+                    .ThenInclude(r => r.Assets)
+                .Include(r => r.User)
+                .Include(r => r.Payments)
+                .Where(r => r.IsDeleted == null || r.IsDeleted == false)
+                .AsQueryable();
+
+            if (search?.Date != null)
+            {
+                var date = search.Date.Value.Date;
+
+                query = query.Where(r =>
+                    r.CheckInDate.Date <= date &&
+                    r.CheckOutDate.Date >= date
+                );
+            }
+
+            query = query.OrderBy(r => r.CheckInDate);
+
+            var list = query.ToList();
+            return Mapper.Map<List<Model.Reservation>>(list);
+        }
+
     }
 }

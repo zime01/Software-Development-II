@@ -15,6 +15,7 @@ import 'package:hotelease_mobile_new/providers/services_provider.dart';
 import 'package:hotelease_mobile_new/providers/theme_provider.dart';
 import 'package:hotelease_mobile_new/providers/users_provider.dart';
 import 'package:hotelease_mobile_new/screens/hotels_list_screen.dart';
+import 'package:hotelease_mobile_new/screens/master_screen.dart';
 import 'package:hotelease_mobile_new/screens/register_screen.dart';
 import 'package:hotelease_mobile_new/utils/util.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +25,6 @@ void main() async {
 
   Stripe.publishableKey =
       "pk_test_51QZ8FxKH5av5GhJI2G02GXIaCml8epgY98WnYBZ8lH0s4HR4MwPLnO5wIEpe0z3lR12OPgOvzCtETkO3wH5xsrxo006dxV0Xvt";
-
   await Stripe.instance.applySettings();
 
   runApp(
@@ -55,25 +55,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
-    const primaryColor = Color.fromRGBO(17, 45, 78, 1); //
+    const primaryColor = Color.fromRGBO(17, 45, 78, 1);
     const secondaryColor = Color(0xFFBFD7ED);
 
     return MaterialApp(
       title: 'HotelEase',
       debugShowCheckedModeBanner: false,
-      // 🌞 LIGHT MODE
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: secondaryColor,
           brightness: Brightness.light,
-          primary: secondaryColor, // svijetla plava dominira
+          primary: secondaryColor,
           onPrimary: primaryColor,
-          secondary: const Color.fromARGB(
-            255,
-            64,
-            134,
-            215,
-          ), // tamna za akcente
+          secondary: const Color.fromARGB(255, 64, 134, 215),
           background: Colors.white,
           surface: Colors.white,
         ),
@@ -81,7 +75,6 @@ class MyApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           backgroundColor: secondaryColor,
           foregroundColor: Colors.black,
-          elevation: 1,
         ),
         textTheme: const TextTheme(
           bodyLarge: TextStyle(color: Colors.black87),
@@ -89,15 +82,13 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-
-      // 🌙 DARK MODE
       darkTheme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: primaryColor,
           onPrimary: Colors.white,
           brightness: Brightness.dark,
-          primary: primaryColor, // tamno plava dominira
-          secondary: Color.fromRGBO(15, 30, 70, 1), // svijetla za akcente
+          primary: primaryColor,
+          secondary: Color.fromRGBO(15, 30, 70, 1),
           background: const Color(0xFF0F1E46),
           surface: const Color(0xFF112D4E),
         ),
@@ -113,7 +104,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-      home: LoginPage(),
+      home: const LoginPage(),
     );
   }
 }
@@ -140,6 +131,26 @@ class _LoginPageState extends State<LoginPage> {
     final hotelsProvider = context.read<HotelsProvider>();
     final usersProvider = context.read<UsersProvider>();
 
+    final username = _usernameController.text.trim();
+    final password = _passwordController.text.trim();
+
+    if (username.isEmpty || password.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: const Text("Error"),
+          content: const Text("Username and password cannot be empty."),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("OK"),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -147,11 +158,6 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     try {
-      final username = _usernameController.text;
-      final password = _passwordController.text;
-
-      print("Login credentials: $username / $password");
-
       Authorization.username = username;
       Authorization.password = password;
 
@@ -165,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
         context,
       ).pushReplacement(MaterialPageRoute(builder: (_) => HotelsListScreen()));
     } catch (e) {
-      Navigator.of(context).pop(); // Remove loading
+      Navigator.of(context).pop();
       showDialog(
         context: context,
         builder: (_) => AlertDialog(
@@ -246,7 +252,7 @@ class _LoginPageState extends State<LoginPage> {
                           style: TextStyle(fontSize: 24),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(
@@ -255,7 +261,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           );
                         },
-                        child: Text(
+                        child: const Text(
                           "Register now",
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),

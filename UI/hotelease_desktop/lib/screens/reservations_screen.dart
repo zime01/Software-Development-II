@@ -116,7 +116,11 @@ class _ReservationScreenState extends State<ReservationScreen> {
                 ),
                 Text("$guests", style: const TextStyle(color: Colors.white)),
                 IconButton(
-                  onPressed: () => setState(() => guests++),
+                  onPressed: () {
+                    if (guests < widget.room.capacity!) {
+                      setState(() => guests++);
+                    }
+                  },
                   icon: const Icon(Icons.add),
                 ),
               ],

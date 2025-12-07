@@ -21,7 +21,13 @@ namespace hotelEase.Model.Requests
         public bool? IsAvailable { get; set; }
 
         public string? Description { get; set; }
+        public bool? QueenBed { get; set; }
+        public bool? WiFi { get; set; }
+        public bool? CityView { get; set; }
+        public bool? AC { get; set; }
         public bool? IsDeleted { get; set; }
         public DateTime? DeletedTime { get; set; }
+        public List<Asset>? Assets { get; set; }
+
     }
 }

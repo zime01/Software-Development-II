@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotelease_mobile_new/providers/dashboard_provider.dart';
 import 'package:hotelease_mobile_new/screens/master_screen.dart';
+import 'package:intl/intl.dart';
 
 class ManagerStatsScreen extends StatefulWidget {
   final int hotelId;
@@ -35,6 +36,18 @@ class _ManagerStatsScreenState extends State<ManagerStatsScreen> {
         loading = false;
       });
     }
+  }
+
+  // Helper za formatiranje datuma
+  String _formatDate(String dateString) {
+    final dt = DateTime.parse(dateString);
+    return DateFormat('dd.MM.yyyy. HH:mm').format(dt);
+  }
+
+  // Helper za formatiranje cijena u USD sa 2 decimale
+  String _formatPrice(dynamic price) {
+    if (price == null) return "\$0.00";
+    return "\$${(price as num).toStringAsFixed(2)}";
   }
 
   @override
@@ -86,7 +99,7 @@ class _ManagerStatsScreenState extends State<ManagerStatsScreen> {
             _buildStat("New Users", dashboard['newUsers'].toString()),
             _buildStat(
               "Revenue This Month",
-              "${dashboard['monthlyRevenue']} \$",
+              _formatPrice(dashboard['monthlyRevenue']),
             ),
             _buildStat("Occupancy Rate", "${dashboard['occupancyRate']} %"),
 
@@ -98,7 +111,11 @@ class _ManagerStatsScreenState extends State<ManagerStatsScreen> {
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             const Divider(),
-            if (reservations.isEmpty) const Text("No recent reservations."),
+            if (reservations.isEmpty)
+              const Text(
+                "No recent reservations.",
+                style: TextStyle(color: Colors.white),
+              ),
             for (var r in reservations)
               Card(
                 color: const Color.fromRGBO(15, 41, 70, 1),
@@ -111,11 +128,11 @@ class _ManagerStatsScreenState extends State<ManagerStatsScreen> {
                   subtitle: Text(
                     "User: ${r['user']['firstName']} ${r['user']['lastName']}\n"
                     "Room: ${r['room']['name']}\n"
-                    "Dates: ${r['checkInDate']} → ${r['checkOutDate']}",
+                    "Dates: ${_formatDate(r['checkInDate'])} → ${_formatDate(r['checkOutDate'])}",
                     style: TextStyle(color: Colors.grey),
                   ),
                   trailing: Text(
-                    "${r['totalPrice']} \$",
+                    _formatPrice(r['totalPrice']),
                     style: TextStyle(color: Colors.grey),
                   ),
                 ),

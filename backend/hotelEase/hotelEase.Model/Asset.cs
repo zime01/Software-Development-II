@@ -8,7 +8,7 @@ namespace hotelEase.Model
     {
         public int Id { get; set; }
 
-        public string FileName { get; set; } = null!;
+        public string? FileName { get; set; }
 
         public byte[]? Image { get; set; }
 
@@ -16,7 +16,7 @@ namespace hotelEase.Model
 
         public string? MimeType { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
         public int HotelId { get; set; }
 

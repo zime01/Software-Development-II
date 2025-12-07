@@ -1,4 +1,5 @@
 import 'package:hotelease_mobile_new/models/asset.dart';
+import 'package:hotelease_mobile_new/models/city.dart';
 import 'package:hotelease_mobile_new/models/room.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -12,6 +13,8 @@ class Hotel {
   String? description;
   String? address;
 
+  int? cityId;
+
   int? starRating;
   List<Asset>? assets;
   List<Room>? rooms;
@@ -23,6 +26,10 @@ class Hotel {
   bool? fitness;
   bool? spa;
   String? imageUrl;
+
+  int? minPrice;
+  int? maxPrice;
+  City? city;
   Hotel({
     this.imageUrl,
     this.id,
@@ -30,6 +37,8 @@ class Hotel {
     this.price,
     this.description,
     this.address,
+
+    this.cityId,
 
     this.starRating,
     this.assets,
@@ -40,6 +49,9 @@ class Hotel {
     this.pool,
     this.spa,
     this.wifi,
+    this.minPrice,
+    this.maxPrice,
+    this.city,
   });
 
   factory Hotel.fromJson(Map<String, dynamic> json) => _$HotelFromJson(json);

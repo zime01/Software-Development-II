@@ -13,6 +13,7 @@ Hotel _$HotelFromJson(Map<String, dynamic> json) => Hotel(
   price: (json['price'] as num?)?.toInt(),
   description: json['description'] as String?,
   address: json['address'] as String?,
+  cityId: (json['cityId'] as num?)?.toInt(),
   starRating: (json['starRating'] as num?)?.toInt(),
   assets: (json['assets'] as List<dynamic>?)
       ?.map((e) => Asset.fromJson(e as Map<String, dynamic>))
@@ -26,6 +27,11 @@ Hotel _$HotelFromJson(Map<String, dynamic> json) => Hotel(
   pool: json['pool'] as bool?,
   spa: json['spa'] as bool?,
   wifi: json['wifi'] as bool?,
+  minPrice: (json['minPrice'] as num?)?.toInt(),
+  maxPrice: (json['maxPrice'] as num?)?.toInt(),
+  city: json['city'] == null
+      ? null
+      : City.fromJson(json['city'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$HotelToJson(Hotel instance) => <String, dynamic>{
@@ -34,6 +40,7 @@ Map<String, dynamic> _$HotelToJson(Hotel instance) => <String, dynamic>{
   'price': instance.price,
   'description': instance.description,
   'address': instance.address,
+  'cityId': instance.cityId,
   'starRating': instance.starRating,
   'assets': instance.assets,
   'rooms': instance.rooms,
@@ -44,4 +51,7 @@ Map<String, dynamic> _$HotelToJson(Hotel instance) => <String, dynamic>{
   'fitness': instance.fitness,
   'spa': instance.spa,
   'imageUrl': instance.imageUrl,
+  'minPrice': instance.minPrice,
+  'maxPrice': instance.maxPrice,
+  'city': instance.city,
 };

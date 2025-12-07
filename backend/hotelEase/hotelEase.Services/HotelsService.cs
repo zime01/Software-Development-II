@@ -181,6 +181,8 @@ namespace hotelEase.Services
 
         public override IQueryable<Database.Hotel> AddInclude(HotelsSearchObject search, IQueryable<Database.Hotel> query)
         {
+            
+
             if (search.IsRoomsIcluded == true)
             {
                 query = query.Include(x => x.Rooms).ThenInclude(x => x.Assets);

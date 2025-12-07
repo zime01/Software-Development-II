@@ -93,5 +93,32 @@ namespace hotelEase.API.Controllers
             return Ok(new { message = "Reservation canceled successfully" });
         }
 
+        [HttpGet("by-date")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult GetReservationsByDate([FromQuery] DateTime? date)
+        {
+            if (date == null)
+                return BadRequest("Date is required");
+
+            var search = new ReservationsSearchObject
+            {
+                Date = date
+            };
+
+            var reservations = (_service as IReservationsService)
+                .GetReservationsByDate(search);
+
+            return Ok(reservations);
+        }
+
+        [HttpPut("update-reservation")]
+        public IActionResult UpdateReservation([FromBody] ReservationsUpsertRequest request)
+        {
+            if (request.Id == 0)
+                return BadRequest("Reservation ID is required for update");
+
+            var updated = (_service as IReservationsService).Update(request.Id, request);
+            return Ok(updated);
+        }
     }
 }

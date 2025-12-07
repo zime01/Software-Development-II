@@ -33,6 +33,7 @@ namespace hotelEase.Services
                                     ThenInclude(r => r.Reservations)
                                  .Include(h=>h.Rooms)
                                     .ThenInclude(r=>r.Assets)
+                                 .Include(h=> h.City)
                             .OrderByDescending(h => h.Rooms.Sum(r => r.Reservations.Count))
                             .Take(top).Select(h => _mapper.Map<Model.Hotel>(h)).ToList(); }
 
@@ -43,6 +44,7 @@ namespace hotelEase.Services
         {
             var selectedHotel = _context.Hotels
                 .Include(h => h.Rooms)
+                .Include(h=>h.City)
                 .FirstOrDefault(h => h.Id == hotelId);
 
             if (selectedHotel == null) return new List<Model.Hotel>();
@@ -54,6 +56,7 @@ namespace hotelEase.Services
             return _context.Hotels
                 .Include(h => h.Rooms)
                 .ThenInclude(h=>h.Assets)
+                .Include(h=>h.City)
                 .Where(h => h.CityId == selectedHotel.CityId && h.Id != hotelId)
                 .Select(h => new
                 {
@@ -102,7 +105,7 @@ namespace hotelEase.Services
             var predictionEngine = _mlContext.Model.CreatePredictionEngine<HotelRating, HotelRatingPrediction>(model);
 
             // sve hotele
-            var allHotels = _context.Hotels.Include(h=>h.Rooms).ThenInclude(r=>r.Assets).ToList();
+            var allHotels = _context.Hotels.Include(h=>h.Rooms).ThenInclude(r=>r.Assets).Include(h=>h.City).ToList();
             var scoredHotels = allHotels.Select(h =>
             {
                 var prediction = predictionEngine.Predict(new HotelRating

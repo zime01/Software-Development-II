@@ -22,16 +22,31 @@ class PaymentScreen extends StatefulWidget {
 
 class _PaymentScreenState extends State<PaymentScreen> {
   bool loading = false;
-  String? error;
+
+  Future<void> _showErrorPopup(String message) async {
+    await showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text(
+          "Payment Error",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("OK"),
+          ),
+        ],
+      ),
+    );
+  }
 
   Future<void> _startPayment() async {
-    setState(() {
-      loading = true;
-      error = null;
-    });
+    setState(() => loading = true);
 
     try {
-      // 1. Kreiraj PaymentIntent na backendu
+      // 1. Create payment intent
       final intent = await context
           .read<PaymentsProvider>()
           .createStripePaymentIntent(
@@ -41,45 +56,51 @@ class _PaymentScreenState extends State<PaymentScreen> {
           );
 
       if (intent == null || intent.clientSecret.isEmpty) {
-        throw Exception("Greška: server nije vratio clientSecret.");
+        throw Exception("Server did not return a valid Stripe client secret.");
       }
 
-      // 2. Inicijaliziraj PaymentSheet
+      // 2. Init payment sheet
       await Stripe.instance.initPaymentSheet(
         paymentSheetParameters: SetupPaymentSheetParameters(
           paymentIntentClientSecret: intent.clientSecret,
-          style: ThemeMode.dark,
           merchantDisplayName: "HotelEase",
-          appearance: const PaymentSheetAppearance(
-            colors: PaymentSheetAppearanceColors(),
-          ),
+          style: ThemeMode.dark,
         ),
       );
 
-      // 3. Prikaži PaymentSheet
+      // 3. Present payment sheet
       await Stripe.instance.presentPaymentSheet();
 
-      // 4. Update status na backendu
+      // 4. Update backend status
       await context.read<PaymentsProvider>().updateStripeStatus(
-        paymentId: intent
-            .paymentId, // ovo moraš da dodaš u PaymentIntentResult model da ti backend vrati
+        paymentId: intent.paymentId,
         newStatus: "succeeded",
         providerPaymentId: intent.paymentIntentId,
       );
 
       if (!mounted) return;
+
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text("✅ Plaćanje uspješno!")));
+      ).showSnackBar(const SnackBar(content: Text("Payment successful!")));
+
       Navigator.pop(context, true);
     } catch (e, st) {
       debugPrint("❌ Payment error: $e\n$st");
-      setState(() => error = e.toString());
-      if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text("Greška pri plaćanju: $e")));
+
+      String userMessage = "An unexpected error occurred during payment.";
+
+      if (e is StripeException) {
+        if (e.error.code == FailureCode.Canceled) {
+          userMessage = "Payment was cancelled. You can try again.";
+        } else {
+          userMessage = "Payment failed. Please check your card and try again.";
+        }
+      } else if (e.toString().toLowerCase().contains("network")) {
+        userMessage = "No internet connection. Please try again.";
       }
+
+      await _showErrorPopup(userMessage);
     } finally {
       if (mounted) setState(() => loading = false);
     }
@@ -101,7 +122,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     children: [
                       Text(
                         "Reservation: ",
-                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -124,7 +144,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     children: [
                       Text(
                         "Amount: ",
-                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 18,
                           color: Theme.of(context).colorScheme.onPrimary,
@@ -153,21 +172,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       ),
                     ),
                     child: const Text(
-                      "Plati sada",
+                      "Pay now",
                       style: TextStyle(fontSize: 20),
                     ),
                   ),
-                  if (error != null) ...[
-                    const SizedBox(height: 20),
-                    Text(
-                      "Greška: $error",
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.redAccent,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
                 ],
               ),
             ),

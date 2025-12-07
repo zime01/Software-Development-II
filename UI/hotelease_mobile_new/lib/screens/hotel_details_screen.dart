@@ -11,6 +11,7 @@ import 'package:hotelease_mobile_new/providers/rooms.provider.dart';
 import 'package:hotelease_mobile_new/providers/search_provider.dart';
 import 'package:hotelease_mobile_new/screens/master_screen.dart';
 import 'package:hotelease_mobile_new/screens/reservations_screen.dart';
+import 'package:hotelease_mobile_new/utils/USDformat.dart';
 import 'package:hotelease_mobile_new/widgets/calendar_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -168,6 +169,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
     }
 
     final controller = _pageControllers[hotelId]!;
+
     return SizedBox(
       width: double.infinity,
       height: 200,
@@ -175,24 +177,39 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
         controller: controller,
         itemCount: assets.length,
         itemBuilder: (context, index) {
-          final imageString = assets[index].image;
-          if (imageString == null || imageString.isEmpty) {
+          final imageStr = assets[index].image;
+
+          if (imageStr == null || imageStr.isEmpty) {
             return Image.asset(
               'assets/images/cant_load_image.png',
               fit: BoxFit.cover,
             );
           }
+
           try {
-            final decodedUrl = utf8.decode(base64.decode(imageString));
-            return Image.network(
-              decodedUrl,
-              fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => Image.asset(
-                'assets/images/cant_load_image.png',
+            // 1) Decode base64
+            final decoded = base64.decode(imageStr);
+
+            // 2) Probaj interpretirati kao UTF-8 string (možda URL)
+            final asString = utf8.decode(decoded, allowMalformed: true);
+
+            // 3) Ako je URL → prikaži Image.network
+            if (asString.startsWith("http://") ||
+                asString.startsWith("https://")) {
+              return Image.network(
+                asString,
                 fit: BoxFit.cover,
-              ),
-            );
+                errorBuilder: (_, __, ___) => Image.asset(
+                  'assets/images/cant_load_image.png',
+                  fit: BoxFit.cover,
+                ),
+              );
+            }
+
+            // 4) Inače → raw slika JPEG/PNG u base64
+            return Image.memory(decoded, fit: BoxFit.cover);
           } catch (e) {
+            print("Hotel image decode error: $e");
             return Image.asset(
               'assets/images/cant_load_image.png',
               fit: BoxFit.cover,
@@ -270,148 +287,154 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
         ),
         const SizedBox(height: 10),
         ...rooms.map((room) {
-          return Card(
-            color: Theme.of(context).colorScheme.secondary,
-            margin: const EdgeInsets.symmetric(vertical: 8),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: Text(
-                      room.name ?? "Unknown Room",
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onPrimary,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Capacity: ${room.capacity ?? '-'}",
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.onPrimary,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          if (room.wiFi == true)
-                            const Icon(
-                              Icons.wifi,
-                              color: Colors.green,
-                              size: 20,
-                            ),
-                          if (room.ac == true)
-                            const Icon(
-                              Icons.ac_unit_rounded,
-                              color: Colors.blue,
-                              size: 20,
-                            ),
-                          if (room.queenBed == true)
-                            const Icon(
-                              Icons.bed_outlined,
-                              color: Colors.cyan,
-                              size: 20,
-                            ),
-                          if (room.cityView == true)
-                            const Icon(
-                              Icons.nature,
-                              color: Colors.purple,
-                              size: 20,
-                            ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "\$${room.pricePerNight?.toStringAsFixed(2)}",
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).colorScheme.onPrimary,
-                            ),
-                          ),
-                          Text(
-                            "/night",
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onPrimary,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Center(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(
-                          context,
-                        ).colorScheme.secondary,
-                        side: const BorderSide(color: Colors.white),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
-                      onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          backgroundColor: Colors.white,
-                          builder: (_) {
-                            return SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.6,
-                              child: CalendarWidget(
-                                roomId: room.id!,
-                                initialCheckInDate:
-                                    _searchProvider.params?.checkInDate,
-                                initialCheckOutDate:
-                                    _searchProvider.params?.checkOutDate,
-                                onDateRangeSelected: (checkIn, checkOut) {
-                                  _searchProvider.setParams(
-                                    SearchParams(
-                                      checkInDate: checkIn,
-                                      checkOutDate: checkOut,
-                                      guests:
-                                          _searchProvider.params?.guests ?? 1,
-                                    ),
-                                  );
-
-                                  Navigator.pop(context);
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => ReservationScreen(
-                                        hotelName: widget.name,
-                                        hotelId: widget.id!,
-                                        room: room,
-                                        checkInDate: checkIn,
-                                        checkOutDate: checkOut,
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                        );
-                      },
+          return GestureDetector(
+            onTap: () {
+              _showRoomImagesModal(room);
+            },
+            child: Card(
+              color: Theme.of(context).colorScheme.secondary,
+              margin: const EdgeInsets.symmetric(vertical: 8),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
                       child: Text(
-                        "Book now",
+                        room.name ?? "Unknown Room",
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.onPrimary,
                           fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 4),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Capacity: ${room.capacity ?? '-'}",
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            if (room.wiFi == true)
+                              const Icon(
+                                Icons.wifi,
+                                color: Colors.green,
+                                size: 20,
+                              ),
+                            if (room.ac == true)
+                              const Icon(
+                                Icons.ac_unit_rounded,
+                                color: Colors.blue,
+                                size: 20,
+                              ),
+                            if (room.queenBed == true)
+                              const Icon(
+                                Icons.bed_outlined,
+                                color: Colors.cyan,
+                                size: 20,
+                              ),
+                            if (room.cityView == true)
+                              const Icon(
+                                Icons.nature,
+                                color: Colors.purple,
+                                size: 20,
+                              ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "\$${room.pricePerNight?.toStringAsFixed(2)}",
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.onPrimary,
+                              ),
+                            ),
+                            Text(
+                              "/night",
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onPrimary,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Center(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(
+                            context,
+                          ).colorScheme.secondary,
+                          side: const BorderSide(color: Colors.white),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                        onPressed: () {
+                          showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            backgroundColor: Colors.white,
+                            builder: (_) {
+                              return SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.6,
+                                child: CalendarWidget(
+                                  roomId: room.id!,
+                                  initialCheckInDate:
+                                      _searchProvider.params?.checkInDate,
+                                  initialCheckOutDate:
+                                      _searchProvider.params?.checkOutDate,
+                                  onDateRangeSelected: (checkIn, checkOut) {
+                                    _searchProvider.setParams(
+                                      SearchParams(
+                                        checkInDate: checkIn,
+                                        checkOutDate: checkOut,
+                                        guests:
+                                            _searchProvider.params?.guests ?? 1,
+                                      ),
+                                    );
+
+                                    Navigator.pop(context);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => ReservationScreen(
+                                          hotelName: widget.name,
+                                          hotelId: widget.id!,
+                                          room: room,
+                                          checkInDate: checkIn,
+                                          checkOutDate: checkOut,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        child: Text(
+                          "Book now",
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );
@@ -658,33 +681,105 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
   }
 
   Widget _buildHotelImage(String? base64Image) {
+    const double imgHeight = 100;
+
     if (base64Image == null || base64Image.isEmpty) {
       return Image.asset(
         'assets/images/cant_load_image.png',
-        height: 100,
+        height: imgHeight,
         fit: BoxFit.cover,
       );
     }
 
     try {
-      final decodedUrl = utf8.decode(base64.decode(base64Image));
-      return Image.network(
-        decodedUrl,
-        height: 100,
-        fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) => Image.asset(
-          'assets/images/cant_load_image.png',
-          height: 100,
+      // 1) Decode base64
+      final decoded = base64.decode(base64Image);
+
+      // 2) Pokušaj pretvoriti u UTF-8 (možda je URL)
+      final asString = utf8.decode(decoded, allowMalformed: true);
+
+      // 3) Ako počinje sa http → to je base64-encoded URL
+      if (asString.startsWith("http://") || asString.startsWith("https://")) {
+        return Image.network(
+          asString,
+          height: imgHeight,
           fit: BoxFit.cover,
-        ),
-      );
+          errorBuilder: (_, __, ___) => Image.asset(
+            'assets/images/cant_load_image.png',
+            height: imgHeight,
+            fit: BoxFit.cover,
+          ),
+        );
+      }
+
+      // 4) Inače → to je raw slika (JPEG/PNG)
+      return Image.memory(decoded, height: imgHeight, fit: BoxFit.cover);
     } catch (e) {
+      print("Hotel image decode error: $e");
       return Image.asset(
         'assets/images/cant_load_image.png',
-        height: 100,
+        height: imgHeight,
         fit: BoxFit.cover,
       );
     }
+  }
+
+  void _showRoomImagesModal(Room room) async {
+    List<Asset> roomAssets = [];
+    try {
+      final result = await _assetsProvider.getAssetsByRoomId(room.id!);
+      roomAssets = result.result;
+    } catch (e) {
+      print("Error loading room images: $e");
+    }
+
+    if (roomAssets.isEmpty) roomAssets = [];
+
+    showDialog(
+      context: context,
+      builder: (_) => Dialog(
+        backgroundColor: Colors.transparent,
+        child: SizedBox(
+          height: 300,
+          child: PageView.builder(
+            itemCount: roomAssets.length,
+            itemBuilder: (context, index) {
+              final imageStr = roomAssets[index].image;
+
+              if (imageStr == null || imageStr.isEmpty) {
+                return Image.asset(
+                  'assets/images/cant_load_image.png',
+                  fit: BoxFit.cover,
+                );
+              }
+
+              try {
+                // 1) Decode base64
+                final decoded = base64.decode(imageStr);
+
+                // 2) Pokušaj pretvoriti u UTF-8 string (možda je URL)
+                final asString = utf8.decode(decoded, allowMalformed: true);
+
+                // 3) Ako počinje sa http → to je base64-url
+                if (asString.startsWith("http://") ||
+                    asString.startsWith("https://")) {
+                  return Image.network(asString, fit: BoxFit.cover);
+                }
+
+                // 4) Inače → to je raw slika (JPEG/PNG)
+                return Image.memory(decoded, fit: BoxFit.cover);
+              } catch (e) {
+                print("Image decode error: $e");
+                return Image.asset(
+                  'assets/images/cant_load_image.png',
+                  fit: BoxFit.cover,
+                );
+              }
+            },
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -879,12 +974,34 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
                                     color: Theme.of(
                                       context,
                                     ).colorScheme.onPrimary,
+                                    fontSize: 16,
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
+                                SizedBox(height: 5),
+                                Text(
+                                  hotel.city?.name ?? "Unknown city",
+                                  style: TextStyle(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onPrimary,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                SizedBox(height: 5),
                                 Text(
                                   "${hotel.starRating} ★",
-                                  style: const TextStyle(color: Colors.yellow),
+                                  style: TextStyle(color: Colors.yellow),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  "${formatPrice(hotel.minPrice)} - ${formatPrice(hotel.maxPrice)} /night",
+                                  style: TextStyle(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onPrimary,
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ],
                             ),

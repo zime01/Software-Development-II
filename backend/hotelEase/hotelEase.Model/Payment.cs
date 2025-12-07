@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace hotelEase.Model
 {
@@ -15,7 +16,6 @@ namespace hotelEase.Model
         public string Status { get; set; } = "processing";
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
-        public virtual Reservation Reservation { get; set; } = null!;
         public string? ClientSecret { get; set; }
     }
 }

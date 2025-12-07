@@ -24,9 +24,9 @@ namespace hotelEase.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public Model.User Login(string username, string password)
+        public Model.User Login([FromBody] LoginRequest request)
         {
-            return (_service as IUsersService).Login(username, password);
+            return (_service as IUsersService).Login(request.Username, request.Password);
         }
 
         [AllowAnonymous]
@@ -98,16 +98,9 @@ namespace hotelEase.API.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult ChangeStatus(int id, [FromQuery] bool isActive)
         {
-            var user = (_service as IUsersService).GetById(id);
-            if (user == null) return NotFound();
-
-            var updateRequest = new UsersUpdateRequest
-            {
-                IsActive = isActive
-            };
-
-            _usersService.Update(id, updateRequest);
+            _usersService.ChangeStatus(id, isActive);
             return Ok(new { message = $"User {(isActive ? "activated" : "deactivated")} successfully" });
+
         }
 
         [HttpPut("{id}/change-role")]

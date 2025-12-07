@@ -14,6 +14,9 @@ class _UsersManageScreenState extends State<UsersManageScreen> {
   final UsersProvider _provider = UsersProvider();
   List<User> users = [];
 
+  bool? _activeFilter;
+  String? _roleFilter;
+
   @override
   void initState() {
     super.initState();
@@ -21,7 +24,11 @@ class _UsersManageScreenState extends State<UsersManageScreen> {
   }
 
   Future<void> loadUsers() async {
-    var result = await _provider.getAll(includeRoles: true);
+    var result = await _provider.getAll(
+      includeRoles: true,
+      isActive: _activeFilter,
+      role: _roleFilter,
+    );
     setState(() {
       users = result;
     });
@@ -41,90 +48,212 @@ class _UsersManageScreenState extends State<UsersManageScreen> {
   Widget build(BuildContext context) {
     return MasterScreen(
       title: "Manage users",
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: DataTable(
-          columns: const [
-            DataColumn(
-              label: Text("ID", style: TextStyle(color: Colors.white)),
-            ),
-            DataColumn(
-              label: Text("Username", style: TextStyle(color: Colors.white)),
-            ),
-            DataColumn(
-              label: Text("Email", style: TextStyle(color: Colors.white)),
-            ),
-            DataColumn(
-              label: Text("Role", style: TextStyle(color: Colors.white)),
-            ),
-            DataColumn(
-              label: Text("Active", style: TextStyle(color: Colors.white)),
-            ),
-            DataColumn(
-              label: Text("Actions", style: TextStyle(color: Colors.white)),
-            ),
-          ],
-          rows: users.map((u) {
-            return DataRow(
-              cells: [
-                DataCell(
-                  Text(u.id.toString(), style: TextStyle(color: Colors.white)),
-                ),
-                DataCell(
-                  Text(u.username ?? "", style: TextStyle(color: Colors.white)),
-                ),
-                DataCell(
-                  Text(u.email ?? "", style: TextStyle(color: Colors.white)),
-                ),
-                DataCell(
-                  Text(
-                    u.roles != null && u.roles!.isNotEmpty
-                        ? u.roles!.map((r) => r.name).join(", ")
-                        : "No role",
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // 🔹 FILTER ROW
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                DropdownButton<bool?>(
+                  value: _activeFilter,
+                  hint: const Text(
+                    "Active filter",
                     style: TextStyle(color: Colors.white),
                   ),
+                  items: const [
+                    DropdownMenuItem(value: null, child: Text("All")),
+                    DropdownMenuItem(value: true, child: Text("Active")),
+                    DropdownMenuItem(value: false, child: Text("Inactive")),
+                  ],
+                  onChanged: (value) {
+                    setState(() => _activeFilter = value);
+                    loadUsers();
+                  },
+                  dropdownColor: Colors.grey[900],
+                  style: const TextStyle(color: Colors.white),
                 ),
-                DataCell(
-                  Text(
-                    u.isActive == true ? "Yes" : "No",
+                const SizedBox(width: 30),
+                DropdownButton<String?>(
+                  value: _roleFilter,
+                  hint: const Text(
+                    "Role filter",
                     style: TextStyle(color: Colors.white),
                   ),
-                ),
-                DataCell(
-                  Row(
-                    children: [
-                      IconButton(
-                        icon: Icon(
-                          u.isActive == true ? Icons.block : Icons.check,
-                          color: u.isActive == true ? Colors.red : Colors.green,
-                        ),
-                        onPressed: () => toggleActivation(u),
-                      ),
-                      PopupMenuButton<String>(
-                        onSelected: (role) => changeRole(u, role),
-                        itemBuilder: (context) => [
-                          const PopupMenuItem(
-                            value: "user",
-                            child: Text("User"),
-                          ),
-                          const PopupMenuItem(
-                            value: "manager",
-                            child: Text("Manager"),
-                          ),
-                          const PopupMenuItem(
-                            value: "admin",
-                            child: Text("Admin"),
-                          ),
-                        ],
-                        child: const Icon(Icons.edit, color: Colors.white),
-                      ),
-                    ],
-                  ),
+                  items: const [
+                    DropdownMenuItem(value: null, child: Text("All")),
+                    DropdownMenuItem(value: "user", child: Text("User")),
+                    DropdownMenuItem(value: "manager", child: Text("Manager")),
+                    DropdownMenuItem(value: "admin", child: Text("Admin")),
+                  ],
+                  onChanged: (value) {
+                    setState(() => _roleFilter = value);
+                    loadUsers();
+                  },
+                  dropdownColor: Colors.grey[900],
+                  style: const TextStyle(color: Colors.white),
                 ),
               ],
-            );
-          }).toList(),
-        ),
+            ),
+          ),
+
+          // 🔹 USERS TABLE
+          Expanded(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical, // vertical scroll
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal, // horizontal scroll
+                child: DataTable(
+                  columnSpacing: 30,
+                  headingRowHeight: 56,
+                  dataRowHeight: 60,
+                  columns: const [
+                    DataColumn(
+                      label: Center(
+                        child: Text(
+                          "ID",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    DataColumn(
+                      label: Center(
+                        child: Text(
+                          "Username",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    DataColumn(
+                      label: Center(
+                        child: Text(
+                          "Email",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    DataColumn(
+                      label: Center(
+                        child: Text(
+                          "Role",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    DataColumn(
+                      label: Center(
+                        child: Text(
+                          "Active",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    DataColumn(
+                      label: Center(
+                        child: Text(
+                          "Actions",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
+                  rows: users.map((u) {
+                    return DataRow(
+                      cells: [
+                        DataCell(
+                          Center(
+                            child: Text(
+                              u.id.toString(),
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        DataCell(
+                          Center(
+                            child: Text(
+                              u.username ?? "",
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        DataCell(
+                          Center(
+                            child: Text(
+                              u.email ?? "",
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        DataCell(
+                          Center(
+                            child: Text(
+                              u.roles != null && u.roles!.isNotEmpty
+                                  ? u.roles!.map((r) => r.name).join(", ")
+                                  : "No role",
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        DataCell(
+                          Center(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  u.isActive == true ? "Yes" : "No",
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                                IconButton(
+                                  icon: Icon(
+                                    u.isActive == true
+                                        ? Icons.toggle_on
+                                        : Icons.toggle_off,
+                                    size: 32,
+                                    color: u.isActive == true
+                                        ? Colors.green
+                                        : Colors.red,
+                                  ),
+                                  onPressed: () => toggleActivation(u),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        DataCell(
+                          Center(
+                            child: PopupMenuButton<String>(
+                              onSelected: (role) => changeRole(u, role),
+                              itemBuilder: (context) => const [
+                                PopupMenuItem(
+                                  value: "user",
+                                  child: Text("Assign as User"),
+                                ),
+                                PopupMenuItem(
+                                  value: "manager",
+                                  child: Text("Assign as Manager"),
+                                ),
+                                PopupMenuItem(
+                                  value: "admin",
+                                  child: Text("Assign as Admin"),
+                                ),
+                              ],
+                              child: const Icon(
+                                Icons.edit,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

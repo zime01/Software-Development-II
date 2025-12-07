@@ -19,5 +19,6 @@ namespace hotelEase.Services
         Model.User Register(UsersInsertRequest request);
         Model.User GetCurrentUser(string username);
         void ChangeUserRole(int userId, string newRole);
+        void ChangeStatus(int id, bool isActive);
     }
 }

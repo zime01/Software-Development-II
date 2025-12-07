@@ -6,7 +6,8 @@
     using hotelEase.Services.Database;
     using hotelEase.Services.HotelsStateMachine;
     using Mapster;
-    using Microsoft.AspNetCore.Authentication;
+using MapsterMapper;
+using Microsoft.AspNetCore.Authentication;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.OpenApi.Models;
     using Stripe;
@@ -115,7 +116,13 @@
 
     builder.Services.AddMapster();
 
-    builder.Services.AddAuthentication("BasicAuthentication")
+var typeAdapterConfig = TypeAdapterConfig.GlobalSettings;
+typeAdapterConfig.Scan(typeof(hotelEase.Services.Mapping.HotelMapsterConfig).Assembly);
+
+builder.Services.AddSingleton(typeAdapterConfig);
+builder.Services.AddScoped<IMapper, ServiceMapper>();
+
+builder.Services.AddAuthentication("BasicAuthentication")
         .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
     builder.Services.AddAuthorization(options =>
@@ -146,7 +153,7 @@
     using (var scope = app.Services.CreateScope())
     {
         var dataContext = scope.ServiceProvider.GetRequiredService<HotelEaseContext>();
-        dataContext.Database.EnsureCreated();
+        //dataContext.Database.EnsureCreated();
 
         //dataContext.Database.Migrate();
     }

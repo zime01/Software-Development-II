@@ -16,10 +16,12 @@ class Room {
   String? description;
   List<Asset>? assets;
 
+  Hotel? hotel;
+
   bool? queenBed;
   bool? wiFi;
   bool? cityView;
-  bool? ac;
+  bool? AC;
 
   String? hotelName;
   Room({
@@ -33,7 +35,7 @@ class Room {
     this.isAvailable,
     this.description,
     this.assets,
-    this.ac,
+    this.AC,
     this.cityView,
     this.queenBed,
     this.wiFi,

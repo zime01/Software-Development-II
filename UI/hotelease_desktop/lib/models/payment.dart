@@ -4,14 +4,14 @@ part 'payment.g.dart';
 
 @JsonSerializable()
 class Payment {
-  final int id;
-  final int reservationId;
-  final String provider;
-  final String providerPaymentId;
-  final double amount;
-  final String currency;
-  final String status;
-  final DateTime createdAt;
+  final int? id;
+  final int? reservationId;
+  final String? provider;
+  final String? providerPaymentId;
+  final double? amount;
+  final String? currency;
+  final String? status;
+  final DateTime? createdAt;
   final DateTime? updatedAt;
 
   Payment({

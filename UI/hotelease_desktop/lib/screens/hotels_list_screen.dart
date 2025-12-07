@@ -132,6 +132,17 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
     }
   }
 
+  final usdFormatter = NumberFormat.currency(
+    locale: 'en_US',
+    symbol: "\$",
+    decimalDigits: 2,
+  );
+
+  String formatPrice(int? value) {
+    if (value == null) return "0.00";
+    return usdFormatter.format(value.toDouble());
+  }
+
   Future<void> _searchAvailableHotels() async {
     if (_dateFrom == null || _dateTo == null) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -645,7 +656,7 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (_) => HotelDetailsScreen(
-                                      id: hotel.id,
+                                      id: hotel.id!,
                                       name: hotel.name,
                                       starRating: hotel.starRating,
                                       price: hotel.price,
@@ -674,12 +685,30 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
                                   SizedBox(height: 5),
                                   Text(
                                     hotel.name ?? "",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    hotel.city?.name ?? "Unknown city",
                                     style: TextStyle(color: Colors.white),
                                     overflow: TextOverflow.ellipsis,
                                   ),
+                                  SizedBox(height: 5),
                                   Text(
                                     "${hotel.starRating} ★",
                                     style: TextStyle(color: Colors.yellow),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    "${formatPrice(hotel.minPrice)} - ${formatPrice(hotel.maxPrice)} /night",
+                                    style: TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 12,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -734,7 +763,7 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (_) => HotelDetailsScreen(
-                                      id: hotel.id,
+                                      id: hotel.id!,
                                       name: hotel.name,
                                       starRating: hotel.starRating,
                                       price: hotel.price,
@@ -766,9 +795,24 @@ class _HotelsListScreenState extends State<HotelsListScreen> {
                                     style: TextStyle(color: Colors.white),
                                     overflow: TextOverflow.ellipsis,
                                   ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    hotel.city?.name ?? "Unknown city",
+                                    style: TextStyle(color: Colors.white),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  SizedBox(height: 5),
                                   Text(
                                     "${hotel.starRating} ★",
                                     style: TextStyle(color: Colors.yellow),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    "${formatPrice(hotel.minPrice)} - ${formatPrice(hotel.maxPrice)} /night",
+                                    style: TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 12,
+                                    ),
                                   ),
                                 ],
                               ),

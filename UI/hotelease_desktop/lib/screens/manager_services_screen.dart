@@ -71,7 +71,7 @@ class _ManagerServicesScreenState extends State<ManagerServicesScreen> {
                   child: ListTile(
                     title: Text(s.name, style: TextStyle(color: Colors.white)),
                     subtitle: Text(
-                      "${s.description ?? ''}\n${s.price} €",
+                      "${s.description ?? ''}\n\$ ${s.price.toStringAsFixed(2)}",
                       style: TextStyle(color: Colors.grey),
                     ),
                     isThreeLine: true,

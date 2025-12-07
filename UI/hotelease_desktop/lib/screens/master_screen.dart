@@ -92,65 +92,27 @@ class _MasterScreenState extends State<MasterScreen> {
                     );
                   },
                 ),
+
                 ListTile(
                   title: const Text(
-                    "Manager Hotels Services",
-                    style: TextStyle(color: Colors.white),
+                    "Logout",
+                    style: TextStyle(
+                      color: Colors.redAccent,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
+                  leading: const Icon(Icons.logout, color: Colors.redAccent),
                   onTap: () {
-                    final managerHotelId = context
-                        .read<HotelsProvider>()
-                        .currentHotelId;
+                    // 1. Očisti Basic Auth podatke
+                    Authorization.logout();
 
-                    if (managerHotelId != null) {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              ManagerServicesScreen(hotelId: managerHotelId),
-                        ),
-                      );
-                    } else {
-                      ScaffoldMessenger.of(rootContext).showSnackBar(
-                        const SnackBar(
-                          content: Text("Please select a hotel first"),
-                        ),
-                      );
-                    }
-                  },
-                ),
-                ListTile(
-                  title: const Text(
-                    "Manager Stats",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onTap: () {
-                    final managerHotelId = context
-                        .read<HotelsProvider>()
-                        .currentHotelId;
+                    // 2. Zatvori Drawer
+                    Navigator.of(context).pop();
 
-                    if (managerHotelId == null) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Please select a hotel first"),
-                        ),
-                      );
-                      return;
-                    }
-
-                    if (Authorization.username == null ||
-                        Authorization.password == null) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("Not logged in")),
-                      );
-                      return;
-                    }
-
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) =>
-                            ManagerStatsScreen(hotelId: managerHotelId),
-                      ),
-                    );
+                    // 3. Izbaci usera na login screen i izbriši history stack
+                    Navigator.of(
+                      context,
+                    ).pushNamedAndRemoveUntil("/login", (route) => false);
                   },
                 ),
               ],

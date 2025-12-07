@@ -34,7 +34,7 @@ class _UsersScreenState extends State<UsersScreen>
 
   String _formatDate(DateTime? date) {
     if (date == null) return "-";
-    return DateFormat('dd.MM.yyyy – HH:mm').format(date);
+    return DateFormat('dd.MM.yyyy. – HH:mm').format(date);
   }
 
   @override
@@ -455,7 +455,7 @@ class _UsersScreenState extends State<UsersScreen>
                             ),
                           ),
                           subtitle: Text(
-                            "${res.checkInDate} - ${res.checkOutDate}",
+                            "${DateFormat('dd.MM.yyyy.  HH:mm').format(res.checkInDate!)} - ${DateFormat('dd.MM.yyyy. HH:mm').format(res.checkOutDate!)}",
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onPrimary,
                             ),

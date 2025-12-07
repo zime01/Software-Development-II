@@ -38,5 +38,8 @@ namespace hotelEase.Model
         public virtual ICollection<Room> Rooms { get; set; } = new List<Room>();
         public virtual City City { get; set; } = null!;
 
+        public decimal MinPrice { get; set; }
+        public decimal MaxPrice { get; set; }
+
     }
 }

@@ -47,7 +47,7 @@ public partial class HotelEaseContext : DbContext
 
     //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-    //        => optionsBuilder.UseSqlServer("Server=localhost,1433;Database=HotelEase;Trusted_Connection=True;TrustServerCertificate=True;");
+    //        => optionsBuilder.UseSqlServer("Server=localhost,1433;Database=HotelEase;User Id=sa;Password=QWEasd123!;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -358,7 +358,8 @@ public partial class HotelEaseContext : DbContext
         StarRating = 5,
         IsActive = true,
         Pool = true,
-        CreatedAt = DateTime.Parse("2025-02-08T00:00:00")
+        CreatedAt = DateTime.Parse("2025-02-08T00:00:00"),
+        StateMachine = "draft"
     },
     new Hotel
     {
@@ -371,7 +372,8 @@ public partial class HotelEaseContext : DbContext
         ManagerId = 2,
         StarRating = 5,
         IsActive = true,
-        CreatedAt = DateTime.Parse("2025-08-03T19:00:56.207")
+        CreatedAt = DateTime.Parse("2025-08-03T19:00:56.207"),
+        StateMachine = "draft"
     },
     new Hotel
     {
@@ -384,7 +386,8 @@ public partial class HotelEaseContext : DbContext
         ManagerId = 2,
         StarRating = 5,
         IsActive = true,
-        CreatedAt = DateTime.Parse("2025-08-04T12:15:19.743")
+        CreatedAt = DateTime.Parse("2025-08-04T12:15:19.743"),
+        StateMachine = "draft"
     },
     new Hotel
     {
@@ -397,7 +400,8 @@ public partial class HotelEaseContext : DbContext
         ManagerId = 6,
         StarRating = 4,
         IsActive = true,
-        CreatedAt = DateTime.Parse("2025-08-15T08:45:56.95")
+        CreatedAt = DateTime.Parse("2025-08-15T08:45:56.95"),
+        StateMachine = "draft"
     },
     new Hotel
     {
@@ -413,7 +417,8 @@ public partial class HotelEaseContext : DbContext
         Parking = true,
         WiFi = true,
         Bar = true,
-        CreatedAt = DateTime.Parse("2025-09-05T12:16:28.803")
+        CreatedAt = DateTime.Parse("2025-09-05T12:16:28.803"),
+        StateMachine = "draft"
     },
     new Hotel
     {
@@ -428,7 +433,8 @@ public partial class HotelEaseContext : DbContext
         IsActive = true,
         Parking = true,
         WiFi = true,
-        CreatedAt = DateTime.Parse("2025-09-05T12:16:28.803")
+        CreatedAt = DateTime.Parse("2025-09-05T12:16:28.803"),
+        StateMachine = "draft"
     },
     new Hotel
     {
@@ -442,7 +448,8 @@ public partial class HotelEaseContext : DbContext
         StarRating = 4,
         IsActive = true,
         WiFi = true,
-        CreatedAt = DateTime.Parse("2025-09-05T12:16:28.803")
+        CreatedAt = DateTime.Parse("2025-09-05T12:16:28.803"),
+        StateMachine = "draft"
     },
     new Hotel
     {
@@ -460,7 +467,8 @@ public partial class HotelEaseContext : DbContext
         Pool = true,
         Bar = true,
         Fitness = true,
-        CreatedAt = DateTime.Parse("2025-09-05T12:16:28.803")
+        CreatedAt = DateTime.Parse("2025-09-05T12:16:28.803"),
+        StateMachine = "draft"
     },
     new Hotel
     {
@@ -475,7 +483,8 @@ public partial class HotelEaseContext : DbContext
         IsActive = true,
         Parking = true,
         WiFi = true,
-        CreatedAt = DateTime.Parse("2025-09-05T12:16:28.803")
+        CreatedAt = DateTime.Parse("2025-09-05T12:16:28.803"),
+        StateMachine = "draft"
     },
     new Hotel
     {
@@ -492,7 +501,8 @@ public partial class HotelEaseContext : DbContext
         WiFi = true,
         Pool = true,
         Bar = true,
-        CreatedAt = DateTime.Parse("2025-09-05T12:16:28.803")
+        CreatedAt = DateTime.Parse("2025-09-05T12:16:28.803"),
+        StateMachine = "draft"
     }
 );
 
@@ -625,11 +635,6 @@ public partial class HotelEaseContext : DbContext
     new Room { Id = 7, HotelId = 3, RoomTypeId = 5, Name = "Standard King Room", Capacity = 3, PricePerNight = 180, IsAvailable = true, Description = "Standard King Room" },
     new Room { Id = 8, HotelId = 5, RoomTypeId = 7, Name = "Single Superior Room", Capacity = 1, PricePerNight = 80, IsAvailable = true, Description = "Single Superior Room" },
     new Room { Id = 9, HotelId = 5, RoomTypeId = 6, Name = "Twin Superior Room", Capacity = 1, PricePerNight = 130, IsAvailable = true, Description = "Twin Superior Room" },
-    new Room { Id = 10, HotelId = 1, RoomTypeId = 7, Name = "room", Capacity = 1, PricePerNight = 120, Description = "description" },
-    new Room { Id = 11, HotelId = 1, RoomTypeId = 7, Name = "1", Capacity = 1, PricePerNight = 111, Description = "desc" },
-    new Room { Id = 12, HotelId = 1, RoomTypeId = 5, Name = "rrrr", Capacity = 111, PricePerNight = 1111, Description = "1111" },
-    new Room { Id = 13, HotelId = 5, RoomTypeId = 4, Name = "rrrr", Capacity = 1, PricePerNight = 111, Description = "dassa" },
-    new Room { Id = 14, HotelId = 5, RoomTypeId = 3, Name = "room", Capacity = 2, PricePerNight = 110, Description = "description" },
     new Room { Id = 15, HotelId = 7, RoomTypeId = 10, Name = "Standard, Guest room", Capacity = 1, PricePerNight = 89, IsAvailable = true, Description = "Standard, Guest room, 1 King, City view" },
     new Room { Id = 16, HotelId = 7, RoomTypeId = 10, Name = "Superior, Guest room", Capacity = 2, PricePerNight = 109, IsAvailable = true, Description = "Superior, Guest room, 2 Twin/Single Bed(s), City view" },
     new Room { Id = 17, HotelId = 8, RoomTypeId = 12, Name = "Triple Room", Capacity = 3, PricePerNight = 130, IsAvailable = true, Description = "Triple Room" },
@@ -661,13 +666,11 @@ public partial class HotelEaseContext : DbContext
         modelBuilder.Entity<User>().HasData(
     new User { Id = 1, FirstName = "meho", LastName = "mehic", Email = "user@gmail.com", Username = "user", PasswordHash = "OypiMGzMHp0o9DYe5yWSnkky54A=", PasswordSalt = "o5hAjrnYH7NRqp9OBA6J9Q==", PhoneNumber = "061111111", IsActive = true, CreatedAt = DateTime.Parse("2025-08-01T16:30:26.593"), LastLoginAt = DateTime.Parse("2025-08-01T16:30:26.593") },
     new User { Id = 2, FirstName = "hazim", LastName = "hazim", Email = "hazim@gmail.com", Username = "hazim", PasswordHash = "/o8nmsH5Dbd76SDP//tH/GAvlxU=", PasswordSalt = "NOaVnvJ5ycPcKCjCCy8OdQ==", PhoneNumber = "061234567", IsActive = true, CreatedAt = DateTime.Parse("2025-08-01T16:19:45.617"), LastLoginAt = DateTime.Parse("2025-08-01T16:19:45.617") },
-    new User { Id = 4, FirstName = "ado", LastName = "ado", Email = "ado", Username = "ado", PasswordHash = "2fjG4q1LtucR2lA018pK6nWkyOc=", PasswordSalt = "1uIRFG7ijKSRdLtw5a74dw==", PhoneNumber = "063333333" },
     new User { Id = 5, FirstName = "test", LastName = "test", Email = "test@gmail.com", Username = "test", PasswordHash = "s/BuGRf7UYcqxjZMRoXq3Lu30YA=", PasswordSalt = "pToIaH5hKO0heIRZvyCouA==", PhoneNumber = "06000000", IsActive = true, CreatedAt = DateTime.Parse("2025-08-04T17:30:15.713"), LastLoginAt = DateTime.Parse("2025-08-04T17:30:15.713") },
     new User { Id = 6, FirstName = "Hazim", LastName = "Zimić", Email = "zime1921@gmail.com", Username = "zime_01", PasswordHash = "2eM1YIrZQAVh/jGfdoyUdOMdrEQ=", PasswordSalt = "s0Q/8KH8VbNeaMtkT18CAA==", PhoneNumber = "+38762404557", IsActive = true, CreatedAt = DateTime.Parse("2025-08-08T18:26:28.5"), LastLoginAt = DateTime.Parse("2025-08-08T18:26:28.5") },
     new User { Id = 7, FirstName = "test", LastName = "test", Email = "zime1921@gmail.com", Username = "test", PasswordHash = "4pOLn3oczBkoe6ryRO3roYb70c4=", PasswordSalt = "tBf5M34DNdsz/42SdTmJHQ==", IsActive = true, CreatedAt = DateTime.Parse("2025-08-20T10:37:21.807") },
     new User { Id = 8, FirstName = "test", LastName = "test", Email = "zime1921@gmail.com", Username = "test", PasswordHash = "DUdL3t0xvuewcsxxsSrW23x948I=", PasswordSalt = "Rfk+5T78WxlZGOiYrl2j9A==", IsActive = true, CreatedAt = DateTime.Parse("2025-08-20T10:40:04.5") },
     new User { Id = 9, FirstName = "abcd", LastName = "abcd", Email = "abcd", Username = "abcd", PasswordHash = "9ciStnRAT8sF6RjAI4dy5L4FCO8=", PasswordSalt = "C5DJk5nT7x+gkzuYTcZ5fA==", PhoneNumber = "string", IsActive = true, CreatedAt = DateTime.Parse("2025-08-20T08:51:11.363") },
-    new User { Id = 10, FirstName = "", LastName = "", Email = "", Username = "", PasswordHash = "G6FEm+iqUeqJr7qE2wKhCo6xzqk=", PasswordSalt = "Aa8kPMrOl2Y0xdJNLrUErw==", IsActive = true, CreatedAt = DateTime.Parse("2025-08-20T19:20:20.337") },
     new User { Id = 13, FirstName = "mujo", LastName = "mujo", Email = "eaglehl022@gmail.com", Username = "mujo", PasswordHash = "rtNMo9LEpchW1xPiej9xshhp/Js=", PasswordSalt = "b5mgx/KFt/oB/LFCFX/Dag==", PhoneNumber = "061111111" },
     new User { Id = 14, FirstName = "desktop", LastName = "desktop", Email = "zime1921@gmail.com", Username = "desktop", PasswordHash = "Y4Janfy1qua8GMku6qDTz9Jgz4E=", PasswordSalt = "NGNxtZEDNXRYCIZ4BmpfCA==", PhoneNumber = "060000000", IsActive = true, CreatedAt = DateTime.Parse("2025-09-07T08:41:35.897"), LastLoginAt = DateTime.Parse("2025-09-07T08:41:35.897") },
     new User { Id = 15, FirstName = "mobile", LastName = "mobile", Email = "zime1921@gmail.com", Username = "mobile", PasswordHash = "n2fzGycplgIHEO4s8nkTI02+h9s=", PasswordSalt = "l0mdchhOcVIle5zMGBzNsw==", PhoneNumber = "060000000", IsActive = true, CreatedAt = DateTime.Parse("2025-09-07T08:41:35.897"), LastLoginAt = DateTime.Parse("2025-09-07T08:41:35.897") },

@@ -28,6 +28,112 @@
         }
       }
     },
+    "/api/Assets/ByRoom/{roomId}": {
+      "get": {
+        "tags": [
+          "Assets"
+        ],
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Assets/delete-assets": {
+      "post": {
+        "tags": [
+          "Assets"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Assets/insert-assets": {
+      "post": {
+        "tags": [
+          "Assets"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AssetsUpsertRequest"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AssetsUpsertRequest"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AssetsUpsertRequest"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Assets": {
       "post": {
         "tags": [
@@ -94,6 +200,13 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "IsDeleted",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
             }
           },
           {
@@ -1889,6 +2002,29 @@
         }
       }
     },
+    "/api/Payments/status/{paymentId}": {
+      "get": {
+        "tags": [
+          "Payments"
+        ],
+        "parameters": [
+          {
+            "name": "paymentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Payments/stripe-webhook": {
       "post": {
         "tags": [
@@ -2373,6 +2509,59 @@
         }
       }
     },
+    "/api/Reservations/by-date": {
+      "get": {
+        "tags": [
+          "Reservations"
+        ],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reservations/update-reservation": {
+      "put": {
+        "tags": [
+          "Reservations"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationsUpsertRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationsUpsertRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationsUpsertRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Reservations": {
       "post": {
         "tags": [
@@ -2425,6 +2614,37 @@
           "Reservations"
         ],
         "parameters": [
+          {
+            "name": "Date",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "HotelId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "UserId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
           {
             "name": "Page",
             "in": "query",
@@ -4220,22 +4440,25 @@
         "tags": [
           "Users"
         ],
-        "parameters": [
-          {
-            "name": "username",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -4510,6 +4733,20 @@
             }
           },
           {
+            "name": "IsActive",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "Role",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "Page",
             "in": "query",
             "schema": {
@@ -4754,7 +4991,8 @@
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "hotelId": {
             "type": "integer",
@@ -4817,7 +5055,8 @@
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "hotelId": {
             "type": "integer",
@@ -4856,6 +5095,10 @@
       "City": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
           "name": {
             "type": "string",
             "nullable": true
@@ -5051,6 +5294,14 @@
           },
           "city": {
             "$ref": "#/components/schemas/City"
+          },
+          "minPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "maxPrice": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
@@ -5154,6 +5405,20 @@
           "createdAt": {
             "type": "string",
             "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -5387,9 +5652,6 @@
             "format": "date-time",
             "nullable": true
           },
-          "reservation": {
-            "$ref": "#/components/schemas/Reservation"
-          },
           "clientSecret": {
             "type": "string",
             "nullable": true
@@ -5568,6 +5830,13 @@
           },
           "room": {
             "$ref": "#/components/schemas/Room"
+          },
+          "payments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Payment"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -5611,6 +5880,10 @@
       "ReservationsUpsertRequest": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
           "userId": {
             "type": "integer",
             "format": "int32"
@@ -6115,6 +6388,22 @@
             "type": "string",
             "nullable": true
           },
+          "queenBed": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "wiFi": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "cityView": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "ac": {
+            "type": "boolean",
+            "nullable": true
+          },
           "isDeleted": {
             "type": "boolean",
             "nullable": true
@@ -6122,6 +6411,13 @@
           "deletedTime": {
             "type": "string",
             "format": "date-time",
+            "nullable": true
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Asset"
+            },
             "nullable": true
           }
         },
@@ -6134,35 +6430,49 @@
             "type": "integer",
             "format": "int32"
           },
-          "fileName": {
-            "type": "string",
-            "nullable": true
-          },
-          "image": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          },
-          "imageThumb": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          },
-          "mimeType": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
           "hotelId": {
             "type": "integer",
             "format": "int32"
           },
-          "roomId": {
+          "roomTypeId": {
             "type": "integer",
             "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "capacity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pricePerNight": {
+            "type": "number",
+            "format": "double"
+          },
+          "isAvailable": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "queenBed": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "wiFi": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "cityView": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "ac": {
+            "type": "boolean",
+            "nullable": true
           },
           "isDeleted": {
             "type": "boolean",
@@ -6171,6 +6481,13 @@
           "deletedTime": {
             "type": "string",
             "format": "date-time",
+            "nullable": true
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Asset"
+            },
             "nullable": true
           }
         },

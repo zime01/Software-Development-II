@@ -5,6 +5,7 @@ import 'package:hotelease_mobile_new/providers/rooms.provider.dart';
 import 'package:hotelease_mobile_new/providers/users_provider.dart';
 import 'package:hotelease_mobile_new/providers/reservations_provider.dart';
 import 'package:hotelease_mobile_new/utils/util.dart';
+import 'package:intl/intl.dart';
 
 class UsersScreen extends StatefulWidget {
   const UsersScreen({super.key});
@@ -285,7 +286,7 @@ class _UsersScreenState extends State<UsersScreen>
                               style: TextStyle(color: Colors.white),
                             ),
                             subtitle: Text(
-                              "${res.checkInDate} - ${res.checkOutDate}",
+                              "${DateFormat('dd.MM.yyyy HH:mm').format(res.checkInDate!)} - ${DateFormat('dd.MM.yyyy HH:mm').format(res.checkOutDate!)}",
                               style: TextStyle(color: Colors.white),
                             ),
                             trailing: Text(

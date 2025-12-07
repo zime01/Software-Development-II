@@ -7,21 +7,25 @@ namespace hotelEase.Model.Requests
     public class RoomsUpdateRequest
     {
         public int Id { get; set; }
-
-        public string FileName { get; set; } = null!;
-
-        public byte[]? Image { get; set; }
-
-        public byte[]? ImageThumb { get; set; }
-
-        public string? MimeType { get; set; }
-
-        public DateTime CreatedAt { get; set; }
-
         public int HotelId { get; set; }
+        public int RoomTypeId { get; set; }
 
-        public int RoomId { get; set; }
+        public string Name { get; set; } = null!;
+
+        public int Capacity { get; set; }
+
+        public decimal PricePerNight { get; set; }
+
+        public bool? IsAvailable { get; set; }
+
+        public string? Description { get; set; }
+        public bool? QueenBed { get; set; }
+        public bool? WiFi { get; set; }
+        public bool? CityView { get; set; }
+        public bool? AC { get; set; }
+
         public bool? IsDeleted { get; set; }
         public DateTime? DeletedTime { get; set; }
+        public List<Asset>? Assets { get; set; }
     }
 }

@@ -26,5 +26,19 @@ class Asset {
 
   factory Asset.fromJson(Map<String, dynamic> json) => _$AssetFromJson(json);
 
-  Map<String, dynamic> toJson() => _$AssetToJson(this);
+  Map<String, dynamic> toJson({bool includeId = true}) {
+    final map = {
+      "fileName": fileName,
+      "image": image,
+      "imageThumb": imageThumb,
+      "mimeType": mimeType,
+      "hotelId": hotelId,
+      "roomId": roomId,
+      // ne šalji createdAt
+    };
+    if (includeId && id != null && id != 0) {
+      map["id"] = id;
+    }
+    return map;
+  }
 }

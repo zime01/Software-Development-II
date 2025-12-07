@@ -66,6 +66,15 @@ namespace hotelEase.Services
             if (searchObject?.IncludeRoles == true)
                 query = query.Include(u => u.Roles);
 
+            if (searchObject.IsActive.HasValue)
+            {
+                query = query.Where(x => x.IsActive == searchObject.IsActive.Value);
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchObject.Role))
+            {
+                query = query.Where(x => x.Roles.Any(r => r.Name == searchObject.Role));
+            }
 
             return query;
 
@@ -309,6 +318,16 @@ namespace hotelEase.Services
             // dodaj novu rolu korisniku
             userEntity.Roles.Add(roleEntity);
 
+            Context.SaveChanges();
+        }
+
+        public void ChangeStatus(int id, bool isActive)
+        {
+            var user = Context.Users.Find(id);
+            if (user == null)
+                throw new Exception("User not found");
+
+            user.IsActive = isActive;
             Context.SaveChanges();
         }
     }

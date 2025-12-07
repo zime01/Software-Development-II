@@ -14,17 +14,19 @@ class ManagerDashboardScreen extends StatelessWidget {
       title: "Manager Dashboard",
       child: ListView(
         children: [
-          ListTile(
-            leading: const Icon(Icons.meeting_room, color: Colors.white),
-            title: const Text(
-              "Manage Rooms",
-              style: TextStyle(color: Colors.white),
-            ),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const ManagerRoomsScreen()),
-            ),
-          ),
+          // ListTile(
+          //   leading: const Icon(Icons.meeting_room, color: Colors.white),
+          //   title: const Text(
+          //     "Manage Rooms",
+          //     style: TextStyle(color: Colors.white),
+          //   ),
+          //   onTap: () => Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (_) => const ManagerRoomsScreen(hotelId: null ?? 0),
+          //     ),
+          //   ),
+          // ),
           ListTile(
             leading: const Icon(Icons.category, color: Colors.white),
             title: const Text(

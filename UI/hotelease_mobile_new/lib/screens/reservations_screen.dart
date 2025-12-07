@@ -7,7 +7,6 @@ import 'package:hotelease_mobile_new/providers/services_provider.dart';
 import 'package:hotelease_mobile_new/providers/users_provider.dart';
 import 'package:hotelease_mobile_new/screens/master_screen.dart';
 import 'package:hotelease_mobile_new/screens/payment_screen.dart';
-
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -35,6 +34,10 @@ class _ReservationScreenState extends State<ReservationScreen> {
   int guests = 1;
   List<Service> availableServices = [];
   List<Service> selectedServices = [];
+  bool _isProcessing = false;
+
+  // ⛔️ Prevents second payment
+  int? _reservationId;
 
   @override
   void didChangeDependencies() {
@@ -64,11 +67,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Row(
         children: [
-          Icon(
-            icon,
-            color: Theme.of(context).colorScheme.onPrimary,
-            size: 20,
-          ), // ikonica
+          Icon(icon, color: Theme.of(context).colorScheme.onPrimary, size: 20),
           const SizedBox(width: 8),
           Expanded(
             child: Text(
@@ -97,6 +96,8 @@ class _ReservationScreenState extends State<ReservationScreen> {
       'dd.MM.yyyy',
     ).format(widget.checkOutDate);
     int nights = widget.checkOutDate.difference(widget.checkInDate).inDays;
+
+    final bool alreadyReserved = _reservationId != null;
 
     return MasterScreen(
       child: Padding(
@@ -159,7 +160,19 @@ class _ReservationScreenState extends State<ReservationScreen> {
                   ),
                 ),
                 IconButton(
-                  onPressed: () => setState(() => guests++),
+                  onPressed: () {
+                    if (guests < widget.room.capacity!) {
+                      setState(() => guests++);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            "Maximum ${widget.room.capacity} guests allowed",
+                          ),
+                        ),
+                      );
+                    }
+                  },
                   icon: const Icon(Icons.add),
                 ),
               ],
@@ -173,7 +186,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
               bool selected = selectedServices.contains(s);
               return CheckboxListTile(
                 title: Text(
-                  "${s.name} (\$${s.price})",
+                  "${s.name} (\$${s.price.toStringAsFixed(2)})",
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onPrimary,
                   ),
@@ -215,66 +228,93 @@ class _ReservationScreenState extends State<ReservationScreen> {
                 borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
               child: ElevatedButton(
-                onPressed: () async {
-                  try {
-                    final currentUser = await UsersProvider().getCurrentUser();
+                onPressed: (_isProcessing || alreadyReserved)
+                    ? null
+                    : () async {
+                        setState(() => _isProcessing = true);
+                        try {
+                          final currentUser = await UsersProvider()
+                              .getCurrentUser();
 
-                    final reservationPayload = {
-                      "userId": currentUser.id,
-                      "roomId": widget.room.id,
-                      "checkInDate": widget.checkInDate.toIso8601String(),
-                      "checkOutDate": widget.checkOutDate.toIso8601String(),
-                      "totalPrice": totalCost,
-                      "status": "Pending",
-                    };
+                          final reservationPayload = {
+                            "userId": currentUser.id,
+                            "roomId": widget.room.id,
+                            "checkInDate": widget.checkInDate.toIso8601String(),
+                            "checkOutDate": widget.checkOutDate
+                                .toIso8601String(),
+                            "totalPrice": totalCost,
+                            "status": "Pending",
+                          };
 
-                    // Kreiraj rezervaciju
-                    var createdReservation = await context
-                        .read<ReservationsProvider>()
-                        .createReservation(reservationPayload);
+                          var createdReservation = await context
+                              .read<ReservationsProvider>()
+                              .createReservation(reservationPayload);
 
-                    // Pošalji RabbitMQ event
-                    await context
-                        .read<NotificationsProvider>()
-                        .sendReservationCreated(
-                          userId: currentUser.id!,
-                          email: currentUser.email!,
-                          hotelName: widget.hotelName ?? "Hotel",
-                          roomName: widget.room.name,
-                          checkIn: widget.checkInDate,
-                          checkOut: widget.checkOutDate,
-                        );
+                          // ⛔ SADA JE ZAKLJUČANO
+                          setState(() {
+                            _reservationId = createdReservation.id;
+                          });
 
-                    // Navigacija na PaymentScreen
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => PaymentScreen(
-                          reservationId: createdReservation.id ?? 0,
-                          amount: totalCost,
-                          currency: "USD",
-                        ),
-                      ),
-                    );
-                  } catch (e, stackTrace) {
-                    print("Error: $e");
-                    print(stackTrace);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text("Error while reservating $e")),
-                    );
-                  }
-                },
+                          await context
+                              .read<NotificationsProvider>()
+                              .sendReservationCreated(
+                                userId: currentUser.id!,
+                                email: currentUser.email!,
+                                hotelName: widget.hotelName ?? "Hotel",
+                                roomName: widget.room.name,
+                                checkIn: widget.checkInDate,
+                                checkOut: widget.checkOutDate,
+                              );
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => PaymentScreen(
+                                reservationId: createdReservation.id ?? 0,
+                                amount: totalCost,
+                                currency: "USD",
+                              ),
+                            ),
+                          );
+                        } catch (e, stackTrace) {
+                          print("Error: $e");
+                          print(stackTrace);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Error while reservating $e"),
+                            ),
+                          );
+                        } finally {
+                          setState(() => _isProcessing = false);
+                        }
+                      },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.secondary,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   textStyle: const TextStyle(fontSize: 18),
                 ),
-                child: Text(
-                  "Continue to payment",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                  ),
-                ),
+                child: alreadyReserved
+                    ? Text(
+                        "Reservation created",
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                      )
+                    : _isProcessing
+                    ? SizedBox(
+                        height: 24,
+                        width: 24,
+                        child: CircularProgressIndicator(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                          strokeWidth: 2,
+                        ),
+                      )
+                    : Text(
+                        "Continue to payment",
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                      ),
               ),
             ),
           ],

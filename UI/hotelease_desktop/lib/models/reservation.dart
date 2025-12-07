@@ -1,4 +1,6 @@
+import 'package:hotelease_mobile_new/models/payment.dart';
 import 'package:hotelease_mobile_new/models/room.dart';
+import 'package:hotelease_mobile_new/models/user.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'reservation.g.dart';
@@ -17,6 +19,9 @@ class Reservation {
   DateTime? deletedTime;
   Room? room;
 
+  User? user;
+  List<Payment>? payments;
+
   Reservation({
     this.room,
     this.id,
@@ -29,6 +34,7 @@ class Reservation {
     this.createdAt,
     this.isDeleted,
     this.deletedTime,
+    this.user,
   });
 
   factory Reservation.fromJson(Map<String, dynamic> json) =>

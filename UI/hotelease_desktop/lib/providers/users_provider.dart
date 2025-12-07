@@ -31,13 +31,22 @@ class UsersProvider extends BaseProvider<User> {
   }
 
   // 🔹 nova metoda da dobavi sve korisnike sa IncludeRoles
-  Future<List<User>> getAll({bool includeRoles = true}) async {
-    var uri = Uri.parse("$baseUrl$endpoint?IncludeRoles=$includeRoles");
+  Future<List<User>> getAll({
+    bool includeRoles = true,
+    bool? isActive,
+    String? role,
+  }) async {
+    final query = StringBuffer("?IncludeRoles=$includeRoles");
+
+    if (isActive != null) query.write("&IsActive=$isActive");
+    if (role != null && role.isNotEmpty) query.write("&Role=$role");
+
+    var uri = Uri.parse("$baseUrl$endpoint${query.toString()}");
     var response = await http.get(uri, headers: createHeaders());
 
     if (isValidResponse(response)) {
       var data = jsonDecode(response.body);
-      // Ako je API paged result
+      // Ako API vraća paged result
       if (data is Map && data.containsKey("resultList")) {
         return (data["resultList"] as List).map((x) => fromJson(x)).toList();
       }
@@ -105,6 +114,28 @@ class UsersProvider extends BaseProvider<User> {
 
     if (!isValidResponse(response)) {
       throw Exception("Failed to change role: ${response.body}");
+    }
+  }
+
+  Future<User?> login(String username, String password) async {
+    final url = "$baseUrl$endpoint/login";
+    final uri = Uri.parse(url);
+
+    final response = await http.post(
+      uri,
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode({"username": username, "password": password}),
+    );
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      return fromJson(data); // vraća User objekt
+    } else if (response.statusCode == 401) {
+      return null; // invalid credentials
+    } else {
+      throw Exception(
+        "Login failed: ${response.statusCode} - ${response.body}",
+      );
     }
   }
 }

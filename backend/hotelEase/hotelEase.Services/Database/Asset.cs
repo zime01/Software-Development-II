@@ -7,7 +7,7 @@ public partial class Asset
 {
     public int Id { get; set; }
 
-    public string FileName { get; set; } = null!;
+    public string? FileName { get; set; }
 
     public byte[]? Image { get; set; }
 
@@ -15,7 +15,7 @@ public partial class Asset
 
     public string? MimeType { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public DateTime? CreatedAt { get; set; }
 
     public int HotelId { get; set; }
 

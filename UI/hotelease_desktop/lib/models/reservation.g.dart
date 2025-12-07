@@ -6,29 +6,36 @@ part of 'reservation.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Reservation _$ReservationFromJson(Map<String, dynamic> json) => Reservation(
-  room: json['room'] == null
-      ? null
-      : Room.fromJson(json['room'] as Map<String, dynamic>),
-  id: (json['id'] as num?)?.toInt(),
-  userId: (json['userId'] as num?)?.toInt(),
-  roomId: (json['roomId'] as num?)?.toInt(),
-  checkInDate: json['checkInDate'] == null
-      ? null
-      : DateTime.parse(json['checkInDate'] as String),
-  checkOutDate: json['checkOutDate'] == null
-      ? null
-      : DateTime.parse(json['checkOutDate'] as String),
-  totalPrice: (json['totalPrice'] as num?)?.toDouble(),
-  status: json['status'] as String?,
-  createdAt: json['createdAt'] == null
-      ? null
-      : DateTime.parse(json['createdAt'] as String),
-  isDeleted: json['isDeleted'] as bool?,
-  deletedTime: json['deletedTime'] == null
-      ? null
-      : DateTime.parse(json['deletedTime'] as String),
-);
+Reservation _$ReservationFromJson(Map<String, dynamic> json) =>
+    Reservation(
+        room: json['room'] == null
+            ? null
+            : Room.fromJson(json['room'] as Map<String, dynamic>),
+        id: (json['id'] as num?)?.toInt(),
+        userId: (json['userId'] as num?)?.toInt(),
+        roomId: (json['roomId'] as num?)?.toInt(),
+        checkInDate: json['checkInDate'] == null
+            ? null
+            : DateTime.parse(json['checkInDate'] as String),
+        checkOutDate: json['checkOutDate'] == null
+            ? null
+            : DateTime.parse(json['checkOutDate'] as String),
+        totalPrice: (json['totalPrice'] as num?)?.toDouble(),
+        status: json['status'] as String?,
+        createdAt: json['createdAt'] == null
+            ? null
+            : DateTime.parse(json['createdAt'] as String),
+        isDeleted: json['isDeleted'] as bool?,
+        deletedTime: json['deletedTime'] == null
+            ? null
+            : DateTime.parse(json['deletedTime'] as String),
+        user: json['user'] == null
+            ? null
+            : User.fromJson(json['user'] as Map<String, dynamic>),
+      )
+      ..payments = (json['payments'] as List<dynamic>?)
+          ?.map((e) => Payment.fromJson(e as Map<String, dynamic>))
+          .toList();
 
 Map<String, dynamic> _$ReservationToJson(Reservation instance) =>
     <String, dynamic>{
@@ -43,4 +50,6 @@ Map<String, dynamic> _$ReservationToJson(Reservation instance) =>
       'isDeleted': instance.isDeleted,
       'deletedTime': instance.deletedTime?.toIso8601String(),
       'room': instance.room,
+      'user': instance.user,
+      'payments': instance.payments,
     };

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:hotelease_mobile_new/providers/assets_provider.dart';
+import 'package:hotelease_mobile_new/providers/cities_provider.dart';
 import 'package:hotelease_mobile_new/providers/hotels_provider.dart';
 import 'package:hotelease_mobile_new/providers/notifications.provider.dart';
 import 'package:hotelease_mobile_new/providers/payments_provider.dart';
@@ -15,6 +16,7 @@ import 'package:hotelease_mobile_new/providers/services_provider.dart';
 import 'package:hotelease_mobile_new/providers/users_provider.dart';
 import 'package:hotelease_mobile_new/screens/hotels_list_screen.dart';
 import 'package:hotelease_mobile_new/screens/register_screen.dart';
+import 'package:hotelease_mobile_new/screens/reservations_daily_screen.dart';
 import 'package:hotelease_mobile_new/utils/util.dart';
 import 'package:provider/provider.dart';
 
@@ -40,6 +42,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => PaymentsProvider()),
         ChangeNotifierProvider(create: (_) => ReviewsProvider()),
         ChangeNotifierProvider(create: (_) => RoomTypesProvider()),
+        ChangeNotifierProvider(create: (_) => CitiesProvider()),
       ],
       child: const MyApp(),
     ),
@@ -61,6 +64,10 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: LoginPage(),
+      routes: {
+        "/login": (context) => const LoginPage(),
+        "/home": (context) => ReservationsDailyScreen(),
+      },
     );
   }
 }
@@ -84,7 +91,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> _login(BuildContext context) async {
-    final hotelsProvider = context.read<HotelsProvider>();
     final usersProvider = context.read<UsersProvider>();
 
     showDialog(
@@ -94,25 +100,39 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     try {
-      final username = _usernameController.text;
-      final password = _passwordController.text;
+      final username = _usernameController.text.trim();
+      final password = _passwordController.text.trim();
 
-      print("Login credentials: $username / $password");
+      if (username.isEmpty || password.isEmpty) {
+        Navigator.of(context).pop();
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Username and password required")),
+        );
+        return;
+      }
 
+      // 👇 Validacija sa backend-om
+      final currentUser = await usersProvider.login(username, password);
+
+      if (currentUser == null) {
+        Navigator.of(context).pop();
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text("Invalid credentials")));
+        return;
+      }
+
+      // Ako je login OK
       Authorization.username = username;
       Authorization.password = password;
-
-      await hotelsProvider.get();
-
-      final currentUser = await usersProvider.getCurrentUser();
       Authorization.userId = currentUser.id;
 
-      Navigator.of(context).pop(); // Remove loading
-      Navigator.of(
-        context,
-      ).pushReplacement(MaterialPageRoute(builder: (_) => HotelsListScreen()));
+      Navigator.of(context).pop();
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => ReservationsDailyScreen()),
+      );
     } catch (e) {
-      Navigator.of(context).pop(); // Remove loading
+      Navigator.of(context).pop();
       showDialog(
         context: context,
         builder: (_) => AlertDialog(
