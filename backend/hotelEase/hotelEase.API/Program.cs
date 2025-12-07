@@ -153,7 +153,7 @@ builder.Services.AddAuthentication("BasicAuthentication")
     using (var scope = app.Services.CreateScope())
     {
         var dataContext = scope.ServiceProvider.GetRequiredService<HotelEaseContext>();
-        //dataContext.Database.EnsureCreated();
+        dataContext.Database.EnsureCreated();
 
         //dataContext.Database.Migrate();
     }
