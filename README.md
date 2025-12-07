@@ -42,8 +42,6 @@ cd Software-Development-II/backend/hotelEase
 docker-compose up --build
 
 5. Credentials for testing:
-username: admin password:test 
-username: manager password:test 
 username: desktop password:test 
 username: mobile password:test 
 
